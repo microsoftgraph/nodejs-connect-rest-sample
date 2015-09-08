@@ -1,0 +1,21 @@
+{
+    "name": "o365-nodejs-unified-api-connect",
+    "version": "1.0.0",
+    "description": "Connecting to Office 365 is the first step every Node.js app must take to start working with Office 365 services and data. This sample shows how to connect and then call one API through the Unified API.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://onemseng.visualstudio.com/DefaultCollection/Office%20365%20Patterns%20and%20Solutions/_git/O365-Nodejs-Unified-API-Connect"
+    },
+    "keywords": [
+        "o365",
+        "microsoft",
+        "nodejs",
+        "unified"
+    ],
+    "author": "PatSol",
+    "license": "MIT"
+}
