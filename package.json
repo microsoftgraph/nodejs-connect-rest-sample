@@ -19,6 +19,7 @@
     "author": "PatSol",
     "license": "MIT",
     "dependencies": {
-        "adal-node": "^0.1.16"
+        "adal-node": "^0.1.16",
+        "express": "^4.13.3"
     }
 }
