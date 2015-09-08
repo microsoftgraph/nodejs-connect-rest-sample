@@ -17,5 +17,8 @@
         "unified"
     ],
     "author": "PatSol",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "adal-node": "^0.1.16"
+    }
 }
