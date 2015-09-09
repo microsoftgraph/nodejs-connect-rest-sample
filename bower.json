@@ -1,0 +1,15 @@
+{
+    "name": "o365-nodejs-unified-api-connect",
+    "version": "1.0.0",
+    "authors": [
+        "PatSol"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}
