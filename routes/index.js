@@ -14,10 +14,6 @@ router.get('/', function(req, res, next) {
   }  
 });
 
-router.get('/test', function(req, res){
-  res.render('hi', {title: "computers", msg: "Greetings"});
-});
-
 /* GET home page. */
 router.get('/login', function(req, res, next) {
   if (req.query.code !== undefined) {
