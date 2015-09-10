@@ -35,58 +35,6 @@ router.get('/login', function (req, res, next) {
   }
 });
 
-router.get('/:id', function (req, res, next) {
-  var tenantId = req.cookies.TENANT_CACHE_KEY;
-  renderView(tenantId + '/users/' + req.params.id, req, res);
-});
-
-function renderView(path, req, res) {
-  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
-    if (token !== null) {
-      var user = { user: null, manager: null, directReports: null, files: null };
-      
-      //get the user
-      getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
-        if (result != null) {
-          user.user = JSON.parse(result);
-          if (user.user !== null && user.manager !== null && user.directReports !== null && user.files !== null)
-            res.render('index', { title: 'Express', data: user });
-        }
-      });
-      
-      //get the manager
-      getJson('graph.microsoft.com', '/beta/' + path + '/manager', token.accessToken, function (result) {
-        if (result != null) {
-          user.manager = JSON.parse(result);
-          if (user.user !== null && user.manager !== null && user.directReports !== null && user.files !== null)
-            res.render('index', { title: 'Express', data: user });
-        }
-      });
-      
-      //get the direct reports
-      getJson('graph.microsoft.com', '/beta/' + path + '/directReports', token.accessToken, function (result) {
-        if (result != null) {
-          user.directReports = JSON.parse(result);
-          if (user.user !== null && user.manager !== null && user.directReports !== null && user.files !== null)
-            res.render('index', { title: 'Express', data: user });
-        }
-      });
-      
-      //get the files
-      getJson('graph.microsoft.com', '/beta/' + path + '/files', token.accessToken, function (result) {
-        if (result != null) {
-          user.files = JSON.parse(result);
-          if (user.user !== null && user.manager !== null && user.directReports !== null && user.files !== null)
-            res.render('index', { title: 'Express', data: user });
-        }
-      });
-    }
-    else {
-      //TODO: ERROR
-    }
-  });
-};
-
 function getJson(host, path, token, callback) {
   var options = {
     host: host,
@@ -114,12 +62,23 @@ function getJson(host, path, token, callback) {
 };
 
 function renderSendMail(path, req, res) {
-  res.render('sendMail', {
-    // Should come from ADAL?
-    name: "Ricardo",
-    // Should come from ADAL?
-    default_email: "you@example.com",
-    actual_recipient: "ricardo@msft.com"
+  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
+    if (token !== null) {
+      var user = { user: null, manager: null, directReports: null, files: null };
+      
+      //get the user
+      getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
+        if (result != null) {
+          console.log(result);
+          user.user = JSON.parse(result);
+          if (user.user !== null)
+            res.render('sendMail', { title: 'Express', data: user });
+        }
+      });
+    }
+    else {
+      //TODO: ERROR
+    }
   });
 }
 
