@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   }  
 });
 
-router.get('/test', function(req, res, next){
+router.get('/test', function(req, res){
   res.render('hi', {title: "computers", msg: "Greetings"});
 });
 
@@ -35,9 +35,7 @@ router.get('/login', function(req, res, next) {
     });
   }
   else {
-    //res.render('login', { auth_url: authHelper.getAuthUrl('https://graph.microsoft.com/') });
-    console.log("rendering hi");
-    res.render('hi', {title: "computers", msg: "Greetings"});
+    res.render('login', { auth_url: authHelper.getAuthUrl('https://graph.microsoft.com/') });
   }
 });
 
