@@ -17,9 +17,10 @@ function getAuthUrl(res) {
 
 function getTokenFromCode(res, code, callback) {
     var authContext = new AuthenticationContext(credentials.authority);
-    authContext.acquireTokenWithAuthorizationCode(code, credentials.redirect_url, res, credentials.client_id, credentials.client_secret, function(err, response) {
-        if (err)
+    authContext.acquireTokenWithAuthorizationCode(code, credentials.redirect_url, res, credentials.client_id, credentials.client_secret, function (err, response) {
+        if (err) {
             callback(null);
+        }
         else {
             callback(response);
         }
@@ -28,9 +29,10 @@ function getTokenFromCode(res, code, callback) {
 
 function getTokenFromRefreshToken(res, token, callback) {
     var authContext = new AuthenticationContext(credentials.authority);
-    authContext.acquireTokenWithRefreshToken(token, credentials.client_id, credentials.client_secret, res, function(err, response) {
-        if (err)
+    authContext.acquireTokenWithRefreshToken(token, credentials.client_id, credentials.client_secret, res, function (err, response) {
+        if (err) {
             callback(null);
+        }
         else {
             callback(response);
         }

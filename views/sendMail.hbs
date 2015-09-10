@@ -1,0 +1,29 @@
+<div class="ms-Grid-row">
+   <!-- App navigation bar markup. -->
+   <div class="ms-NavBar">
+      <ul class="ms-NavBar-items">
+         <li class="navbar-header">Office 365 Connect sample</li>
+         <li class="ms-NavBar-item ms-NavBar-item--right"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
+      </ul>
+   </div>
+   <!-- App main content markup. -->
+   <form action="" method="post">
+      <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
+         <div>
+            <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{name}}!</h2>
+            <p class="ms-font-xl">You're now connected to Office 365. Click the mail icon below to send a message from your account using the Office 365 unified API. </p>
+            <div class="ms-TextField">
+               <input class="ms-TextField-field" name="default_email" value="{{default_email}}">
+            </div>
+            <button class="ms-Button">
+            <span class="ms-Button-label">Send mail</span>
+            </button>
+            <div>
+               <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{actual_recipient}}!</p>
+            </div>
+            <div>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>
