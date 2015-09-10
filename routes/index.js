@@ -21,7 +21,7 @@ router.get('/login', function(req, res, next) {
       if (token !== null) {
         //cache the refresh token in a cookie and go back to index
         res.cookie(authHelper.TOKEN_CACHE_KEY, token.refreshToken);
-        res.cookie(authHelper.TENANT_CAHCE_KEY, token.tenantId);
+        res.cookie(authHelper.TENANT_CACHE_KEY, token.tenantId);
         res.redirect('/');
       }
       else {
@@ -36,7 +36,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  var tenantId = req.cookies.TENANT_CAHCE_KEY;
+  var tenantId = req.cookies.TENANT_CACHE_KEY;
   renderView(tenantId + '/users/' + req.params.id, req, res);
 });
 

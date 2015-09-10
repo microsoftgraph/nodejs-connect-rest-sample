@@ -41,4 +41,4 @@ exports.getAuthUrl = getAuthUrl;
 exports.getTokenFromCode = getTokenFromCode;
 exports.getTokenFromRefreshToken = getTokenFromRefreshToken;
 exports.TOKEN_CACHE_KEY = 'TOKEN_CACHE_KEY';
-exports.TENANT_CAHCE_KEY = 'TENANT_CAHCE_KEY';
+exports.TENANT_CACHE_KEY = 'TENANT_CACHE_KEY';
