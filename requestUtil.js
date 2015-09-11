@@ -28,7 +28,7 @@ function getJson(host, path, token, callback) {
 
 function postData(host, path, token, postData, callback) {
   var outHeaders = {
-    'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true',
+    'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + token,
     'Content-Length': postData.length
   };
@@ -46,14 +46,18 @@ function postData(host, path, token, postData, callback) {
     res.on('data', function (chunk) {
       console.log('Response: ' + chunk);
     });
+    res.on('end', function () {
+      callback(res);
+    });
   });
-
-  // post the data
+  
+  // write the outbound data to it
   post.write(postData);
+  // we're done!
   post.end();
 
   post.on('error', function (e) {
-    console.log('problem with request: ' + e.message);
+    console.log('Request error: ' + e.message);
   });
 }
 
