@@ -15,6 +15,17 @@ router.get('/', function (req, res, next) {
   }
 });
 
+router.get('/disconnect', function (req, res, next) {
+  //check for token
+  req.session.destroy();
+  res.clearCookie('nodecookie');
+  res.clearCookie(authHelper.TENANT_CACHE_KEY);
+  res.clearCookie(authHelper.TOKEN_CACHE_KEY);
+  res.status(200);
+  // TODO dynamically determine the redirect uri
+  res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=http://localhost:8080');
+});
+
 router.post('/', function (req, res, next) {
   var destinationEmailAddress = req.body.default_email;
   console.log(destinationEmailAddress);
