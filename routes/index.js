@@ -24,7 +24,7 @@ router.post('/', function (req, res, next) {
       var postBody = emailer.generatePostBody(req.session.user.displayName, destinationEmailAddress);
       requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
         console.log(result.statusCode);
-        res.render('sendMail', { title: 'Express', data: req.session.user, actual_recipient: destinationEmailAddress });
+        res.render('sendMail', { title: 'Unified API Connect', data: req.session.user, actual_recipient: destinationEmailAddress });
       });
     }
     else {
