@@ -22,6 +22,8 @@ function wrapEmail(content, recipient) {
 	return emailAsPayload;
 }
 
-function sendMail(recipient) {
-	var emailPayload = wrapEmail(emailContent, recipient);
+function generatePostBody(recipient) {
+	return wrapEmail(emailContent, recipient);
 }
+
+exports.generatePostBody = generatePostBody;

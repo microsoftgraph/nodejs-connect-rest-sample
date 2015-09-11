@@ -5,7 +5,11 @@ function getJson(host, path, token, callback) {
     host: host,
     path: path,
     method: 'GET',
-    headers: forgeHeaders(token)
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
   };
 
   https.get(options, function (response) {
@@ -22,12 +26,36 @@ function getJson(host, path, token, callback) {
   });
 };
 
-function forgeHeaders(token) {
-  return {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer ' + token
+function postData(host, path, token, postData, callback) {
+  var outHeaders = {
+    'Content-Type': 'application/json;odata.metadata=minimal;odata.streaming=true',
+    'Authorization': 'Bearer ' + token,
+    'Content-Length': postData.length
   };
+  var options = {
+    host: host,
+    path: path,
+    method: 'POST',
+    headers: outHeaders
+  };
+  
+  // Set up the request
+  var post = https.request(options, function (res) {
+    console.log(res.statusCode);
+    console.log(res.statusMessage);
+    res.on('data', function (chunk) {
+      console.log('Response: ' + chunk);
+    });
+  });
+
+  // post the data
+  post.write(postData);
+  post.end();
+
+  post.on('error', function (e) {
+    console.log('problem with request: ' + e.message);
+  });
 }
 
 exports.getJson = getJson;
+exports.postData = postData;

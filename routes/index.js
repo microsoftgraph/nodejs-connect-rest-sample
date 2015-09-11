@@ -3,6 +3,7 @@ var router = express.Router();
 var authContext = require('adal-node').AuthenticationContext;
 var authHelper = require('../authHelper.js');
 var requestUtil = require('../requestUtil.js')
+var emailer = require('../emailer.js');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -12,6 +13,23 @@ router.get('/', function (req, res, next) {
   else {
     renderSendMail("me", req, res);
   }
+});
+
+router.post('/', function(req, res, next) {
+  var destinationEmailAddress = req.body.default_email;
+  console.log(destinationEmailAddress);
+  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
+    if (token !== null) {
+      // send the mail with a callback and report back that page...
+      var postBody = emailer.generatePostBody(destinationEmailAddress);
+      requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function(result) {
+        console.log(result);
+      });
+    }
+    else {
+      //TODO: ERROR
+    }
+  });
 });
 
 /* GET home page. */
