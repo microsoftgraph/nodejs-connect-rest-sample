@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var authContext = require('adal-node').AuthenticationContext;
 var authHelper = require('../authHelper.js');
-var https = require('https');
+var requestUtil = require('../requestUtil.js')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -35,39 +35,13 @@ router.get('/login', function (req, res, next) {
   }
 });
 
-function getJson(host, path, token, callback) {
-  var options = {
-    host: host,
-    path: path,
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + token
-    }
-  };
-
-  https.get(options, function (response) {
-    var body = "";
-    response.on('data', function (d) {
-      body += d;
-    });
-    response.on('end', function () {
-      callback(body);
-    });
-    response.on('error', function (e) {
-      callback(null);
-    });
-  });
-};
-
 function renderSendMail(path, req, res) {
   authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
     if (token !== null) {
       var user = { user: null, manager: null, directReports: null, files: null };
       
       //get the user
-      getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
+      requestUtil.getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
         if (result != null) {
           console.log(result);
           user.user = JSON.parse(result);
