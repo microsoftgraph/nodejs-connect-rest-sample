@@ -4,6 +4,7 @@ var authContext = require('adal-node').AuthenticationContext;
 var authHelper = require('../authHelper.js');
 var requestUtil = require('../requestUtil.js')
 var emailer = require('../emailer.js');
+var app = require('../app.js');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -22,8 +23,9 @@ router.get('/disconnect', function (req, res, next) {
   res.clearCookie(authHelper.TENANT_CACHE_KEY);
   res.clearCookie(authHelper.TOKEN_CACHE_KEY);
   res.status(200);
-  // TODO dynamically determine the redirect uri
-  res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=http://localhost:8080');
+  var redirectUri = 'http://' + req.hostname + ':' + app.port;
+  console.log('Disconnect redirect uri: ' + redirectUri);
+  res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=' + redirectUri);
 });
 
 router.post('/', function (req, res, next) {

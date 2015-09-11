@@ -65,3 +65,4 @@ app.use(function(err, req, res, next) {
 app.listen(port);
 
 module.exports = app;
+exports.port = port;
