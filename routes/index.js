@@ -24,7 +24,7 @@ router.post('/', function (req, res, next) {
       var postBody = emailer.generatePostBody(destinationEmailAddress);
       requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
         console.log(result.statusCode);
-        res.redirect('/');
+        res.render('sendMail', { title: 'Express', data: req.session.user, actual_recipient: destinationEmailAddress });
       });
     }
     else {
@@ -57,15 +57,16 @@ router.get('/login', function (req, res, next) {
 function renderSendMail(path, req, res) {
   authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
     if (token !== null) {
-      var user = { user: null, manager: null, directReports: null, files: null };
-      
+      var user = {};
       //get the user
       requestUtil.getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
         if (result != null) {
           console.log(result);
-          user.user = JSON.parse(result);
-          if (user.user !== null)
+          user = JSON.parse(result);
+          req.session.user = user;
+          if (user !== null) {
             res.render('sendMail', { title: 'Express', data: user });
+          }
         }
       });
     }
