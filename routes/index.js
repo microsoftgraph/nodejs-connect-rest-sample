@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
   authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
     if (token !== null) {
       // send the mail with a callback and report back that page...
-      var postBody = emailer.generatePostBody(destinationEmailAddress);
+      var postBody = emailer.generatePostBody(req.session.user.displayName, destinationEmailAddress);
       requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
         console.log(result.statusCode);
         res.render('sendMail', { title: 'Express', data: req.session.user, actual_recipient: destinationEmailAddress });
