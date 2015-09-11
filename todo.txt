@@ -1,1 +1,1 @@
-Disconnect button
+Dynamically generate redirect uri for the disconnect button
