@@ -1,3 +1,2 @@
 Disconnect button
-Change template when the mail is actually sent
 Update the contents of the mail
