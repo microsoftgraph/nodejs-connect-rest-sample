@@ -5,11 +5,7 @@ function getJson(host, path, token, callback) {
     host: host,
     path: path,
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + token
-    }
+    headers: forgeHeaders(token)
   };
 
   https.get(options, function (response) {
@@ -25,5 +21,13 @@ function getJson(host, path, token, callback) {
     });
   });
 };
+
+function forgeHeaders(token) {
+  return {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': 'Bearer ' + token
+  };
+}
 
 exports.getJson = getJson;
