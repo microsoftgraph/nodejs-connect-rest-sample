@@ -1,5 +1,12 @@
 var https = require('https');
 
+/**
+ * Generates a GET request to the specified host
+ * @param {string} host the host to whom this request will be sent
+ * @param {string} path the path, relative to the host, to which this request will be sent
+ * @param {string} token the authorization token with which the request should be signed
+ * @param {callback} callback
+ */
 function getJson(host, path, token, callback) {
   var options = {
     host: host,
@@ -26,6 +33,14 @@ function getJson(host, path, token, callback) {
   });
 };
 
+/**
+ * Generates a POST request (of Content-type ```application/json```)
+ * @param {string} host the host to whom this request will be sent
+ * @param {string} path the path, relative to the host, to which this request will be sent
+ * @param {string} token the authorization token with which the request should be signed
+ * @param {string} postData the data which will be 'POST'ed
+ * @param {callback} callback
+ */
 function postData(host, path, token, postData, callback) {
   var outHeaders = {
     'Content-Type': 'application/json',
