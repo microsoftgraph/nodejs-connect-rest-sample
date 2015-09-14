@@ -31,7 +31,7 @@ Running the app:<br />
 ## Mac OS X 10.5+
 1. ```make all && gulp``` - installs dependencies & starts the application server**
 
-** *By default, the included [```Makefile```](Makefile) uses [```brew```](https://github.com/Homebrew/homebrew) to load dependencies. If you'd prefer to use an alternative package manager or none at all, install [```npm```](https://docs.npmjs.com/getting-started/installing-node) and use the alternative Linux / Windows procedure.*
+** *By default, the included [```Makefile```](Makefile) uses [```brew```](https://github.com/Homebrew/homebrew) to load dependencies. If you'd prefer to use an alternative package manager or none at all, install ```npm``` and use the alternative Linux / Windows procedure.*
 
 ## Questions and comments
 
