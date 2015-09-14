@@ -28,24 +28,6 @@ router.get('/disconnect', function (req, res, next) {
   res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=' + redirectUri);
 });
 
-router.post('/', function (req, res, next) {
-  var destinationEmailAddress = req.body.default_email;
-  console.log(destinationEmailAddress);
-  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
-    if (token !== null) {
-      // send the mail with a callback and report back that page...
-      var postBody = emailer.generatePostBody(req.session.user.displayName, destinationEmailAddress);
-      requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
-        console.log(result.statusCode);
-        res.render('sendMail', { title: 'Unified API Connect', data: req.session.user, actual_recipient: destinationEmailAddress });
-      });
-    }
-    else {
-      //TODO: ERROR
-    }
-  });
-});
-
 /* GET home page. */
 router.get('/login', function (req, res, next) {
   if (req.query.code !== undefined) {
@@ -57,8 +39,9 @@ router.get('/login', function (req, res, next) {
         res.redirect('/');
       }
       else {
-        //TODO: ERROR
-        console.log("Error");
+        console.log("AuthHelper failed to acquire token");
+        res.status(500);
+        res.send();
       }
     });
   }
@@ -68,8 +51,9 @@ router.get('/login', function (req, res, next) {
 });
 
 function renderSendMail(path, req, res) {
-  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', req.cookies.TOKEN_CACHE_KEY, function (token) {
-    if (token !== null) {
+  wrapRequestAsCallback(req.cookies.TOKEN_CACHE_KEY, {
+
+    onSuccess: function (token) {
       var user = {};
       //get the user
       requestUtil.getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
@@ -82,9 +66,47 @@ function renderSendMail(path, req, res) {
           }
         }
       });
+    },
+
+    onFailure: function (err) {
+      res.status(err.code);
+      console.log(err.message);
+      res.send();
     }
-    else {
-      //TODO: ERROR
+  });
+}
+
+router.post('/', function (req, res, next) {
+  var destinationEmailAddress = req.body.default_email;
+  console.log(destinationEmailAddress);
+  wrapRequestAsCallback(req.cookies.TOKEN_CACHE_KEY, {
+
+    onSuccess: function (token) {
+      // send the mail with a callback and report back that page...
+      var postBody = emailer.generatePostBody(req.session.user.displayName, destinationEmailAddress);
+      requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
+        console.log(result.statusCode);
+        res.render('sendMail', { title: 'Unified API Connect', data: req.session.user, actual_recipient: destinationEmailAddress });
+      });
+    },
+
+    onFailure: function (err) {
+      res.status(err.code);
+      console.log(err.message);
+      res.send();
+    }
+  });
+});
+
+function wrapRequestAsCallback(tokenKey, callback) {
+  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', tokenKey, function (token) {
+    if (token !== null) {
+      callback.onSuccess(token);
+    } else {
+      callback.onFailure({
+        code: 500,
+        message: "An unexpected error was encountered acquiring access token from refresh token"
+      });
     }
   });
 }
