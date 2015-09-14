@@ -29,7 +29,9 @@ Running the app:<br />
 1. ```npm install && gulp``` - installs dependencies & starts the application server
 
 ## Mac OS X 10.5+
-1. ```make all && gulp``` - installs dependencies & starts the application server
+1. ```make all && gulp``` - installs dependencies & starts the application server**
+
+** *By default, the included [```Makefile```](Makefile) uses [```brew```]() to load dependencies. If you'd prefer to use an alternative package manager or none at all, install [```npm```](https://docs.npmjs.com/getting-started/installing-node) and use the alternative Linux / Windows procedure.*
 
 ## Questions and comments
 
