@@ -1,3 +1,4 @@
+// application dependencies
 var express = require('express');
 var session = require('express-session')
 var path = require('path');
@@ -5,10 +6,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 
 var app = express();
+// run the application on the port-argument (if present)
+// otherwise, default to 8080
 var port = process.env.PORT || 8080;
 
 // view engine setup
@@ -21,6 +23,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// session middleware configuration
+// see https://github.com/expressjs/session
 app.use(session({
     secret: '12345QWERTY-SECRET',
     name: 'nodecookie',
