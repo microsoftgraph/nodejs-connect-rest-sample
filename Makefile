@@ -1,6 +1,6 @@
-all: install_node install_npm install_gulp
+all: install_node install_npm install_gulp install_dependencies
 
-run: install_dependencies
+run:
 	gulp
 
 install_brew:
