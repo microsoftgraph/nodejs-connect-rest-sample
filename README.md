@@ -21,7 +21,8 @@ To use the Office 365 Node.js Connect sample, you need the following:
 
 ## Configure and run the app
 
-1. ```make all```
+1. ```make all``` - installs dependencies
+2. ```make run``` **or** ```gulp``` - starts the application server
 
 ## Questions and comments
 
