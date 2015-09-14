@@ -7,8 +7,6 @@ Connecting to Office 365 is the first step every app must take to start working 
 ## Prerequisites
 
 To use the Office 365 Node.js Connect sample, you need the following:
-* Ruby 2.2.x
-* Make
 * An Office 365 account. You can sign up for [an Office 365 Developer subscription](https://portal.office.com/Signup/Signup.aspx?OfferId=6881A1CB-F4EB-4db3-9F18-388898DAF510&DL=DEVELOPERPACK&ali=1#0) that includes the resources that you need to start building Office 365 apps.
 
      > Note: If you already have a subscription, the previous link sends you to a page with the message *Sorry, you can’t add that to your current account*. In that case use an account from your current Office 365 subscription.
@@ -18,11 +16,20 @@ To use the Office 365 Node.js Connect sample, you need the following:
 * A client ID, client secret, and redirect URI values of an application registered in Azure. This sample application must be granted the **Send mail as signed-in user** permission for the **Office 365 unified API (preview)**. [Add a web application in Azure](https://github.com/jasonjoh/office365-azure-guides/blob/master/RegisterAnAppInAzure.md) and [grant proper permissions](https://github.com/OfficeDev/O365-Android-Unified-API-Connect/wiki/Grant-permissions-to-the-Connect-application-in-Azure) to it.
 
      > Note: During the app registration process, make sure to specify **http://localhost:8080/login** as the **Sign-on URL**.
+     
+* Consult the section [Configure and run the app](#configure-and-run-the-app) for platform specific prerequisites.
 
 ## Configure and run the app
 
-1. ```make all``` - installs dependencies
-2. ```make run``` **or** ```gulp``` - starts the application server
+## Linux / Windows
+Prerequisites
+* [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
+
+Running the app:<br />
+1. ```npm install && gulp``` - installs dependencies & starts the application server
+
+## Mac OS X 10.5+
+1. ```make all``` && ```gulp``` - installs dependencies & starts the application server
 
 ## Questions and comments
 
