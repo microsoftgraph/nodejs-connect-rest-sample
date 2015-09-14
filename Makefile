@@ -1,6 +1,4 @@
-all: env run
-
-env: install_node install_npm install_gulp
+all: install_node install_npm install_gulp
 
 run: install_dependencies
 	gulp
