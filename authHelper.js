@@ -1,5 +1,6 @@
 var AuthenticationContext = require("adal-node").AuthenticationContext;
 
+// The application registration (must match Azure AD config)
 var credentials = {
     authority: "https://login.microsoftonline.com/common",
     client_id: "3c34db37-8e11-4719-97a8-96bd9f41c574",
@@ -7,6 +8,11 @@ var credentials = {
     redirect_url: "http://localhost:8080/login"
 };
 
+/**
+ * Generate a fully formed uri to use for authentication based on the supplied resource argument
+ * @param {string} res the desired resource endpoint uri
+ * @return {string} a fully formed uri with which authentcation can be completed
+ */
 function getAuthUrl(res) {
     return credentials.authority + "/oauth2/authorize" +
         "?client_id=" + credentials.client_id +
@@ -15,6 +21,12 @@ function getAuthUrl(res) {
         "&redirect_uri=" + credentials.redirect_url;
 };
 
+/**
+ * Gets a token for a given resource.
+ * @param {string} code An authorization code returned from a client.
+ * @param {string} res A URI that identifies the resource for which the token is valid.
+ * @param {AcquireTokenCallback} callback The callback function.
+ */
 function getTokenFromCode(res, code, callback) {
     var authContext = new AuthenticationContext(credentials.authority);
     authContext.acquireTokenWithAuthorizationCode(code, credentials.redirect_url, res, credentials.client_id, credentials.client_secret, function (err, response) {
@@ -27,6 +39,13 @@ function getTokenFromCode(res, code, callback) {
     });
 };
 
+
+/**
+ * Gets a new access token via a previously issued refresh token.
+ * @param {string} res The OAuth resource for which a token is being request. This parameter is optional and can be set to null.
+ * @param {string} token A refresh token returned in a tokne response from a previous invocation of acquireToken.
+ * @param {AcquireTokenCallback} callback The callback function.
+ */
 function getTokenFromRefreshToken(res, token, callback) {
     var authContext = new AuthenticationContext(credentials.authority);
     authContext.acquireTokenWithRefreshToken(token, credentials.client_id, credentials.client_secret, res, function (err, response) {
