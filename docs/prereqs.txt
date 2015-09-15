@@ -1,4 +1,0 @@
-Document prerequisites here
-
-- npm
-- gulp (only essential for dev)
