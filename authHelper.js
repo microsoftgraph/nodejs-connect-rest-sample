@@ -4,8 +4,8 @@ var AuthenticationContext = require("adal-node").AuthenticationContext;
 // The application registration (must match Azure AD config)
 var credentials = {
     authority: "https://login.microsoftonline.com/common",
-    client_id: "3c34db37-8e11-4719-97a8-96bd9f41c574",
-    client_secret: "AayrS5JeyK4eM3ih1zFuzIHqULAsdJVjfl4h4HRQVRI=",
+    client_id: "<your client id here>",
+    client_secret: "<your client secret>",
     redirect_url: "http://localhost:8080/login"
 };
 
