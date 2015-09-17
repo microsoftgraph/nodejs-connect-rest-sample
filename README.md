@@ -29,7 +29,7 @@ Prerequisites
 * [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
 
 Running the app:<br />
-1. ```npm install && gulp``` - installs dependencies & starts the application server
+1. ```npm install && npm install --global gulp && gulp``` - installs dependencies & starts the application server
 
 ## Mac OS X 10.5+
 1. ```make all && gulp``` - installs dependencies & starts the application server**
