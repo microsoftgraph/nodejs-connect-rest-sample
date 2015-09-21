@@ -41,6 +41,9 @@ Running the app:<br />
 
 ** *By default, the included [```Makefile```](Makefile) uses [```brew```](https://github.com/Homebrew/homebrew) to load dependencies. If you'd prefer to use an alternative package manager or none at all, install ```npm``` and use the alternative Linux / Windows procedure.*
 
+## Launch the app in your browser
+Once the application server has been started, open your favorite web browser to ```http://localhost:8080```
+
 ## Questions and comments
 
 We'd love to get your feedback about the Office 365 Node.js Connect sample. You can send your questions and suggestions to us in the [Issues](https://github.com/OfficeDev/O365-Nodejs-Unified-API-Connect/issues) section of this repository.
