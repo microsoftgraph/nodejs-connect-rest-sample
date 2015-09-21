@@ -6,7 +6,7 @@ var credentials = {
     authority: "https://login.microsoftonline.com/common",
     client_id: "<your client id here>",
     client_secret: "<your client secret>",
-    redirect_url: "http://localhost:8080/login"
+    redirect_uri: "http://localhost:8080/login"
 };
 
 /**
@@ -19,7 +19,7 @@ function getAuthUrl(res) {
         "?client_id=" + credentials.client_id +
         "&resources=" + res +
         "&response_type=code" +
-        "&redirect_uri=" + credentials.redirect_url;
+        "&redirect_uri=" + credentials.redirect_uri;
 };
 
 /**
@@ -30,7 +30,7 @@ function getAuthUrl(res) {
  */
 function getTokenFromCode(res, code, callback) {
     var authContext = new AuthenticationContext(credentials.authority);
-    authContext.acquireTokenWithAuthorizationCode(code, credentials.redirect_url, res, credentials.client_id, credentials.client_secret, function (err, response) {
+    authContext.acquireTokenWithAuthorizationCode(code, credentials.redirect_uri, res, credentials.client_id, credentials.client_secret, function (err, response) {
         if (err) {
             callback(null);
         }
