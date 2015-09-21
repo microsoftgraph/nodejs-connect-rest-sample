@@ -21,7 +21,7 @@ function getEmailContent(name) {
 function wrapEmail(content, recipient) {
 	var emailAsPayload = {
 		Message: {
-			Subject: 'Welcome to Office 365 development with PHP and the Office 365 Connect sample',
+			Subject: 'Welcome to Office 365 development with Node.js and the Office 365 Connect sample',
 			Body: {
 				ContentType: 'HTML',
 				Content: content
