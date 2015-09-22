@@ -29,7 +29,6 @@ To use the Office 365 Node.js Connect sample, you need the following:
 2. Update [```authHelper.js/client_secret```](authHelper.js#L8) with your application's client secret
 3. Update [```authHelper.js/redirect_uri```](authHelper.js#L9) with your application's redirect uri
 
-## Linux / Windows / Mac OS X
 Prerequisites
 * [```node```](https://nodejs.org/en/) - JavaScript runtime built on Chrome V8
 * [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
