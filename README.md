@@ -29,17 +29,16 @@ To use the Office 365 Node.js Connect sample, you need the following:
 2. Update [```authHelper.js/client_secret```](authHelper.js#L8) with your application's client secret
 3. Update [```authHelper.js/redirect_uri```](authHelper.js#L9) with your application's redirect uri
 
-## Linux / Windows
+## Linux / Windows / Mac OS X
 Prerequisites
+* [```node```](https://nodejs.org/en/) - JavaScript runtime built on Chrome V8
 * [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
 
-Running the app:<br />
-1. ```npm install && npm install --global gulp && gulp``` - installs dependencies & starts the application server
+To run the app, type the following into your command line:<br />
+1. ```npm install``` - install application dependencies
+2. ```npm install --global gulp``` - install the gulp streaming build system
+3. ```gulp``` - starts the application server
 
-## Mac OS X 10.5+
-1. ```make all && gulp``` - installs dependencies & starts the application server**
-
-** *By default, the included [```Makefile```](Makefile) uses [```brew```](https://github.com/Homebrew/homebrew) to load dependencies. If you'd prefer to use an alternative package manager or none at all, install ```npm``` and use the alternative Linux / Windows procedure.*
 
 ## Launch the app in your browser
 Once the application server has been started, open your favorite web browser to ```http://localhost:8080```
