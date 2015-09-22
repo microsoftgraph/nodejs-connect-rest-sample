@@ -33,7 +33,8 @@ Prerequisites
 * [```node```](https://nodejs.org/en/) - JavaScript runtime built on Chrome V8
 * [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
 
-To run the app, type the following into your command line:<br />
+To run the app, type the following into your command line:
+
 1. ```npm install``` - install application dependencies
 2. ```npm install --global gulp``` - install the gulp streaming build system
 3. ```gulp``` - starts the application server
