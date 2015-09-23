@@ -11,13 +11,11 @@ var credentials = {
 
 /**
  * Generate a fully formed uri to use for authentication based on the supplied resource argument
- * @param {string} res the desired resource endpoint uri
  * @return {string} a fully formed uri with which authentcation can be completed
  */
-function getAuthUrl(res) {
+function getAuthUrl() {
     return credentials.authority + "/oauth2/authorize" +
         "?client_id=" + credentials.client_id +
-        "&resources=" + res +
         "&response_type=code" +
         "&redirect_uri=" + credentials.redirect_uri;
 };
