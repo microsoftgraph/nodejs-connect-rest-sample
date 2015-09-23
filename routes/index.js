@@ -47,7 +47,7 @@ router.get('/login', function (req, res, next) {
     });
   }
   else {
-    res.render('login', { auth_url: authHelper.getAuthUrl('https://graph.microsoft.com/') });
+    res.render('login', { auth_url: authHelper.getAuthUrl() });
   }
 });
 
