@@ -31,7 +31,7 @@ To use the Office 365 Node.js Connect sample, you need the following:
 
 ## Linux / Windows
 Prerequisites
-* [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Managerco
+* [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
 
 Running the app:<br />
 1. ```npm install && npm install --global gulp && gulp``` - installs dependencies & starts the application server
