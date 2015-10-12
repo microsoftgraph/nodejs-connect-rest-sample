@@ -3,6 +3,7 @@
 Connecting to Office 365 is the first step every app must take to start working with Office 365 services and data. This sample shows how to connect and then call one API through the unified API (preview), and uses the Office Fabric UI to create an Office 365 experience.
 
 ![Office 365 Node.js Connect sample screenshot](./readme-imgs/screenshot.PNG)
+> Note: For an in-depth look at the code for calling the Office 365 unified API in a Node.js app, see [Understanding the Connect code sample](https://github.com/OfficeDev/O365-Nodejs-Unified-API-Connect/wiki/Understanding-the-Connect-code-sample).
 
 ## Prerequisites
 
