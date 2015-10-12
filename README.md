@@ -3,7 +3,6 @@
 Connecting to Office 365 is the first step every app must take to start working with Office 365 services and data. This sample shows how to connect and then call one API through the unified API (preview), and uses the Office Fabric UI to create an Office 365 experience.
 
 ![Office 365 Node.js Connect sample screenshot](./readme-imgs/screenshot.PNG)
-> Note: For an in-depth look at the code for calling the Office 365 unified API in a Node.js app, see [Understanding the Connect code sample](https://github.com/OfficeDev/O365-Nodejs-Unified-API-Connect/wiki/Understanding-the-Connect-code-sample).
 
 ## Prerequisites
 
@@ -17,7 +16,7 @@ To use the Office 365 Node.js Connect sample, you need the following:
 
      > **Important:**
      You also need to make sure your Azure subscription is bound to your Office 365 tenant. To do this, see the Active Directory team's blog post, [Creating and Managing Multiple Windows Azure Active Directories](http://blogs.technet.com/b/ad/archive/2013/11/08/creating-and-managing-multiple-windows-azure-active-directories.aspx). The section **Adding a new directory** will explain how to do this. You can also see [Set up your Office 365 development environment](https://msdn.microsoft.com/office/office365/howto/setup-development-environment#bk_CreateAzureSubscription) and the section **Associate your Office 365 account with Azure AD to create and manage apps** for more information.
-* A client ID, client secret, and redirect URI values of an application registered in Azure. This sample application must be granted the **Send mail as signed-in user** permission for the **Office 365 unified API (preview)**. [Add a web application in Azure](https://msdn.microsoft.com/office/office365/HowTo/add-common-consent-manually#bk_RegisterWebApp) and [grant proper permissions](https://github.com/OfficeDev/O365-Nodejs-Unified-API-Connect/wiki/Grant-permissions-to-the-Connect-application-in-Azure) to it.
+* A client ID, client secret, and redirect URI values of an application registered in Azure. This sample application must be granted the **Send mail as signed-in user** permission for the **Office 365 unified API (preview)**. [Add a web application in Azure](https://msdn.microsoft.com/office/office365/HowTo/add-common-consent-manually#bk_RegisterWebApp) and [grant proper permissions](https://github.com/OfficeDev/O365-Android-Unified-API-Connect/wiki/Grant-permissions-to-the-Connect-application-in-Azure) to it.
 
      > **Note:**
      During the app registration process, make sure to specify **http://localhost:8080/login** as the **Sign-on URL**.
@@ -30,17 +29,16 @@ To use the Office 365 Node.js Connect sample, you need the following:
 2. Update [```authHelper.js/client_secret```](authHelper.js#L8) with your application's client secret
 3. Update [```authHelper.js/redirect_uri```](authHelper.js#L9) with your application's redirect uri
 
-## Linux / Windows
 Prerequisites
+* [```node```](https://nodejs.org/en/) - JavaScript runtime built on Chrome V8
 * [```npm```](https://docs.npmjs.com/getting-started/installing-node) - Node Package Manager
 
-Running the app:<br />
-1. ```npm install && npm install --global gulp && gulp``` - installs dependencies & starts the application server
+To run the app, type the following into your command line:
 
-## Mac OS X 10.5+
-1. ```make all && gulp``` - installs dependencies & starts the application server**
+1. ```npm install``` - install application dependencies
+2. ```npm install --global gulp``` - install the gulp streaming build system
+3. ```gulp``` - starts the application server
 
-** *By default, the included [```Makefile```](Makefile) uses [```brew```](https://github.com/Homebrew/homebrew) to load dependencies. If you'd prefer to use an alternative package manager or none at all, install ```npm``` and use the alternative Linux / Windows procedure.*
 
 ## Launch the app in your browser
 Once the application server has been started, open your favorite web browser to ```http://localhost:8080```
