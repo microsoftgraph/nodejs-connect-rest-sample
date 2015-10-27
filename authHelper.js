@@ -6,7 +6,7 @@ var credentials = {
     authority: "https://login.microsoftonline.com/common",
     client_id: "<your client id here>",
     client_secret: "<your client secret>",
-    redirect_uri: "http://localhost:8080/login"
+    redirect_uri: "http://localhost:8000/login"
 };
 
 /**
