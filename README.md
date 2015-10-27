@@ -20,7 +20,7 @@ To use the Office 365 Node.js Connect sample, you need the following:
 * A client ID, client secret, and redirect URI values of an application registered in Azure. This sample application must be granted the **Send mail as signed-in user** permission for the **Office 365 unified API (preview)**. [Add a web application in Azure](https://msdn.microsoft.com/office/office365/HowTo/add-common-consent-manually#bk_RegisterWebApp) and [grant proper permissions](https://github.com/OfficeDev/O365-Nodejs-Unified-API-Connect/wiki/Grant-permissions-to-the-Connect-application-in-Azure) to it.
 
      > **Note:**
-     During the app registration process, make sure to specify **http://localhost:8080/login** as the **Sign-on URL**.
+     During the app registration process, make sure to specify **http://localhost:8000/login** as the **Sign-on URL**.
      
 * Consult the section [Configure and run the app](#configure-and-run-the-app) for platform specific prerequisites.
 
@@ -42,7 +42,7 @@ To run the app, type the following into your command line:
 
 
 ## Launch the app in your browser
-Once the application server has been started, open your favorite web browser to ```http://localhost:8080```
+Once the application server has been started, open your favorite web browser to ```http://localhost:8000```
 
 ## Questions and comments
 
