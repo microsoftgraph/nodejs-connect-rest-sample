@@ -4,10 +4,10 @@ var gulp = require('gulp'),
 
 gulp.task('default', function() {
     var config = {
-        script: 'app.js',
+        script: './bin/www',
         ext: 'js',
         env: {
-            PORT: 8080
+            PORT: 3000
         },
         ignore: ['./node_modules/**']
     };
