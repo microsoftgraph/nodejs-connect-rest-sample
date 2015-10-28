@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 
 gulp.task('default', function() {
     var config = {
-        script: 'app.js',
+        script: './bin/www',
         ext: 'js',
         env: {
             PORT: 3000
