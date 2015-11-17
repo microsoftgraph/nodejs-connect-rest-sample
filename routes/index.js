@@ -90,7 +90,7 @@ router.post('/', function (req, res, next) {
         console.log("Send mail status code: " + result.statusCode);
         console.log("\n\ntoken: " + token.accessToken);
         var templateData = {
-          title: 'Unified API Connect',
+          title: 'Microsoft Graph Connect',
           data: req.session.user,
           actual_recipient: destinationEmailAddress
         };
