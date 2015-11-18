@@ -57,7 +57,8 @@ function renderSendMail(path, req, res) {
     onSuccess: function (token) {
       var user = {};
       //get the user
-      requestUtil.getJson('graph.microsoft.com', '/beta/' + path, token.accessToken, function (result) {
+      requestUtil.getJson('graph.microsoft.com', '/v1.0/' + path, token.accessToken, function (result) {
+        console.log(token.accessToken);
         if (result != null) {
           console.log(result);
           user = JSON.parse(result);
@@ -85,9 +86,18 @@ router.post('/', function (req, res, next) {
     onSuccess: function (token) {
       // send the mail with a callback and report back that page...
       var postBody = emailer.generatePostBody(req.session.user.displayName, destinationEmailAddress);
-      requestUtil.postData('graph.microsoft.com', '/beta/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
-        console.log(result.statusCode);
-        res.render('sendMail', { title: 'Unified API Connect', data: req.session.user, actual_recipient: destinationEmailAddress });
+      requestUtil.postData('graph.microsoft.com', '/v1.0/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
+        console.log("Send mail status code: " + result.statusCode);
+        console.log("\n\ntoken: " + token.accessToken);
+        var templateData = {
+          title: 'Microsoft Graph Connect',
+          data: req.session.user,
+          actual_recipient: destinationEmailAddress
+        };
+        if (result.statusCode >= 400) {
+          templateData.status_code = result.statusCode;
+        }
+        res.render('sendMail', templateData);
       });
     },
 
@@ -116,7 +126,7 @@ module.exports = router;
 
 /*
 ######################################################################
-O365-Nodejs-Unified-API-Connect, https://github.com/OfficeDev/O365-Nodejs-Unified-API-Connect
+O365-Nodejs-Microsoft-Graph-Connect, https://github.com/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect
 
 Copyright (c) Microsoft Corporation
 All rights reserved.

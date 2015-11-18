@@ -11,7 +11,7 @@
       <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
          <div>
             <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{data.displayName}}!</h2>
-            <p class="ms-font-xl">You're now connected to Office 365. Click the mail icon below to send a message from your account using the Office 365 unified API. </p>
+            <p class="ms-font-xl">You're now connected to Office 365. Click the button below to send a message from your account using the Microsoft Graph. </p>
             <div class="ms-TextField">
                <input class="ms-TextField-field" name="default_email" value="{{data.mail}}">
             </div>
@@ -19,14 +19,18 @@
             <span class="ms-Button-label">Send mail</span>
             </button>
             
-            {{#if actual_recipient}}
-            <div>
-               <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{actual_recipient}}!</p>
-            </div>
+            {{#if status_code}}
+               <div>
+                  <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't send an email ({{status_code}})</p>
+               </div>
+            {{else}}
+               {{#if actual_recipient}}
+                  <div>
+                     <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{actual_recipient}}!</p>
+                  </div>
+               {{/if}}
             {{/if}}
             
-            <div>
-            </div>
          </div>
       </div>
    </form>

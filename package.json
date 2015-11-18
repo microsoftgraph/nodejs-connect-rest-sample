@@ -1,7 +1,7 @@
 {
-  "name": "o365-nodejs-unified-api-connect",
+  "name": "o365-nodejs-microsoft-graph-connect",
   "version": "1.0.0",
-  "description": "Connecting to Office 365 is the first step every Node.js app must take to start working with Office 365 services and data. This sample shows how to connect and then call one API through the Unified API.",
+  "description": "Connecting to Office 365 is the first step every Node.js app must take to start working with Office 365 services and data. This sample shows how to connect and then call one endpoint through the Microsoft Graph API.",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
