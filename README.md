@@ -39,8 +39,7 @@ Prerequisites
 To run the app, type the following into your command line:
 
 1. ```npm install``` - install application dependencies
-2. ```npm install --global gulp``` - install the gulp streaming build system
-3. ```gulp``` - starts the application server
+2. ```npm start``` - starts the application server
 
 
 ## Launch the app in your browser
