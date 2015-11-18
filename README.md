@@ -56,7 +56,7 @@ Questions about Office 365 development in general should be posted to [Stack Ove
 
 * [Office 365 APIs platform overview](https://msdn.microsoft.com/office/office365/howto/platform-development-overview)
 * [Getting started with Office 365 APIs](http://dev.office.com/getting-started/office365apis)
-* [Overview of Microsoft Graph](https://msdn.microsoft.com/office/office365/HowTo/office-365-unified-api-overview)
+* [Overview of Microsoft Graph](http://graph.microsoft.io)
 * [Office 365 APIs starter projects and code samples](https://msdn.microsoft.com/office/office365/howto/starter-projects-and-code-samples)
 * [Office UI Fabric](https://github.com/OfficeDev/Office-UI-Fabric)
 
