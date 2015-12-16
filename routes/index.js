@@ -86,7 +86,7 @@ router.post('/', function (req, res, next) {
     onSuccess: function (token) {
       // send the mail with a callback and report back that page...
       var postBody = emailer.generatePostBody(req.session.user.displayName, destinationEmailAddress);
-      requestUtil.postData('graph.microsoft.com', '/v1.0/me/sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
+      requestUtil.postData('graph.microsoft.com', '/v1.0/me/microsoft.graph.sendMail', token.accessToken, JSON.stringify(postBody), function (result) {
         console.log("Send mail status code: " + result.statusCode);
         console.log("\n\ntoken: " + token.accessToken);
         var templateData = {
