@@ -5,7 +5,7 @@ Connecting to Office 365 is the first step every app must take to start working 
 Try out the [Get started with Office 365 APIs](http://dev.office.com/getting-started/office365apis?platform=option-node#setup) page which simplifies registration so you can get this sample running faster.
 
 ![Office 365 Node.js Connect sample screenshot](./readme-imgs/screenshot.PNG)
-> Note: For an in-depth look at the code for calling the Microsoft Graph API in a Node.js app, see [Understanding the Connect code sample](https://github.com/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect/wiki/Understanding-the-Connect-code-sample).
+> Note: For an in-depth look at the code for calling the Microsoft Graph API in a Node.js app, see [Call Microsoft Graph with a Node.js app](https://graph.microsoft.io/docs/platform/nodejs).
 
 ## Prerequisites
 
