@@ -60,4 +60,4 @@ Questions about Office 365 development in general should be posted to [Stack Ove
 * [Office UI Fabric](https://github.com/OfficeDev/Office-UI-Fabric)
 
 ## Copyright
-Copyright (c) 2015 Microsoft. All rights reserved.
+Copyright (c) 2016 Microsoft. All rights reserved.
