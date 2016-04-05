@@ -42,7 +42,7 @@ function getTokenFromCode(res, code, callback) {
 /**
  * Gets a new access token via a previously issued refresh token.
  * @param {string} res The OAuth resource for which a token is being request. This parameter is optional and can be set to null.
- * @param {string} token A refresh token returned in a tokne response from a previous invocation of acquireToken.
+ * @param {string} token A refresh token returned in a token response from a previous invocation of acquireToken.
  * @param {AcquireTokenCallback} callback The callback function.
  */
 function getTokenFromRefreshToken(res, token, callback) {
