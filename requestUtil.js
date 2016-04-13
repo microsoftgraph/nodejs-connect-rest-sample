@@ -18,13 +18,13 @@ function getJson(host, path, token, callback) {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + token
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + token
     }
   };
 
   https.get(options, function (response) {
-    var body = "";
+    var body = '';
     response.on('data', function (d) {
       body += d;
     });
@@ -32,24 +32,25 @@ function getJson(host, path, token, callback) {
       callback(body);
     });
     response.on('error', function (e) {
+      console.error(e);
       callback(null);
     });
   });
-};
+}
 
 /**
  * Generates a POST request (of Content-type ```application/json```)
  * @param {string} host the host to whom this request will be sent
  * @param {string} path the path, relative to the host, to which this request will be sent
  * @param {string} token the authorization token with which the request should be signed
- * @param {string} postData the data which will be 'POST'ed
+ * @param {string} data the data which will be 'POST'ed
  * @param {callback} callback
  */
-function postData(host, path, token, postData, callback) {
+function postData(host, path, token, data, callback) {
   var outHeaders = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + token,
-    'Content-Length': postData.length
+    Authorization: 'Bearer ' + token,
+    'Content-Length': data.length
   };
   var options = {
     host: host,
@@ -57,7 +58,7 @@ function postData(host, path, token, postData, callback) {
     method: 'POST',
     headers: outHeaders
   };
-  
+
   // Set up the request
   var post = https.request(options, function (res) {
     console.log(res.statusCode);
@@ -69,9 +70,9 @@ function postData(host, path, token, postData, callback) {
       callback(res);
     });
   });
-  
+
   // write the outbound data to it
-  post.write(postData);
+  post.write(data);
   // we're done!
   post.end();
 

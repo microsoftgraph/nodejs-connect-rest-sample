@@ -1,15 +1,15 @@
-var AuthenticationContext = require("adal-node").AuthenticationContext;
 /*
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
+var AuthenticationContext = require('adal-node').AuthenticationContext;
 
 // The application registration (must match Azure AD config)
 var credentials = {
-    authority: "https://login.microsoftonline.com/common",
-    client_id: "ENTER_YOUR_CLIENT_ID",
-    client_secret: "ENTER_YOUR_SECRET",
-    redirect_uri: "http://localhost:3000/login"
+  authority: 'https://login.microsoftonline.com/common',
+  client_id: 'ENTER_YOUR_CLIENT_ID',
+  client_secret: 'ENTER_YOUR_SECRET',
+  redirect_uri: 'http://localhost:3000/login'
 };
 
 /**
@@ -17,11 +17,11 @@ var credentials = {
  * @return {string} a fully formed uri with which authentcation can be completed
  */
 function getAuthUrl() {
-    return credentials.authority + "/oauth2/authorize" +
-        "?client_id=" + credentials.client_id +
-        "&response_type=code" +
-        "&redirect_uri=" + credentials.redirect_uri;
-};
+  return credentials.authority + '/oauth2/authorize' +
+    '?client_id=' + credentials.client_id +
+    '&response_type=code' +
+    '&redirect_uri=' + credentials.redirect_uri;
+}
 
 /**
  * Gets a token for a given resource.
