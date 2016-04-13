@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "5"
+  - "4"
+script: npm run lint 
+notifications:
+  email:
+    recipients:
+    - ricardol@microsoft.com
+    on_success: never
+    on_failure: always
+
