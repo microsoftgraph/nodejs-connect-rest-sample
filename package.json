@@ -4,7 +4,7 @@
   "description": "Connecting to Office 365 is the first step every Node.js app must take to start working with Office 365 services and data. This sample shows how to connect and then call one endpoint through the Microsoft Graph API.",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "mocha ./tests/confTest.js && node ./bin/www",
     "lint": "eslint ."
   },
   "keywords": [
@@ -32,6 +32,7 @@
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.1",
     "gulp": "^3.9.0",
-    "gulp-nodemon": "^2.0.4"
+    "gulp-nodemon": "^2.0.4",
+    "mocha": "^2.4.5"
   }
 }
