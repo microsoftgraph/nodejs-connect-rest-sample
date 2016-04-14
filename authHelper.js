@@ -72,6 +72,7 @@ function getTokenFromRefreshToken(res, token, callback) {
   );
 }
 
+exports.credentials = credentials;
 exports.getAuthUrl = getAuthUrl;
 exports.getTokenFromCode = getTokenFromCode;
 exports.getTokenFromRefreshToken = getTokenFromRefreshToken;
