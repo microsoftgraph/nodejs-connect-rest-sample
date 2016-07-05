@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "mocha ./tests/confTest.js && node ./bin/www",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "mocha ./tests/integrationTest.js"
   },
   "keywords": [
     "o365",
