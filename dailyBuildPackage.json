@@ -17,25 +17,24 @@
   "author": "PatSol",
   "license": "MIT",
   "dependencies": {
-    "adal-node": "^0.1.16",
-    "body-parser": "~1.13.2",
-    "cookie-parser": "~1.3.5",
-    "cookie-session": "^1.2.0",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "express-session": "^1.11.3",
-    "hbs": "~3.1.0",
-    "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "adal-node": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "cookie-session": "*",
+    "debug": "*",
+    "express": "*",
+    "express-session": "*",
+    "hbs": "*",
+    "morgan": "*",
+    "serve-favicon": "*"
   },
   "devDependencies": {
-    "eslint": "^2.3.0",
-    "eslint-config-airbnb": "^6.1.0",
-    "eslint-plugin-import": "^1.10.2",
-    "eslint-plugin-react": "^4.2.1",
-    "eslint-plugin-import": "^1.10.2",
-    "gulp": "^3.9.0",
-    "gulp-nodemon": "^2.0.4",
-    "mocha": "^2.4.5"
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-react": "*",
+    "gulp": "*",
+    "gulp-nodemon": "*",
+    "mocha": "*"
   }
 }
