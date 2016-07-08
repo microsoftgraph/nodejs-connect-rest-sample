@@ -7,7 +7,6 @@ var router = express.Router();
 var authHelper = require('../authHelper.js');
 var requestUtil = require('../requestUtil.js');
 var emailer = require('../emailer.js');
-var app = require('../app.js');
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -20,7 +19,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/disconnect', function (req, res) {
-  var redirectUri = 'http://' + req.hostname + ':' + app.port;
+  var redirectUri = 'http://localhost:3000';
   // check for token
   req.session.destroy();
   res.clearCookie('nodecookie');
