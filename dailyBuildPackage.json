@@ -6,7 +6,8 @@
   "scripts": {
     "start": "mocha ./tests/confTest.js && node ./bin/www",
     "lint": "eslint .",
-    "test": "mocha ./tests/integrationTest.js"
+    "test": "mocha ./tests/integrationTest.js",
+    "automatedTest": "mocha ./tests/automatedTest.js --timeout 10000"
   },
   "keywords": [
     "o365",
@@ -35,6 +36,7 @@
     "eslint-plugin-react": "*",
     "gulp": "*",
     "gulp-nodemon": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "selenium-webdriver": "*"
   }
 }
