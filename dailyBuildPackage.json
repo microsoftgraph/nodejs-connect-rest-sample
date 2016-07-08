@@ -25,7 +25,7 @@
     "debug": "*",
     "express": "*",
     "express-session": "*",
-    "hbs": "*",
+    "hbs": "~3",
     "morgan": "*",
     "serve-favicon": "*"
   },
