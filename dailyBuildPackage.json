@@ -25,9 +25,9 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-session": "*",
-    "hbs": "~3.1.0",
+    "hbs": "*",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "*"
   },
   "devDependencies": {
     "eslint": "*",
