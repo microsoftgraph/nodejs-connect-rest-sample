@@ -13,12 +13,17 @@ var password;
 var filePath;
 before( // eslint-disable-line no-undef
     function () {
-      // Rewrite authHelper.js file to include the credentials from environment variables
       var newAuthHelperFileContent;
-      clientId = process.env.test_client_id;
-      clientSecret = process.env.test_client_secret;
-      username = process.env.test_username;
-      password = process.env.test_password;
+
+      // Read variables from testConfig.json file
+      var configFilePath = path.join(__dirname, 'testConfig.json');
+      var config = JSON.parse(fs.readFileSync(configFilePath, { encoding: 'utf8' }));
+      clientId = config.test_client_id;
+      clientSecret = config.test_client_secret;
+      username = config.test_username;
+      password = config.test_password;
+
+      // Rewrite authHelper.js file to include the credentials from environment variables
       filePath = path.join(__dirname, '../authHelper.js');
 
       authHelperFileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
