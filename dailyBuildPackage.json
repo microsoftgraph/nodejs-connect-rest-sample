@@ -18,7 +18,7 @@
   "author": "PatSol",
   "license": "MIT",
   "dependencies": {
-    "adal-node": "*",
+    "adal-node": "latest",
     "body-parser": "*",
     "cookie-parser": "*",
     "cookie-session": "*",
