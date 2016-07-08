@@ -30,13 +30,13 @@
     "serve-favicon": "*"
   },
   "devDependencies": {
-    "eslint": "*",
-    "eslint-config-airbnb": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-react": "*",
-    "gulp": "*",
-    "gulp-nodemon": "*",
-    "mocha": "*",
-    "selenium-webdriver": "*"
+    "eslint": "^2.3.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-react": "^4.2.1",
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.4",
+    "mocha": "^2.4.5",
+    "selenium-webdriver": "^2.53.3"
   }
 }
