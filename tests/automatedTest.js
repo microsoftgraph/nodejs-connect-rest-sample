@@ -29,7 +29,7 @@ before( // eslint-disable-line no-undef
       fs.writeFileSync(filePath, newAuthHelperFileContent, { encoding: 'utf8' });
 
       // Start node app
-      require('../bin/www');
+      require('../bin/www'); // eslint-disable-line global-require
 
       driver = new webdriver.Builder()
         .withCapabilities(webdriver.Capabilities.chrome())
