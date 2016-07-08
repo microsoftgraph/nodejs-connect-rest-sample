@@ -22,12 +22,12 @@
     "body-parser": "*",
     "cookie-parser": "*",
     "cookie-session": "*",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
+    "debug": "*",
+    "express": "*",
     "express-session": "*",
-    "hbs": "*",
-    "morgan": "~1.6.1",
-    "serve-favicon": "*"
+    "hbs": "~3.1.0",
+    "morgan": "*",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "eslint": "*",
