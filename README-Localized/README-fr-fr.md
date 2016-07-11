@@ -1,5 +1,5 @@
 # Exemple de connexion de Node.js à Office 365 avec Microsoft Graph
-[![Build Status](https://ricalo.visualstudio.com/_apis/public/build/definitions/06256fa7-d8e5-4ca0-8639-7c00eb6f1fe9/10/badge)](https://ricalo.visualstudio.com/_apis/public/build/definitions/06256fa7-d8e5-4ca0-8639-7c00eb6f1fe9/10/badge)
+![Build Status](https://ricalo.visualstudio.com/_apis/public/build/definitions/06256fa7-d8e5-4ca0-8639-7c00eb6f1fe9/10/badge "Build Status")
 
 La connexion à Office 365 est la première étape que chaque application doit suivre pour que vous puissiez commencer à travailler avec les données et services Office 365. Cet exemple explique comment connecter, puis appeler un point de terminaison via l’API Microsoft Graph (anciennement appelée API unifiée Office 365). Il utilise la structure d’interface utilisateur d’Office pour créer une expérience Office 365.
 
