@@ -23,8 +23,8 @@ router.get('/disconnect', function (req, res) {
   // check for token
   req.session.destroy();
   res.clearCookie('nodecookie');
-  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY, access_token);
-  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refresh_token);
+  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY);
+  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
   res.status(200);
   console.log('Disconnect redirect uri: ' + redirectUri);
   res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=' + redirectUri);
