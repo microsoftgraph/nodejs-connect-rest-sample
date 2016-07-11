@@ -29,11 +29,10 @@ function getJson(host, path, accessToken, callback) {
       body += d;
     });
     response.on('end', function () {
-      callback(JSON.parse(body));
+      callback(null, JSON.parse(body));
     });
     response.on('error', function (e) {
-      console.error(e);
-      callback(null);
+      callback(e, null);
     });
   });
 }
@@ -61,13 +60,11 @@ function postData(host, path, accessToken, data, callback) {
 
   // Set up the request
   var post = https.request(options, function (res) {
-    console.log(res.statusCode);
-    console.log(res.statusMessage);
     res.on('data', function (chunk) {
       console.log('Response: ' + chunk);
     });
     res.on('end', function () {
-      callback(res);
+      callback(null, res);
     });
   });
 
@@ -77,7 +74,7 @@ function postData(host, path, accessToken, data, callback) {
   post.end();
 
   post.on('error', function (e) {
-    console.log('Request error: ' + e.message);
+    callback(e, null);
   });
 }
 

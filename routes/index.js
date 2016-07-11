@@ -64,10 +64,14 @@ function renderSendMail(req, res) {
         'graph.microsoft.com',
         '/v1.0/me',
         results.access_token,
-        function (user) {
+        function (e, user) {
           if (user !== null) {
             req.session.user = user;
             res.render('sendMail', { title: 'Express', data: user });
+          } else {
+            res.status(err.code);
+            console.log(err.message);
+            res.send();
           }
         }
       );
@@ -96,14 +100,14 @@ router.post('/', function (req, res) {
         '/v1.0/me/microsoft.graph.sendMail',
         results.access_token,
         JSON.stringify(postBody),
-        function (result) {
+        function (e, response) {
           var templateData = {
             title: 'Microsoft Graph Connect',
             data: req.session.user,
             actual_recipient: destinationEmailAddress
           };
-          if (result.statusCode >= 400) {
-            templateData.status_code = result.statusCode;
+          if (response.statusCode >= 400) {
+            templateData.status_code = response.statusCode;
           }
           res.render('sendMail', templateData);
         });
