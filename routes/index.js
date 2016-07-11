@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
   if (req.cookies.REFRESH_TOKEN_CACHE_KEY === undefined) {
     res.redirect('login');
   } else {
-    renderSendMail('me', req, res);
+    renderSendMail(req, res);
   }
 });
 
@@ -27,13 +27,17 @@ router.get('/disconnect', function (req, res) {
   res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
   res.status(200);
   console.log('Disconnect redirect uri: ' + redirectUri);
-  res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=' + redirectUri);
+  res.redirect(
+    authHelper.credentials.authority + 
+    authHelper.credentials.logout_endpoint + 
+    '?post_logout_redirect_uri=' + redirectUri
+  );
 });
 
 /* GET home page. */
 router.get('/login', function (req, res) {
   if (req.query.code !== undefined) {
-    authHelper.getTokenFromCode('https://graph.microsoft.com/', req.query.code, function (e, access_token, refresh_token) {
+    authHelper.getTokenFromCode(req.query.code, function (e, access_token, refresh_token) {
       if (e === null) {
         // cache the refresh token in a cookie and go back to index
         res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, access_token);
@@ -50,24 +54,20 @@ router.get('/login', function (req, res) {
   }
 });
 
-function renderSendMail(path, req, res) {
+function renderSendMail(req, res) {
   wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
 
-    onSuccess: function (token) {
+    onSuccess: function (results) {
       var user = {};
       // get the user
       requestUtil.getJson(
         'graph.microsoft.com',
-        '/v1.0/' + path,
-        token.access_token,
-        function (result) {
-          if (result !== null) {
-            console.log(result);
-            user = JSON.parse(result);
+        '/v1.0/me',
+        results.access_token,
+        function (user) {
+          if (user !== null) {
             req.session.user = user;
-            if (user !== null) {
-              res.render('sendMail', { title: 'Express', data: user });
-            }
+            res.render('sendMail', { title: 'Express', data: user });
           }
         }
       );
@@ -83,10 +83,9 @@ function renderSendMail(path, req, res) {
 
 router.post('/', function (req, res) {
   var destinationEmailAddress = req.body.default_email;
-  console.log(destinationEmailAddress);
   wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
 
-    onSuccess: function (token) {
+    onSuccess: function (results) {
       // send the mail with a callback and report back that page...
       var postBody = emailer.generatePostBody(
         req.session.user.displayName,
@@ -95,7 +94,7 @@ router.post('/', function (req, res) {
       requestUtil.postData(
         'graph.microsoft.com',
         '/v1.0/me/microsoft.graph.sendMail',
-        token.access_token,
+        results.access_token,
         JSON.stringify(postBody),
         function (result) {
           var templateData = {
@@ -119,9 +118,9 @@ router.post('/', function (req, res) {
 });
 
 function wrapRequestAsCallback(tokenKey, callback) {
-  authHelper.getTokenFromRefreshToken('https://graph.microsoft.com/', tokenKey, function (token) {
-    if (token !== null) {
-      callback.onSuccess(token);
+  authHelper.getTokenFromRefreshToken(tokenKey, function (e, results) {
+    if (results !== null) {
+      callback.onSuccess(results);
     } else {
       callback.onFailure({
         code: 500,
