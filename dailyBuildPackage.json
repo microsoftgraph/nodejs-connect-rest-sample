@@ -27,6 +27,7 @@
     "express-session": "latest",
     "hbs": "~3",
     "morgan": "latest",
+    "oauth": "latest",
     "serve-favicon": "latest"
   },
   "devDependencies": {

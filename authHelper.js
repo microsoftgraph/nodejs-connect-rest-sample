@@ -3,6 +3,7 @@
  * See LICENSE in the project root for license information.
  */
 var AuthenticationContext = require('adal-node').AuthenticationContext;
+var OAuth = require('oauth');
 
 // The application registration (must match Azure AD config)
 var credentials = {
@@ -30,20 +31,42 @@ function getAuthUrl() {
  * @param {AcquireTokenCallback} callback The callback function.
  */
 function getTokenFromCode(res, code, callback) {
-  var authContext = new AuthenticationContext(credentials.authority);
-  authContext.acquireTokenWithAuthorizationCode(
-    code,
-    credentials.redirect_uri,
-    res, credentials.client_id,
+  var OAuth2 = OAuth.OAuth2;
+  var oauth2 = new OAuth2(
+    credentials.client_id,
     credentials.client_secret,
-    function (err, response) {
-      if (err) {
-        callback(null);
-      } else {
-        callback(response);
-      }
+    credentials.authority,
+    '/oauth2/authorize',
+    '/oauth2/token'
+  );
+
+  oauth2.getOAuthAccessToken(
+    code,
+    {
+      grant_type: 'authorization_code',
+      redirect_uri: credentials.redirect_uri,
+      resource: 'https://graph.microsoft.com/'
+    },
+    function(e, access_token, refresh_token, results){
+      callback(e, access_token, refresh_token);
     }
   );
+
+
+  // var authContext = new AuthenticationContext(credentials.authority);
+  // authContext.acquireTokenWithAuthorizationCode(
+  //   code,
+  //   credentials.redirect_uri,
+  //   res, credentials.client_id,
+  //   credentials.client_secret,
+  //   function (err, response) {
+  //     if (err) {
+  //       callback(null);
+  //     } else {
+  //       callback(response);
+  //     }
+  //   }
+  // );
 }
 
 
@@ -56,25 +79,50 @@ function getTokenFromCode(res, code, callback) {
  * @param {AcquireTokenCallback} callback The callback function.
  */
 function getTokenFromRefreshToken(res, token, callback) {
-  var authContext = new AuthenticationContext(credentials.authority);
-  authContext.acquireTokenWithRefreshToken(
-    token,
+  var OAuth2 = OAuth.OAuth2;
+  var oauth2 = new OAuth2(
     credentials.client_id,
     credentials.client_secret,
-    res,
-    function (err, response) {
-      if (err) {
+    credentials.authority,
+    '/oauth2/authorize',
+    '/oauth2/token'
+  );
+
+  oauth2.getOAuthAccessToken(
+    token,
+    {
+      grant_type: 'refresh_token',
+      redirect_uri: credentials.redirect_uri,
+      resource: 'https://graph.microsoft.com/'
+    },
+    function(e, access_token, refresh_token, results){
+      if (e) {
         callback(null);
       } else {
-        callback(response);
+        callback(results);
       }
     }
   );
+
+  // var authContext = new AuthenticationContext(credentials.authority);
+  // authContext.acquireTokenWithRefreshToken(
+  //   token,
+  //   credentials.client_id,
+  //   credentials.client_secret,
+  //   res,
+  //   function (err, response) {
+  //     if (err) {
+  //       callback(null);
+  //     } else {
+  //       callback(response);
+  //     }
+  //   }
+  // );
 }
 
 exports.credentials = credentials;
 exports.getAuthUrl = getAuthUrl;
 exports.getTokenFromCode = getTokenFromCode;
 exports.getTokenFromRefreshToken = getTokenFromRefreshToken;
-exports.TOKEN_CACHE_KEY = 'TOKEN_CACHE_KEY';
-exports.TENANT_CACHE_KEY = 'TENANT_CACHE_KEY';
+exports.ACCESS_TOKEN_CACHE_KEY = 'ACCESS_TOKEN_CACHE_KEY';
+exports.REFRESH_TOKEN_CACHE_KEY = 'REFRESH_TOKEN_CACHE_KEY';

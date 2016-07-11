@@ -11,7 +11,7 @@ var emailer = require('../emailer.js');
 /* GET home page. */
 router.get('/', function (req, res) {
   // check for token
-  if (req.cookies.TOKEN_CACHE_KEY === undefined) {
+  if (req.cookies.REFRESH_TOKEN_CACHE_KEY === undefined) {
     res.redirect('login');
   } else {
     renderSendMail('me', req, res);
@@ -23,8 +23,8 @@ router.get('/disconnect', function (req, res) {
   // check for token
   req.session.destroy();
   res.clearCookie('nodecookie');
-  res.clearCookie(authHelper.TENANT_CACHE_KEY);
-  res.clearCookie(authHelper.TOKEN_CACHE_KEY);
+  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY, access_token);
+  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refresh_token);
   res.status(200);
   console.log('Disconnect redirect uri: ' + redirectUri);
   res.redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=' + redirectUri);
@@ -33,14 +33,14 @@ router.get('/disconnect', function (req, res) {
 /* GET home page. */
 router.get('/login', function (req, res) {
   if (req.query.code !== undefined) {
-    authHelper.getTokenFromCode('https://graph.microsoft.com/', req.query.code, function (token) {
-      if (token !== null) {
+    authHelper.getTokenFromCode('https://graph.microsoft.com/', req.query.code, function (e, access_token, refresh_token) {
+      if (e === null) {
         // cache the refresh token in a cookie and go back to index
-        res.cookie(authHelper.TOKEN_CACHE_KEY, token.refreshToken);
-        res.cookie(authHelper.TENANT_CACHE_KEY, token.tenantId);
+        res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, access_token);
+        res.cookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refresh_token);
         res.redirect('/');
       } else {
-        console.log('AuthHelper failed to acquire token');
+        console.log(JSON.parse(e.data).error_description);
         res.status(500);
         res.send();
       }
@@ -51,7 +51,7 @@ router.get('/login', function (req, res) {
 });
 
 function renderSendMail(path, req, res) {
-  wrapRequestAsCallback(req.cookies.TOKEN_CACHE_KEY, {
+  wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
 
     onSuccess: function (token) {
       var user = {};
@@ -59,9 +59,8 @@ function renderSendMail(path, req, res) {
       requestUtil.getJson(
         'graph.microsoft.com',
         '/v1.0/' + path,
-        token.accessToken,
+        token.access_token,
         function (result) {
-          console.log(token.accessToken);
           if (result !== null) {
             console.log(result);
             user = JSON.parse(result);
@@ -85,7 +84,7 @@ function renderSendMail(path, req, res) {
 router.post('/', function (req, res) {
   var destinationEmailAddress = req.body.default_email;
   console.log(destinationEmailAddress);
-  wrapRequestAsCallback(req.cookies.TOKEN_CACHE_KEY, {
+  wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
 
     onSuccess: function (token) {
       // send the mail with a callback and report back that page...
@@ -96,7 +95,7 @@ router.post('/', function (req, res) {
       requestUtil.postData(
         'graph.microsoft.com',
         '/v1.0/me/microsoft.graph.sendMail',
-        token.accessToken,
+        token.access_token,
         JSON.stringify(postBody),
         function (result) {
           var templateData = {
@@ -104,8 +103,6 @@ router.post('/', function (req, res) {
             data: req.session.user,
             actual_recipient: destinationEmailAddress
           };
-          console.log('Send mail status code: ' + result.statusCode);
-          console.log('\n\ntoken: ' + token.accessToken);
           if (result.statusCode >= 400) {
             templateData.status_code = result.statusCode;
           }
