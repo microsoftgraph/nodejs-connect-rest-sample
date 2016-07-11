@@ -15,7 +15,7 @@ var credentials = {
 
 /**
  * Generate a fully formed uri to use for authentication based on the supplied resource argument
- * @return {string} a fully formed uri with which authentcation can be completed
+ * @return {string} a fully formed uri with which authentication can be completed
  */
 function getAuthUrl() {
   return credentials.authority + '/oauth2/authorize' +
@@ -51,22 +51,6 @@ function getTokenFromCode(res, code, callback) {
       callback(e, access_token, refresh_token);
     }
   );
-
-
-  // var authContext = new AuthenticationContext(credentials.authority);
-  // authContext.acquireTokenWithAuthorizationCode(
-  //   code,
-  //   credentials.redirect_uri,
-  //   res, credentials.client_id,
-  //   credentials.client_secret,
-  //   function (err, response) {
-  //     if (err) {
-  //       callback(null);
-  //     } else {
-  //       callback(response);
-  //     }
-  //   }
-  // );
 }
 
 
@@ -103,21 +87,6 @@ function getTokenFromRefreshToken(res, token, callback) {
       }
     }
   );
-
-  // var authContext = new AuthenticationContext(credentials.authority);
-  // authContext.acquireTokenWithRefreshToken(
-  //   token,
-  //   credentials.client_id,
-  //   credentials.client_secret,
-  //   res,
-  //   function (err, response) {
-  //     if (err) {
-  //       callback(null);
-  //     } else {
-  //       callback(response);
-  //     }
-  //   }
-  // );
 }
 
 exports.credentials = credentials;
