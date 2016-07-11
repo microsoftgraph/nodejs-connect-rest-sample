@@ -1,5 +1,5 @@
 # Ejemplo Connect de Node.js para Office 365 con Microsoft Graph
-[![Build Status](https://travis-ci.org/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect.svg?branch=master)](https://travis-ci.org/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect)
+[![Build Status](https://ricalo.visualstudio.com/_apis/public/build/definitions/06256fa7-d8e5-4ca0-8639-7c00eb6f1fe9/10/badge)](https://ricalo.visualstudio.com/_apis/public/build/definitions/06256fa7-d8e5-4ca0-8639-7c00eb6f1fe9/10/badge)
 
 Conectarse a Office 365 es el primer paso que debe realizar cada aplicación para empezar a trabajar con los datos y servicios de Office 365. Este ejemplo muestra cómo conectar y cómo llamar después a un punto de conexión mediante la API de Microsoft Graph (anteriormente denominada API unificada de Office 365) y usa la interfaz de usuario Fabric de Office para crear una experiencia de Office 365.
 
