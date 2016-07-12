@@ -2,7 +2,6 @@
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
-var AuthenticationContext = require('adal-node').AuthenticationContext;
 var OAuth = require('oauth');
 
 // The application registration (must match Azure AD config)
@@ -55,8 +54,8 @@ function getTokenFromCode(code, callback) {
       nonce: '1234',
       state: 'abcd'
     },
-    function(e, access_token, refresh_token, results){
-      callback(e, access_token, refresh_token);
+    function (e, accessToken, refreshToken) {
+      callback(e, accessToken, refreshToken);
     }
   );
 }
@@ -89,8 +88,8 @@ function getTokenFromRefreshToken(refreshToken, callback) {
       nonce: '1234',
       state: 'abcd'
     },
-    function(e, access_token, refresh_token, results){
-      callback(e, results);
+    function (e, accessToken) {
+      callback(e, accessToken);
     }
   );
 }

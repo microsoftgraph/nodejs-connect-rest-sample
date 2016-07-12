@@ -74,7 +74,7 @@ test.describe('Automation', function () { // eslint-disable-line no-undef
 
       driver.findElement(
         webdriver.By.css('.ms-font-m')).getAttribute('innerText').then(function (value) {
-          assert.equal(value, 'Successfully sent an email to MollyD@MOD182601.onmicrosoft.com!');
+          assert.equal(value.substring(0, 29), 'Successfully sent an email to');
         }
       );
 

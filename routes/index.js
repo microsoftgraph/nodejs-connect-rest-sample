@@ -31,11 +31,11 @@ router.get('/disconnect', function (req, res) {
 /* GET home page. */
 router.get('/login', function (req, res) {
   if (req.query.code !== undefined) {
-    authHelper.getTokenFromCode(req.query.code, function (e, access_token, refresh_token) {
+    authHelper.getTokenFromCode(req.query.code, function (e, accessToken, refreshToken) {
       if (e === null) {
         // cache the refresh token in a cookie and go back to index
-        res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, access_token);
-        res.cookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refresh_token);
+        res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
+        res.cookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refreshToken);
         res.redirect('/');
       } else {
         console.log(JSON.parse(e.data).error_description);
@@ -51,29 +51,28 @@ router.get('/login', function (req, res) {
 function renderSendMail(req, res) {
   wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
 
-    onSuccess: function (results) {
-      var user = {};
+    onSuccess: function (accessToken) {
       // get the user
       requestUtil.getJson(
         'graph.microsoft.com',
         '/v1.0/me',
-        results.access_token,
+        accessToken,
         function (e, user) {
           if (user !== null) {
             req.session.user = user;
             res.render('sendMail', { title: 'Express', data: user });
           } else {
-            res.status(err.code);
-            console.log(err.message);
+            res.status(e.code);
+            console.log(e.message);
             res.send();
           }
         }
       );
     },
 
-    onFailure: function (err) {
-      res.status(err.code);
-      console.log(err.message);
+    onFailure: function (e) {
+      res.status(e.code);
+      console.log(e.message);
       res.send();
     }
   });
@@ -83,7 +82,7 @@ router.post('/', function (req, res) {
   var destinationEmailAddress = req.body.default_email;
   wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
 
-    onSuccess: function (results) {
+    onSuccess: function (accessToken) {
       // send the mail with a callback and report back that page...
       var postBody = emailer.generatePostBody(
         req.session.user.displayName,
@@ -92,7 +91,7 @@ router.post('/', function (req, res) {
       requestUtil.postData(
         'graph.microsoft.com',
         '/v1.0/me/microsoft.graph.sendMail',
-        results.access_token,
+        accessToken,
         JSON.stringify(postBody),
         function (e, response) {
           var templateData = {
@@ -115,8 +114,8 @@ router.post('/', function (req, res) {
   });
 });
 
-function wrapRequestAsCallback(tokenKey, callback) {
-  authHelper.getTokenFromRefreshToken(tokenKey, function (e, results) {
+function wrapRequestAsCallback(refreshToken, callback) {
+  authHelper.getTokenFromRefreshToken(refreshToken, function (e, results) {
     if (results !== null) {
       callback.onSuccess(results);
     } else {
