@@ -54,7 +54,7 @@ function getTokenFromCode(code, callback) {
       grant_type: 'authorization_code',
       redirect_uri: credentials.redirect_uri,
       response_mode: 'form_post',
-      nonce: '1234',
+      nonce: uuid.v4(),
       state: 'abcd'
     },
     function (e, accessToken, refreshToken) {
@@ -66,8 +66,6 @@ function getTokenFromCode(code, callback) {
 
 /**
  * Gets a new access token via a previously issued refresh token.
- * @param {string} res The OAuth resource for which a token is being request.
- *                     This parameter is optional and can be set to null.
  * @param {string} refreshToken A refresh token returned in a token response
  *                       from a previous result of an authentication flow.
  * @param {AcquireTokenCallback} callback The callback function.
@@ -88,7 +86,7 @@ function getTokenFromRefreshToken(refreshToken, callback) {
       grant_type: 'refresh_token',
       redirect_uri: credentials.redirect_uri,
       response_mode: 'form_post',
-      nonce: '1234',
+      nonce: uuid.v4(),
       state: 'abcd'
     },
     function (e, accessToken) {
