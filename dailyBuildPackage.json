@@ -26,6 +26,7 @@
     "express-session": "latest",
     "hbs": "~3",
     "morgan": "latest",
+    "node-uuid": "latest",
     "oauth": "latest",
     "serve-favicon": "latest"
   },

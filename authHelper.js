@@ -3,6 +3,7 @@
  * See LICENSE in the project root for license information.
  */
 var OAuth = require('oauth');
+var uuid = require('node-uuid');
 
 // The application registration (must match Azure AD config)
 var credentials = {
@@ -17,6 +18,8 @@ var credentials = {
 
 /**
  * Generate a fully formed uri to use for authentication based on the supplied resource argument
+ * @param {string} sessionId A string representing the session ID that this function uses to send 
+ * as the state parameter to prevent CSRF attacks
  * @return {string} a fully formed uri with which authentication can be completed
  */
 function getAuthUrl() {
@@ -26,7 +29,7 @@ function getAuthUrl() {
     '&redirect_uri=' + credentials.redirect_uri +
     '&scope=' + credentials.scope +
     '&response_mode=query' +
-    '&nonce=1234' +
+    '&nonce=' + uuid.v4() +
     '&state=abcd';
 }
 
