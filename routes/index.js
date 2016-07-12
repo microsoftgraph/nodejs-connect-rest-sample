@@ -19,19 +19,13 @@ router.get('/', function (req, res) {
 });
 
 router.get('/disconnect', function (req, res) {
-  var redirectUri = 'http://localhost:3000';
   // check for token
   req.session.destroy();
   res.clearCookie('nodecookie');
   res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY);
   res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
   res.status(200);
-  console.log('Disconnect redirect uri: ' + redirectUri);
-  res.redirect(
-    authHelper.credentials.authority + 
-    authHelper.credentials.logout_endpoint + 
-    '?post_logout_redirect_uri=' + redirectUri
-  );
+  res.redirect('http://localhost:3000');
 });
 
 /* GET home page. */

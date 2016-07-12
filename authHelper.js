@@ -8,13 +8,12 @@ var OAuth = require('oauth');
 // The application registration (must match Azure AD config)
 var credentials = {
   authority: 'https://login.microsoftonline.com/common',
-  authorize_endpoint: '/oauth2/authorize',
-  token_endpoint: '/oauth2/token',
-  logout_endpoint: '/oauth2/logout',
+  authorize_endpoint: '/oauth2/v2.0/authorize',
+  token_endpoint: '/oauth2/v2.0/token',
   client_id: 'ENTER_YOUR_CLIENT_ID',
   client_secret: 'ENTER_YOUR_SECRET',
   redirect_uri: 'http://localhost:3000/login',
-  resouce: 'https://graph.microsoft.com/'
+  scope: 'User.Read Mail.Send offline_access'
 };
 
 /**
@@ -25,7 +24,11 @@ function getAuthUrl() {
   return credentials.authority + credentials.authorize_endpoint +
     '?client_id=' + credentials.client_id +
     '&response_type=code' +
-    '&redirect_uri=' + credentials.redirect_uri;
+    '&redirect_uri=' + credentials.redirect_uri +
+    '&scope=' + credentials.scope +
+    '&response_mode=query' +
+    '&nonce=1234' +
+    '&state=abcd';
 }
 
 /**
@@ -48,7 +51,9 @@ function getTokenFromCode(code, callback) {
     {
       grant_type: 'authorization_code',
       redirect_uri: credentials.redirect_uri,
-      resource: credentials.resouce
+      response_mode: 'form_post',
+      nonce: '1234',
+      state: 'abcd'
     },
     function(e, access_token, refresh_token, results){
       callback(e, access_token, refresh_token);
@@ -80,7 +85,9 @@ function getTokenFromRefreshToken(refreshToken, callback) {
     {
       grant_type: 'refresh_token',
       redirect_uri: credentials.redirect_uri,
-      resource: credentials.resouce
+      response_mode: 'form_post',
+      nonce: '1234',
+      state: 'abcd'
     },
     function(e, access_token, refresh_token, results){
       callback(e, results);
