@@ -18,12 +18,12 @@ before( // eslint-disable-line no-undef
       // Read variables from testConfig.json file
       var configFilePath = path.join(__dirname, 'testConfig.json');
       var config = JSON.parse(fs.readFileSync(configFilePath, { encoding: 'utf8' }));
-      clientId = config.test_client_id;
-      clientSecret = config.test_client_secret;
+      clientId = config.test_client_id_v2;
+      clientSecret = config.test_client_secret_v2;
       username = config.test_username;
       password = config.test_password;
 
-      // Rewrite authHelper.js file to include the credentials from environment variables
+      // Rewrite authHelper.js file to include the credentials from testConfig file
       filePath = path.join(__dirname, '../authHelper.js');
 
       authHelperFileContent = fs.readFileSync(filePath, { encoding: 'utf8' });

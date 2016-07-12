@@ -12,8 +12,8 @@ describe('Integration', function () { // eslint-disable-line no-undef
         {
           grant_type: 'password',
           resource: 'https://graph.microsoft.com/',
-          client_id: process.env.test_client_id,
-          client_secret: process.env.test_client_secret,
+          client_id: process.env.test_client_id_v1,
+          client_secret: process.env.test_client_secret_v1,
           username: process.env.test_username,
           password: process.env.test_password
         }
