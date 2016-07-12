@@ -56,12 +56,13 @@ test.describe('Automation', function () { // eslint-disable-line no-undef
     function (done) {
       driver.get('http://localhost:3000');
       driver.findElement(webdriver.By.id('connect_button')).click();
-      driver.findElement(webdriver.By.id('cred_userid_inputtext')).sendKeys(username);
-      driver.findElement(webdriver.By.id('cred_password_inputtext')).sendKeys(password);
+
+      driver.findElement(webdriver.By.id('cred-userid-inputtext')).sendKeys(username);
+      driver.findElement(webdriver.By.id('cred-password-inputtext')).sendKeys(password);
 
       driver.wait(function () {
         return driver.findElement(webdriver.By.id('send_mail_button')).catch(function () {
-          driver.findElement(webdriver.By.id('cred_sign_in_button')).click();
+          driver.findElement(webdriver.By.id('submit-button')).click();
         });
       }, 3000, 'Could not wait for the authentication page');
 
@@ -80,8 +81,8 @@ test.describe('Automation', function () { // eslint-disable-line no-undef
       driver.findElement(webdriver.By.id('disconnect_link')).click();
 
       driver.wait(function () {
-        return driver.findElement(webdriver.By.id('login_workload_logo_text'));
-      }, 3000, 'Could not find the azure sign out page');
+        return driver.findElement(webdriver.By.id('connect_button'));
+      }, 3000, 'Could not return to the start page');
 
       done();
     }
