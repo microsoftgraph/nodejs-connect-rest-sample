@@ -88,16 +88,17 @@ router.post('/', function (req, res) {
     req.session.user.displayName,
     destinationEmailAddress
   );
+  var templateData = {
+    display_name: req.session.user.displayName, 
+    user_principal_name: req.session.user.userPrincipalName,
+    actual_recipient: destinationEmailAddress
+  };
+  
   requestUtil.postSendMail(
     req.cookies.ACCESS_TOKEN_CACHE_KEY,
     JSON.stringify(mailBody),
     function (e) {
       if (!e) {
-        var templateData = {
-          display_name: req.session.user.displayName, 
-          user_principal_name: req.session.user.userPrincipalName,
-          actual_recipient: destinationEmailAddress
-        };
         res.render('sendMail', templateData);
       } else if (hasAccessTokenExpired(e)) {
         // Handle the refresh flow
@@ -109,11 +110,6 @@ router.post('/', function (req, res) {
               JSON.stringify(mailBody),
               function (e) {
                 if (!e) {
-                  var templateData = {
-                    display_name: req.session.user.displayName, 
-                    user_principal_name: req.session.user.userPrincipalName,
-                    actual_recipient: destinationEmailAddress
-                  };
                   res.render('sendMail', templateData);
                 } else {
                   clearCookies(res);
@@ -130,6 +126,7 @@ router.post('/', function (req, res) {
       }
     }
   );
+  
 });
 
 function hasAccessTokenExpired(e) {
