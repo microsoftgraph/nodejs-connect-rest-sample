@@ -92,12 +92,42 @@ router.post('/', function (req, res) {
     req.cookies.ACCESS_TOKEN_CACHE_KEY,
     JSON.stringify(mailBody),
     function (e) {
-      var templateData = {
-        display_name: req.session.user.displayName, 
-        user_principal_name: req.session.user.userPrincipalName,
-        actual_recipient: destinationEmailAddress
-      };
-      res.render('sendMail', templateData);
+      if (!e) {
+        var templateData = {
+          display_name: req.session.user.displayName, 
+          user_principal_name: req.session.user.userPrincipalName,
+          actual_recipient: destinationEmailAddress
+        };
+        res.render('sendMail', templateData);
+      } else if (hasAccessTokenExpired(e)) {
+        // Handle the refresh flow
+        authHelper.getTokenFromRefreshToken(req.cookies.REFRESH_TOKEN_CACHE_KEY, function (e, accessToken) {
+          res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
+          if (accessToken !== null) {
+            requestUtil.postSendMail(
+              req.cookies.ACCESS_TOKEN_CACHE_KEY,
+              JSON.stringify(mailBody),
+              function (e) {
+                if (!e) {
+                  var templateData = {
+                    display_name: req.session.user.displayName, 
+                    user_principal_name: req.session.user.userPrincipalName,
+                    actual_recipient: destinationEmailAddress
+                  };
+                  res.render('sendMail', templateData);
+                } else {
+                  clearCookies(res);
+                  renderError(res, e);
+                }
+              }
+            );
+          } else {
+            renderError(res, e);
+          }
+        });
+      } else {
+        renderError(res, e);
+      }
     }
   );
 });
