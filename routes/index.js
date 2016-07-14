@@ -84,52 +84,23 @@ function renderSendMail(req, res) {
 
 router.post('/', function (req, res) {
   var destinationEmailAddress = req.body.default_email;
-  wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
-
-    onSuccess: function (accessToken) {
-      // send the mail with a callback and report back that page...
-      var postBody = emailer.generatePostBody(
-        req.session.user.displayName,
-        destinationEmailAddress
-      );
-      requestUtil.postData(
-        'graph.microsoft.com',
-        '/v1.0/me/microsoft.graph.sendMail',
-        accessToken,
-        JSON.stringify(postBody),
-        function (e, response) {
-          var templateData = {
-            display_name: req.session.user.displayName, 
-            user_principal_name: req.session.user.userPrincipalName,
-            actual_recipient: destinationEmailAddress
-          };
-          if (response.statusCode >= 400) {
-            templateData.status_code = response.statusCode;
-          }
-          res.render('sendMail', templateData);
-        });
-    },
-
-    onFailure: function (err) {
-      res.status(err.code);
-      console.log(err.message);
-      res.send();
+  var mailBody = emailer.generateMailBody(
+    req.session.user.displayName,
+    destinationEmailAddress
+  );
+  requestUtil.postSendMail(
+    req.cookies.ACCESS_TOKEN_CACHE_KEY,
+    JSON.stringify(mailBody),
+    function (e) {
+      var templateData = {
+        display_name: req.session.user.displayName, 
+        user_principal_name: req.session.user.userPrincipalName,
+        actual_recipient: destinationEmailAddress
+      };
+      res.render('sendMail', templateData);
     }
-  });
+  );
 });
-
-function wrapRequestAsCallback(refreshToken, callback) {
-  authHelper.getTokenFromRefreshToken(refreshToken, function (e, results) {
-    if (results !== null) {
-      callback.onSuccess(results);
-    } else {
-      callback.onFailure({
-        code: 500,
-        message: 'An unexpected error was encountered acquiring access token from refresh token'
-      });
-    }
-  });
-}
 
 function hasAccessTokenExpired(e) {
   if(!e.innerError) {

@@ -19,16 +19,10 @@
             <span class="ms-Button-label">Send mail</span>
             </button>
             
-            {{#if status_code}}
+            {{#if actual_recipient}}
                <div>
-                  <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't send an email ({{status_code}})</p>
+                  <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{actual_recipient}}!</p>
                </div>
-            {{else}}
-               {{#if actual_recipient}}
-                  <div>
-                     <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{actual_recipient}}!</p>
-                  </div>
-               {{/if}}
             {{/if}}
             
          </div>
