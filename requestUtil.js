@@ -33,6 +33,9 @@ function getUserData(accessToken, callback) {
         var error = new Error();
         error.code = response.statusCode;
         error.message = response.statusMessage;
+        // The error body sometimes includes an empty space
+        // before the first character, remove it or it causes an error.
+        body = body.trim();
         error.innerError = JSON.parse(body).error;
         callback(error, null);
       }
@@ -63,15 +66,24 @@ function postSendMail(accessToken, mailBody, callback) {
 
   // Set up the request
   var post = https.request(options, function (response) {
-    if(response.statusCode === 202) {
-      callback(null);
-    } else {
-      var error = new Error();
-      error.code = response.statusCode;
-      error.message = response.statusMessage;
-      error.innerError = JSON.parse(body).error;
-      callback(error);
-    }
+    var body = '';
+    response.on('data', function (d) {
+      body += d;
+    });
+    response.on('end', function () {
+      if(response.statusCode === 202) {
+        callback(null);
+      } else {
+        var error = new Error();
+        error.code = response.statusCode;
+        error.message = response.statusMessage;
+        // The error body sometimes includes an empty space
+        // before the first character, remove it or it causes an error.
+        body = body.trim();
+        error.innerError = JSON.parse(body).error;
+        callback(error);
+      }
+    });
   });
 
   // write the outbound data to it
