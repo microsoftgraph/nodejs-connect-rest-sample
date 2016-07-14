@@ -83,6 +83,11 @@ function postSendMail(accessToken, mailBody, callback) {
         // before the first character, remove it or it causes an error.
         body = body.trim();
         error.innerError = JSON.parse(body).error;
+        // Note: If you receive a 500 - Internal Server Error
+        // while using a Microsoft account (outlok.com, hotmail.com or live.com),
+        // it's possible that your account has not been migrated to support this flow.
+        // Check the inner error object for code 'ErrorInternalServerTransientError'.
+        // You can try using a newly created Microsoft account or contact support.
         callback(error);
       }
     });
