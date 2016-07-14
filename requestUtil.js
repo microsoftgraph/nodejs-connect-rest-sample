@@ -29,11 +29,18 @@ function getJson(host, path, accessToken, callback) {
       body += d;
     });
     response.on('end', function () {
-      callback(null, JSON.parse(body));
+      if(response.statusCode === 200) {
+        callback(null, JSON.parse(body));
+      } else {
+        var error = new Error();
+        error.code = response.statusCode;
+        error.message = response.statusMessage;
+        error.innerError = JSON.parse(body).error;
+        callback(error, null);
+      }
     });
-    response.on('error', function (e) {
-      callback(e, null);
-    });
+    }).on('error', function (e) {
+    callback(e, null);
   });
 }
 
@@ -59,13 +66,22 @@ function postData(host, path, accessToken, data, callback) {
   };
 
   // Set up the request
-  var post = https.request(options, function (res) {
-    res.on('data', function (chunk) {
-      console.log('Response: ' + chunk);
-    });
-    res.on('end', function () {
-      callback(null, res);
-    });
+  var post = https.request(options, function (response) {
+    if(response.statusCode === 202) {
+      response.on('data', function (chunk) {
+        console.log('Response: ' + chunk);
+      });
+      response.on('end', function () {
+        callback(null, response);
+      });
+    } else {
+      // We consider everything else an error, even if statusCode is not greater than 400. 
+      // We expect statusCode === 202 in this call, nothing else.
+      var error = new Error();
+      error.code = response.statusCode;
+      error.message = response.statusMessage;
+      callback(error, null);
+    }
   });
 
   // write the outbound data to it

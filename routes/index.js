@@ -22,8 +22,7 @@ router.get('/disconnect', function (req, res) {
   // check for token
   req.session.destroy();
   res.clearCookie('nodecookie');
-  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY);
-  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
+  clearCookies(res);
   res.status(200);
   res.redirect('http://localhost:3000');
 });
@@ -49,33 +48,42 @@ router.get('/login', function (req, res) {
 });
 
 function renderSendMail(req, res) {
-  wrapRequestAsCallback(req.cookies.REFRESH_TOKEN_CACHE_KEY, {
-
-    onSuccess: function (accessToken) {
-      // get the user
-      requestUtil.getJson(
-        'graph.microsoft.com',
-        '/v1.0/me',
-        accessToken,
-        function (e, user) {
-          if (user !== null) {
-            req.session.user = user;
-            res.render('sendMail', { title: 'Express', data: user });
+  requestUtil.getJson(
+    'graph.microsoft.com',
+    '/v1.0/me',
+    req.cookies.ACCESS_TOKEN_CACHE_KEY,
+    function (e, user) {
+      if (user !== null) {
+        req.session.user = user;
+        res.render('sendMail', { title: 'Express', data: user });
+      } else if (hasAccessTokenExpired(e)) {
+        // Handle the refresh flow
+        authHelper.getTokenFromRefreshToken(req.cookies.REFRESH_TOKEN_CACHE_KEY, function (e, accessToken) {
+          res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
+          if (accessToken !== null) {
+            requestUtil.getJson(
+              'graph.microsoft.com',
+              '/v1.0/me',
+              req.cookies.ACCESS_TOKEN_CACHE_KEY,
+              function (e, user) {
+                if (user !== null) {
+                  req.session.user = user;
+                  res.render('sendMail', { title: 'Express', data: user });
+                } else {
+                  clearCookies(res);
+                  renderError(res, e);
+                }
+              }
+            );
           } else {
-            res.status(e.code);
-            console.log(e.message);
-            res.send();
+            renderError(res, e);
           }
-        }
-      );
-    },
-
-    onFailure: function (e) {
-      res.status(e.code);
-      console.log(e.message);
-      res.send();
+        });
+      } else {
+        renderError(res, e);
+      }
     }
-  });
+  );
 }
 
 router.post('/', function (req, res) {
@@ -124,6 +132,28 @@ function wrapRequestAsCallback(refreshToken, callback) {
         message: 'An unexpected error was encountered acquiring access token from refresh token'
       });
     }
+  });
+}
+
+function hasAccessTokenExpired(e) {
+  if(!e.innerError) {
+    return false;
+  } else {
+    return e.code === 401 &&
+      e.innerError.code === 'InvalidAuthenticationToken' && 
+      e.innerError.message === 'Access token has expired.';
+  }
+}
+
+function clearCookies(res) {
+  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY);
+  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
+}
+
+function renderError(res, e) {
+  res.render('error', {
+    message: e.message,
+    error: e
   });
 }
 
