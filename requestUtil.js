@@ -27,10 +27,11 @@ function getUserData(accessToken, callback) {
       body += d;
     });
     response.on('end', function () {
-      if(response.statusCode === 200) {
+      var error;
+      if (response.statusCode === 200) {
         callback(null, JSON.parse(body));
       } else {
-        var error = new Error();
+        error = new Error();
         error.code = response.statusCode;
         error.message = response.statusMessage;
         // The error body sometimes includes an empty space
@@ -40,7 +41,7 @@ function getUserData(accessToken, callback) {
         callback(error, null);
       }
     });
-    }).on('error', function (e) {
+  }).on('error', function (e) {
     callback(e, null);
   });
 }
@@ -71,10 +72,11 @@ function postSendMail(accessToken, mailBody, callback) {
       body += d;
     });
     response.on('end', function () {
-      if(response.statusCode === 202) {
+      var error;
+      if (response.statusCode === 202) {
         callback(null);
       } else {
-        var error = new Error();
+        error = new Error();
         error.code = response.statusCode;
         error.message = response.statusMessage;
         // The error body sometimes includes an empty space

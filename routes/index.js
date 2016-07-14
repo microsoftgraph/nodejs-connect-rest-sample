@@ -50,33 +50,47 @@ router.get('/login', function (req, res) {
 function renderSendMail(req, res) {
   requestUtil.getUserData(
     req.cookies.ACCESS_TOKEN_CACHE_KEY,
-    function (e, user) {
-      if (user !== null) {
-        req.session.user = user;
-        res.render('sendMail', { display_name: user.displayName, user_principal_name: user.userPrincipalName });
-      } else if (hasAccessTokenExpired(e)) {
-        // Handle the refresh flow
-        authHelper.getTokenFromRefreshToken(req.cookies.REFRESH_TOKEN_CACHE_KEY, function (e, accessToken) {
-          res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-          if (accessToken !== null) {
-            requestUtil.getUserData(
-              req.cookies.ACCESS_TOKEN_CACHE_KEY,
-              function (e, user) {
-                if (user !== null) {
-                  req.session.user = user;
-                  res.render('sendMail', { display_name: user.displayName, user_principal_name: user.userPrincipalName });
-                } else {
-                  clearCookies(res);
-                  renderError(res, e);
-                }
-              }
-            );
-          } else {
-            renderError(res, e);
+    function (firstRequestError, firstTryUser) {
+      if (firstTryUser !== null) {
+        req.session.user = firstTryUser;
+        res.render(
+          'sendMail',
+          {
+            display_name: firstTryUser.displayName,
+            user_principal_name: firstTryUser.userPrincipalName
           }
-        });
+        );
+      } else if (hasAccessTokenExpired(firstRequestError)) {
+        // Handle the refresh flow
+        authHelper.getTokenFromRefreshToken(
+          req.cookies.REFRESH_TOKEN_CACHE_KEY,
+          function (refreshError, accessToken) {
+            res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
+            if (accessToken !== null) {
+              requestUtil.getUserData(
+                req.cookies.ACCESS_TOKEN_CACHE_KEY,
+                function (secondRequestError, secondTryUser) {
+                  if (secondTryUser !== null) {
+                    req.session.user = secondTryUser;
+                    res.render(
+                      'sendMail',
+                      {
+                        display_name: secondTryUser.displayName,
+                        user_principal_name: secondTryUser.userPrincipalName
+                      }
+                    );
+                  } else {
+                    clearCookies(res);
+                    renderError(res, secondRequestError);
+                  }
+                }
+              );
+            } else {
+              renderError(res, refreshError);
+            }
+          });
       } else {
-        renderError(res, e);
+        renderError(res, firstRequestError);
       }
     }
   );
@@ -89,54 +103,57 @@ router.post('/', function (req, res) {
     destinationEmailAddress
   );
   var templateData = {
-    display_name: req.session.user.displayName, 
+    display_name: req.session.user.displayName,
     user_principal_name: req.session.user.userPrincipalName,
     actual_recipient: destinationEmailAddress
   };
-  
+
   requestUtil.postSendMail(
     req.cookies.ACCESS_TOKEN_CACHE_KEY,
     JSON.stringify(mailBody),
-    function (e) {
-      if (!e) {
+    function (firstRequestError) {
+      if (!firstRequestError) {
         res.render('sendMail', templateData);
-      } else if (hasAccessTokenExpired(e)) {
+      } else if (hasAccessTokenExpired(firstRequestError)) {
         // Handle the refresh flow
-        authHelper.getTokenFromRefreshToken(req.cookies.REFRESH_TOKEN_CACHE_KEY, function (e, accessToken) {
-          res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-          if (accessToken !== null) {
-            requestUtil.postSendMail(
-              req.cookies.ACCESS_TOKEN_CACHE_KEY,
-              JSON.stringify(mailBody),
-              function (e) {
-                if (!e) {
-                  res.render('sendMail', templateData);
-                } else {
-                  clearCookies(res);
-                  renderError(res, e);
+        authHelper.getTokenFromRefreshToken(
+          req.cookies.REFRESH_TOKEN_CACHE_KEY,
+          function (refreshError, accessToken) {
+            res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
+            if (accessToken !== null) {
+              requestUtil.postSendMail(
+                req.cookies.ACCESS_TOKEN_CACHE_KEY,
+                JSON.stringify(mailBody),
+                function (secondRequestError) {
+                  if (!secondRequestError) {
+                    res.render('sendMail', templateData);
+                  } else {
+                    clearCookies(res);
+                    renderError(res, secondRequestError);
+                  }
                 }
-              }
-            );
-          } else {
-            renderError(res, e);
-          }
-        });
+              );
+            } else {
+              renderError(res, refreshError);
+            }
+          });
       } else {
-        renderError(res, e);
+        renderError(res, firstRequestError);
       }
     }
   );
-  
 });
 
 function hasAccessTokenExpired(e) {
-  if(!e.innerError) {
-    return false;
+  var expired;
+  if (!e.innerError) {
+    expired = false;
   } else {
-    return e.code === 401 &&
-      e.innerError.code === 'InvalidAuthenticationToken' && 
+    expired = e.code === 401 &&
+      e.innerError.code === 'InvalidAuthenticationToken' &&
       e.innerError.message === 'Access token has expired.';
   }
+  return expired;
 }
 
 function clearCookies(res) {
