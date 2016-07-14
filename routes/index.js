@@ -53,7 +53,7 @@ function renderSendMail(req, res) {
     function (e, user) {
       if (user !== null) {
         req.session.user = user;
-        res.render('sendMail', { title: 'Express', data: user });
+        res.render('sendMail', { display_name: user.displayName, user_principal_name: user.userPrincipalName });
       } else if (hasAccessTokenExpired(e)) {
         // Handle the refresh flow
         authHelper.getTokenFromRefreshToken(req.cookies.REFRESH_TOKEN_CACHE_KEY, function (e, accessToken) {
@@ -64,7 +64,7 @@ function renderSendMail(req, res) {
               function (e, user) {
                 if (user !== null) {
                   req.session.user = user;
-                  res.render('sendMail', { title: 'Express', data: user });
+                  res.render('sendMail', { display_name: user.displayName, user_principal_name: user.userPrincipalName });
                 } else {
                   clearCookies(res);
                   renderError(res, e);
@@ -99,8 +99,8 @@ router.post('/', function (req, res) {
         JSON.stringify(postBody),
         function (e, response) {
           var templateData = {
-            title: 'Microsoft Graph Connect',
-            data: req.session.user,
+            display_name: req.session.user.displayName, 
+            user_principal_name: req.session.user.userPrincipalName,
             actual_recipient: destinationEmailAddress
           };
           if (response.statusCode >= 400) {
