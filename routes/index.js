@@ -48,9 +48,7 @@ router.get('/login', function (req, res) {
 });
 
 function renderSendMail(req, res) {
-  requestUtil.getJson(
-    'graph.microsoft.com',
-    '/v1.0/me',
+  requestUtil.getUserData(
     req.cookies.ACCESS_TOKEN_CACHE_KEY,
     function (e, user) {
       if (user !== null) {
@@ -61,9 +59,7 @@ function renderSendMail(req, res) {
         authHelper.getTokenFromRefreshToken(req.cookies.REFRESH_TOKEN_CACHE_KEY, function (e, accessToken) {
           res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
           if (accessToken !== null) {
-            requestUtil.getJson(
-              'graph.microsoft.com',
-              '/v1.0/me',
+            requestUtil.getUserData(
               req.cookies.ACCESS_TOKEN_CACHE_KEY,
               function (e, user) {
                 if (user !== null) {

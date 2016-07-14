@@ -6,15 +6,13 @@ var https = require('https');
 
 /**
  * Generates a GET request to the specified host
- * @param {string} host the host to whom this request will be sent
- * @param {string} path the path, relative to the host, to which this request will be sent
  * @param {string} accessToken the access token with which the request should be authenticated
  * @param {callback} callback
  */
-function getJson(host, path, accessToken, callback) {
+function getUserData(accessToken, callback) {
   var options = {
-    host: host,
-    path: path,
+    host: 'graph.microsoft.com',
+    path: '/v1.0/me',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -94,5 +92,5 @@ function postData(host, path, accessToken, data, callback) {
   });
 }
 
-exports.getJson = getJson;
+exports.getUserData = getUserData;
 exports.postData = postData;
