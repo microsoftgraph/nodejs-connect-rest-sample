@@ -6,8 +6,8 @@
   "scripts": {
     "start": "mocha ./tests/confTest.js && node ./bin/www",
     "lint": "eslint .",
-    "test": "mocha ./tests/integrationTest.js",
-    "automatedTest": "mocha ./tests/automatedTest.js --timeout 10000"
+    "test": "mocha ./tests/integrationTest.js --timeout 10000",
+    "automatedTest": "mocha ./tests/automatedTest.js --timeout 20000"
   },
   "keywords": [
     "o365",
