@@ -1,5 +1,5 @@
 # Exemple de connexion de Node.js à Office 365 avec Microsoft Graph
-[![Build Status](https://travis-ci.org/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect.svg?branch=master)](https://travis-ci.org/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect)
+![Build Status](https://ricalo.visualstudio.com/_apis/public/build/definitions/06256fa7-d8e5-4ca0-8639-7c00eb6f1fe9/10/badge "Build Status")
 
 La connexion à Office 365 est la première étape que chaque application doit suivre pour que vous puissiez commencer à travailler avec les données et services Office 365. Cet exemple explique comment connecter, puis appeler un point de terminaison via l’API Microsoft Graph (anciennement appelée API unifiée Office 365). Il utilise la structure d’interface utilisateur d’Office pour créer une expérience Office 365.
 
@@ -11,7 +11,7 @@ Consultez la page relative à la [prise en main des API Office 365](http://dev.
 ## Conditions requises
 
 Pour utiliser l’exemple de connexion de Node.js à Office 365, vous devez disposer des éléments suivants :
-* Un compte Office 365. Vous pouvez souscrire à &lt;a herf="https://portal.office.com/Signup/Signup.aspx?OfferId=6881A1CB-F4EB-4db3-9F18-388898DAF510&amp;DL=DEVELOPERPACK&amp;ali=1#0"&gt;un abonnement Office 365 Développeur&lt;/a&gt; comprenant les ressources dont vous avez besoin pour commencer à créer des applications Office 365.
+* Un compte Office 365. Vous pouvez souscrire à &lt;a herf="https://profile.microsoft.com/RegSysProfileCenter/wizardnp.aspx?wizid=14b845d0-938c-45af-b061-f798fbb4d170"&gt;un abonnement Office 365 Développeur&lt;/a&gt; comprenant les ressources dont vous avez besoin pour commencer à créer des applications Office 365.
 
      > **Remarque :**
      si vous avez déjà un abonnement, le lien précédent vous renvoie vers une page avec le message suivant : « Désolé, vous ne pouvez pas ajouter ceci à votre compte existant ». Dans ce cas, utilisez un compte lié à votre abonnement Office 365 existant.<br /><br />
