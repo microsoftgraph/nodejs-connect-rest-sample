@@ -27,10 +27,14 @@ To use the Office 365 Node.js Connect sample, you need the following:
 4. Under **Platforms**, select **Add platform**.
 5. Select **Web**.
 6. Add the following to the list of **Redirect URIs**:
+
+    ```
     http://localhost:3000/login
+    ```    
+    
 7. Under **Application Secrets** click **Generate New Password**.
 8. Copy the **New password generated** and **Application Id**, you'll need them in the next section.
-9 Click **Save**.
+9. Click **Save**.
 
 ## Configure and run the app
 
