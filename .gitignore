@@ -117,6 +117,7 @@ Session.vim
 .settings
 .vscode
 typings
+jsconfig.json
 
 # Test artifacts
 testConfig.json
