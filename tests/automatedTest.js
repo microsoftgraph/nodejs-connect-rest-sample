@@ -18,12 +18,12 @@ before( // eslint-disable-line no-undef
       // Read variables from testConfig.json file
       var configFilePath = path.join(__dirname, 'testConfig.json');
       var config = JSON.parse(fs.readFileSync(configFilePath, { encoding: 'utf8' }));
-      clientId = config.test_client_id;
-      clientSecret = config.test_client_secret;
+      clientId = config.test_client_id_v2;
+      clientSecret = config.test_client_secret_v2;
       username = config.test_username;
       password = config.test_password;
 
-      // Rewrite authHelper.js file to include the credentials from environment variables
+      // Rewrite authHelper.js file to include the credentials from testConfig file
       filePath = path.join(__dirname, '../authHelper.js');
 
       authHelperFileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
@@ -56,12 +56,13 @@ test.describe('Automation', function () { // eslint-disable-line no-undef
     function (done) {
       driver.get('http://localhost:3000');
       driver.findElement(webdriver.By.id('connect_button')).click();
-      driver.findElement(webdriver.By.id('cred_userid_inputtext')).sendKeys(username);
-      driver.findElement(webdriver.By.id('cred_password_inputtext')).sendKeys(password);
+
+      driver.findElement(webdriver.By.id('cred-userid-inputtext')).sendKeys(username);
+      driver.findElement(webdriver.By.id('cred-password-inputtext')).sendKeys(password);
 
       driver.wait(function () {
         return driver.findElement(webdriver.By.id('send_mail_button')).catch(function () {
-          driver.findElement(webdriver.By.id('cred_sign_in_button')).click();
+          driver.findElement(webdriver.By.id('submit-button')).click();
         });
       }, 3000, 'Could not wait for the authentication page');
 
@@ -73,15 +74,15 @@ test.describe('Automation', function () { // eslint-disable-line no-undef
 
       driver.findElement(
         webdriver.By.css('.ms-font-m')).getAttribute('innerText').then(function (value) {
-          assert.equal(value, 'Successfully sent an email to MollyD@MOD182601.onmicrosoft.com!');
+          assert.equal(value.substring(0, 29), 'Successfully sent an email to');
         }
       );
 
       driver.findElement(webdriver.By.id('disconnect_link')).click();
 
       driver.wait(function () {
-        return driver.findElement(webdriver.By.id('login_workload_logo_text'));
-      }, 3000, 'Could not find the azure sign out page');
+        return driver.findElement(webdriver.By.id('connect_button'));
+      }, 3000, 'Could not return to the start page');
 
       done();
     }

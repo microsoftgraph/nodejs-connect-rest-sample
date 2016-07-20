@@ -46,8 +46,8 @@ function wrapEmail(content, recipient) {
  * @param {string} name the name used to address the recipient
  * @param {string} recipient the email address to which the connect email will be sent
  */
-function generatePostBody(name, recipient) {
+function generateMailBody(name, recipient) {
   return wrapEmail(getEmailContent(name), recipient);
 }
 
-exports.generatePostBody = generatePostBody;
+exports.generateMailBody = generateMailBody;
