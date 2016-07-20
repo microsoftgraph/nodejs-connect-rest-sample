@@ -11,7 +11,7 @@ Consulte [Introducción a las API de Office 365](http://dev.office.com/getting-s
 ## Requisitos previos
 
 Para usar el ejemplo Connect de Node.js para Office 365, necesita lo siguiente:
-* Una cuenta de Office 365. Puede registrarse para obtener &lt;a herf="https://profile.microsoft.com/RegSysProfileCenter/wizardnp.aspx?wizid=14b845d0-938c-45af-b061-f798fbb4d170"&gt;una suscripción a Office 365 Developer&lt;/a&gt;, que incluye los recursos que necesita para empezar a compilar aplicaciones de Office 365.
+* Una cuenta de Office 365. Puede registrarse para obtener [una suscripción a Office 365 Developer](https://aka.ms/devprogramsignup), que incluye los recursos que necesita para empezar a compilar aplicaciones de Office 365.
 
      > **Nota:**
      Si ya dispone de una suscripción, el vínculo anterior le dirige a una página con el mensaje *No se puede agregar a su cuenta actual*. En ese caso, use una cuenta de su suscripción actual a Office 365.<br /><br />
