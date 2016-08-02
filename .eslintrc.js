@@ -12,6 +12,7 @@ module.exports = {
     'new-cap': 0,
     'no-param-reassign': 0,
     'no-use-before-define': 0,
-    'no-console': 0
+    'no-console': 0,
+    'linebreak-style': 0
   }
 };
