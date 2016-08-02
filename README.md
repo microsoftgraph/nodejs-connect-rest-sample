@@ -42,6 +42,14 @@ To run the app, type the following into your command line:
 1. ```npm install``` - install application dependencies
 2. ```npm start``` - starts the application server
 
+> Note: You can alternatively run the app on a Docker container.
+
+In your Docker host, run the following commands
+
+```shell
+docker build -t node-connect-image .
+docker run -p3000:3000 -it --rm --name node-connect-app node-connect-image
+```
 
 ## Launch the app in your browser
 Once the application server has been started, open your favorite web browser to ```http://localhost:3000```
