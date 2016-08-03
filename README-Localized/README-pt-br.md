@@ -11,7 +11,7 @@ Experimente a página [Introdução às APIs do Office 365](http://dev.office.co
 ## Pré-requisitos
 
 Para usar o exemplo de conexão com o Office 365 para Node.js, é necessário o seguinte:
-* Uma conta do Office 365. Você pode se inscrever para &lt;a herf="https://portal.office.com/Signup/Signup.aspx?OfferId=6881A1CB-F4EB-4db3-9F18-388898DAF510&amp;DL=DEVELOPERPACK&amp;ali=1#0"&gt;uma assinatura do Office 365 Developer&lt;/a&gt;, que inclui os recursos de que você precisa para começar a criar aplicativos do Office 365.
+* Uma conta do Office 365. Você pode se inscrever para [uma assinatura do Office 365 Developer](https://aka.ms/devprogramsignup), que inclui os recursos de que você precisa para começar a criar aplicativos do Office 365.
 
      > **Observação:**
      Caso já tenha uma assinatura, o link anterior direciona você para uma página com a mensagem *Não é possível adicioná-la à sua conta atual*. Nesse caso, use uma conta de sua assinatura atual do Office 365.<br /><br />

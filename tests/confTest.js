@@ -21,12 +21,12 @@ describe('ADAL', function () { // eslint-disable-line no-undef
 
 function isADALConfigured(configuration) {
   var clientIDConfigured =
-    typeof(configuration.client_id) !== 'undefined' &&
+    typeof (configuration.client_id) !== 'undefined' &&
     configuration.client_id !== null &&
     configuration.client_id !== '' &&
     configuration.client_id !== 'ENTER_YOUR_CLIENT_ID';
   var clientSecretConfigured =
-    typeof(configuration.client_secret) !== 'undefined' &&
+    typeof (configuration.client_secret) !== 'undefined' &&
     configuration.client_secret !== null &&
     configuration.client_secret !== '' &&
     configuration.client_secret !== 'ENTER_YOUR_SECRET';

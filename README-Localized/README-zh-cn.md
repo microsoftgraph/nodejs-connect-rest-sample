@@ -11,7 +11,7 @@
 ## 先决条件
 
 要使用 Office 365 Node.js Connect 示例，您需要以下内容：
-* Office 365 帐户。您可以注册 &lt;a herf="https://portal.office.com/Signup/Signup.aspx?OfferId=6881A1CB-F4EB-4db3-9F18-388898DAF510&amp;DL=DEVELOPERPACK&amp;ali=1#0"&gt;Office 365 开发人员订阅&lt;/a&gt;，其中包含开始构建 Office 365 应用所需的资源。
+* Office 365 帐户。您可以注册 [Office 365 开发人员订阅](https://aka.ms/devprogramsignup)，其中包含开始构建 Office 365 应用所需的资源。
 
      > **注意：**
      如果您已经订阅，之前的链接会将您转至包含以下信息的页面：*抱歉，您无法将其添加到当前帐户*。在这种情况下，请使用当前 Office 365 订阅中的帐户。<br /><br />
