@@ -1,0 +1,31 @@
+<div class="ms-Grid-row">
+   <!-- App navigation bar markup. -->
+   <div class="ms-NavBar">
+      <ul class="ms-NavBar-items">
+         <li class="navbar-header">Office 365 Connect sample</li>
+         <li id="disconnect_link" class="ms-NavBar-item ms-NavBar-item--right" onclick="window.location.href='disconnect'"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
+      </ul>
+   </div>
+   <!-- App main content markup. -->
+   <form action="" method="post">
+      <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
+         <div>
+            <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{display_name}}!</h2>
+            <p class="ms-font-xl">You're now connected to Office 365. Click the button below to send a message from your account using the Microsoft Graph. </p>
+            <div class="ms-TextField">
+               <input class="ms-TextField-field" name="default_email" value="{{user_principal_name}}">
+            </div>
+            <button id="send_mail_button" class="ms-Button">
+            <span class="ms-Button-label">Send mail</span>
+            </button>
+            
+            {{#if actual_recipient}}
+               <div>
+                  <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{actual_recipient}}!</p>
+               </div>
+            {{/if}}
+            
+         </div>
+      </div>
+   </form>
+</div>
