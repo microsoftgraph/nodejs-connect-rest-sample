@@ -13,6 +13,7 @@ module.exports = {
     'no-param-reassign': 0,
     'no-use-before-define': 0,
     'no-console': 0,
-    'linebreak-style': 0
+    'linebreak-style': 0,
+	'no-unused-vars':0 //for empty functions in the starter project
   }
 };
