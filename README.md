@@ -1,61 +1,85 @@
-# Office 365 Node.js Connect sample using Microsoft Graph
+# Microsoft Graph Connect Sample for Node.js
 ![Build Status](https://office.visualstudio.com/_apis/public/build/definitions/0323e522-dd35-4fbf-8d8a-a3370491558c/446/badge "Build Status")
 
-Connecting to Office 365 is the first step every app must take to start working with Office 365 services and data. This sample shows how to connect and then call one endpoint through the Microsoft Graph API (previously called Office 365 unified API), and uses the Office Fabric UI to create an Office 365 experience.
+## Table of contents
 
-The sample uses the v2.0 authentication endpoint, which enables users to sign in with either their personal or work or school Microsoft accounts.
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Register the application](#register-the-application)
+* [Build and run the sample](#build-and-run-the-sample)
+* [Code of note](#code-of-note)
+* [Questions and comments](#questions-and-comments)
+* [Contributing](#contributing)
+* [Additional resources](#additional-resources)
 
-![Office 365 Node.js Connect sample screenshot](./readme-imgs/screenshot.PNG)
-> Note: For an in-depth look at the code for calling the Microsoft Graph API in a Node.js app, see [Call Microsoft Graph with a Node.js app](https://graph.microsoft.io/docs/platform/nodejs).
+## Introduction
 
-<a name="prerequisites"></a>
+This sample shows how to connect a Node.js app to a Microsoft work or school (Azure Active Directory) or personal (Microsoft) account using the Microsoft Graph API to send an email. In addition, the sample uses the Office Fabric UI for styling and formatting the user experience.
+
+![Microsoft Graph Connect Sample for Node.js screenshot](./readme-imgs/screenshot.PNG)
+
 ## Prerequisites
 
-To use the Office 365 Node.js Connect sample, you need the following:
- * Either a [Microsoft](www.outlook.com) or [Office 365 for business account](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account).
+To use the Microsoft Graph Connect Sample for Node.js, you need the following:
+
  * [Node.js](https://nodejs.org/) version 4 or 5.
 
-<a name="register"></a>
-##Register and configure the app
+ * Either a [Microsoft account](https://www.outlook.com) or [Office 365 for business account](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account)
+
+## Register the application
 
 1. Sign into the [App Registration Portal](https://apps.dev.microsoft.com/) using either your personal or work or school account.
-2. Select **Add an app**.
-3. Enter a name for the app, and select **Create application**.
+
+2. Choose **Add an app**.
+
+3. Enter a name for the app, and choose **Create application**. 
 	
-	The registration page displays, listing the properties of your app.
- 
-4. Under **Platforms**, select **Add platform**.
-5. Select **Web**.
-6. Add the following to the list of **Redirect URIs**:
+   The registration page displays, listing the properties of your app.
 
-    ```
-    http://localhost:3000/login
-    ```    
-    
-7. Under **Application Secrets** click **Generate New Password**.
-8. Copy the **New password generated** and **Application Id**, you'll need them in the next section.
-9. Click **Save**.
+4. Copy the Application Id. This is the unique identifier for your app. 
 
-## Configure and run the app
+5. Under **Application Secrets**, choose **Generate New Password**. Copy the password from the **New password generated** dialog.
 
-1. Update [```authHelper.js/client_id```](authHelper.js#L7) with your application id
-2. Update [```authHelper.js/client_secret```](authHelper.js#L8) with your password
+   You'll use the application ID and password (secret) to configure the sample app in the next section. 
 
-To run the app, type the following into your command line:
+6. Under **Platforms**, choose **Add Platform**.
 
-1. ```npm install``` - install application dependencies
-2. ```npm start``` - starts the application server
+7. Choose **Web**.
 
-## Launch the app in your browser
-Once the application server has been started, open your web browser to ```http://localhost:3000```
+8. Enter *http://localhost:3000/login* as the Redirect URI. 
+
+9. Choose **Save**.
+
+## Build and run the sample
+
+1. Download or clone the Microsoft Graph Connect Sample for Node.js.
+
+2. Using your favorite IDE, open **authHelper.js** in *public/scripts*.
+
+3. Replace the **client_id** and **client_secret** placeholder values with the application ID and password that you copied during app registration.
+
+4. In a command prompt, run the following command in the root directory of the starter project. This installs the project dependencies.
+
+  ```npm install```
+
+5. Run the following command to start the development server.
+
+  ```npm start```
+
+6. Navigate to `http://localhost:3000` in your web browser.
+
+7. Choose the **Connect** button.
+
+8. Sign in with your personal or work or school account and grant the requested permissions.
+
+9. Optionally edit the recipient's email address, and then choose the **Send mail** button. When the mail is sent, a Success message is displayed below the button.
 
 ## Questions and comments
 
-We'd love to get your feedback about the Office 365 Node.js Connect sample. You can send your questions and suggestions to us in the [Issues](https://github.com/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect/issues) section of this repository.
+We'd love to get your feedback about the Microsoft Graph Connect Sample for Node.js. You can send your questions and suggestions in the [Issues](https://github.com/microsoftgraph/nodejs-connect-rest-sample/issues) section of this repository.
 
-Questions about Office 365 development in general should be posted to [Stack Overflow](http://stackoverflow.com/questions/tagged/Office365+MicrosoftGraph). Make sure that your questions or comments are tagged with [Office365] and [MicrosoftGraph].
+Questions about Microsoft Graph development in general should be posted to [Stack Overflow](http://stackoverflow.com/questions/tagged/microsoftgraph). Make sure that your questions or comments are tagged with [microsoftgraph].
 
-<a name="contributing"></a>
 ## Contributing ##
 
 If you'd like to contribute to this sample, see [CONTRIBUTING.MD](/CONTRIBUTING.md).
@@ -64,10 +88,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
   
 ## Additional resources
 
-* [Office 365 APIs platform overview](https://msdn.microsoft.com/office/office365/howto/platform-development-overview)
-* [Getting started with Office 365 APIs](http://dev.office.com/getting-started/office365apis)
-* [Overview of Microsoft Graph](http://graph.microsoft.io)
-* [Office UI Fabric](https://github.com/OfficeDev/Office-UI-Fabric)
+- [Other Microsoft Graph Connect samples](https://github.com/MicrosoftGraph?utf8=%E2%9C%93&query=-Connect)
+- [Microsoft Graph](http://graph.microsoft.io)
 
 ## Copyright
 Copyright (c) 2016 Microsoft. All rights reserved.
