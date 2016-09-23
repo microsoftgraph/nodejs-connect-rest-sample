@@ -7,7 +7,6 @@
 * [Prerequisites](#prerequisites)
 * [Register the application](#register-the-application)
 * [Build and run the sample](#build-and-run-the-sample)
-* [Code of note](#code-of-note)
 * [Questions and comments](#questions-and-comments)
 * [Contributing](#contributing)
 * [Additional resources](#additional-resources)
@@ -24,7 +23,7 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
  * [Node.js](https://nodejs.org/) version 4 or 5.
 
- * Either a [Microsoft account](https://www.outlook.com) or [Office 365 for business account](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account)
+ * Either a [Microsoft account](https://www.outlook.com/) or a [work or school account](http://dev.office.com/devprogram)
 
 ## Register the application
 
@@ -73,6 +72,8 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 8. Sign in with your personal or work or school account and grant the requested permissions.
 
 9. Optionally edit the recipient's email address, and then choose the **Send mail** button. When the mail is sent, a Success message is displayed below the button.
+
+> Note: To understand the code for calling the Microsoft Graph API in a Node.js app, see [Get started with Microsoft Graph in an ASP.NET 4.6 MVC app](https://graph.microsoft.io/en-us/docs/platform/nodejs).
 
 ## Questions and comments
 
