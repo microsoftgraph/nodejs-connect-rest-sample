@@ -16,21 +16,28 @@ To use the Office 365 Node.js Connect sample, you need the following:
      > **Note:**
      If you already have a subscription, the previous link sends you to a page with the message *Sorry, you can’t add that to your current account*. In that case use an account from your current Office 365 subscription.<br /><br />
      If you are already signed-in to Office 365, the Sign-in button in the previous link shows the message *Sorry, we can't process your request*. In that case sign-out from Office 365 in that same page and sign-in again.
-* A Microsoft Azure tenant to register your application. Azure Active Directory (AD) provides identity services that applications use for authentication and authorization. A trial subscription can be acquired here: [Microsoft Azure](https://account.windowsazure.com/SignUp).
 
-     > **Important:**
-     You also need to make sure your Azure subscription is bound to your Office 365 tenant. To do this, see the Active Directory team's blog post, [Creating and Managing Multiple Windows Azure Active Directories](http://blogs.technet.com/b/ad/archive/2013/11/08/creating-and-managing-multiple-windows-azure-active-directories.aspx). The section **Adding a new directory** will explain how to do this. You can also see [Set up your Office 365 development environment](https://msdn.microsoft.com/office/office365/howto/setup-development-environment#bk_CreateAzureSubscription) and the section **Associate your Office 365 account with Azure AD to create and manage apps** for more information.
-* A client ID, client secret, and redirect URI values of an application registered in Azure. This sample application must be granted the **Send mail as signed-in user** permission for **Microsoft Graph**. [Add a web application in Azure](https://msdn.microsoft.com/office/office365/HowTo/add-common-consent-manually#bk_RegisterWebApp) and [grant proper permissions](https://github.com/OfficeDev/O365-Nodejs-Microsoft-Graph-Connect/wiki/Grant-permissions-to-the-Connect-application-in-Azure) to it.
+## Register the app
 
-     > **Note:**
-     During the app registration process, make sure to specify **http://localhost:3000/login** as the **Sign-on URL**.
-     
-* Consult the section [Configure and run the app](#configure-and-run-the-app) for platform specific prerequisites.
+Registering your web application is the first step. 
+
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+2. On the top bar, click on your account and under the **Directory** list, choose the Active Directory tenant where you wish to register your application.
+3. Click on **More Services** in the left hand nav, and choose **Azure Active Directory**.
+4. Click on **App registrations** and choose **Add**.
+5. Enter a friendly name for the application, for example 'MSGraphConnectNodejs' and select 'Web app/API' as the **Application Type**. For the Sign-on URL, enter *http://localhost:3000/login*. Click on **Create** to create the application.
+6. While still in the Azure portal, choose your application, click on **Settings** and choose **Properties**.
+7. Find the Application ID value and copy it to the clipboard.
+8. Configure Permissions for your application:
+9. In the **Settings** menu, choose the **Required permissions** section, click on **Add**, then **Select an API**, and select **Microsoft Graph**.
+10. Then, click on Select Permissions and select **Sign in and read user profile** and **Send mail as a user**. Click **Select** and then **Done**.
+11. In the **Settings** menu, choose the **Keys** section. Enter a description and select a duration for the key. Click **Save**.
+12. **Important**: Copy the key value. You won't be able to access this value again once you leave this pane. You will use this value as your app secret.
 
 ## Configure and run the app
 
-1. Update [```authHelper.js/client_id```](authHelper.js#L7) with your application's client id
-2. Update [```authHelper.js/client_secret```](authHelper.js#L8) with your application's client secret
+1. Update [```authHelper.js/client_id```](authHelper.js#L7) with your app id
+2. Update [```authHelper.js/client_secret```](authHelper.js#L8) with your app secret
 3. Update [```authHelper.js/redirect_uri```](authHelper.js#L9) with your application's redirect uri
 
 Prerequisites
