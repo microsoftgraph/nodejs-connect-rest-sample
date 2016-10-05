@@ -2,11 +2,12 @@
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
- 
-// This sample uses an open source OAuth 2.0 library that is compatible with the Azure AD v2.0 endpoint. 
-// Microsoft does not provide fixes or direct support for this library. 
-// Refer to the library’s repository to file issues or for other support. 
-// For more information about auth libraries see: https://azure.microsoft.com/documentation/articles/active-directory-v2-libraries/ 
+
+// This sample uses an open source OAuth 2.0 library that is compatible
+// with the Azure AD v2.0 endpoint.
+// Microsoft does not provide fixes or direct support for this library.
+// Refer to the library’s repository to file issues or for other support.
+// For more information about auth libraries see: https://azure.microsoft.com/documentation/articles/active-directory-v2-libraries/
 // Library repo: https://github.com/ciaranj/node-oauth
 
 var OAuth = require('oauth');
