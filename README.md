@@ -73,7 +73,7 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 9. Optionally edit the recipient's email address, and then choose the **Send mail** button. When the mail is sent, a Success message is displayed below the button.
 
-> Note: To understand the code for calling the Microsoft Graph API in a Node.js app, see [Get started with Microsoft Graph in an ASP.NET 4.6 MVC app](https://graph.microsoft.io/en-us/docs/platform/nodejs).
+> Note: To understand the code for calling the Microsoft Graph API in a Node.js app, see [Get started with Microsoft Graph in a Node.js app](https://graph.microsoft.io/en-us/docs/platform/nodejs).
 
 ## Questions and comments
 
