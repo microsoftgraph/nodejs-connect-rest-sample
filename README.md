@@ -57,7 +57,7 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 3. Replace the **client_id** and **client_secret** placeholder values with the application ID and password that you copied during app registration.
 
-4. In a command prompt, run the following command in the root directory of the starter project. This installs the project dependencies.
+4. In a command prompt, run the following command in the root directory. This installs the project dependencies.
 
   ```npm install```
 
@@ -90,7 +90,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 ## Additional resources
 
 - [Other Microsoft Graph Connect samples](https://github.com/MicrosoftGraph?utf8=%E2%9C%93&query=-Connect)
-- [Microsoft Graph](http://graph.microsoft.io)
+- [Microsoft Graph](https://graph.microsoft.io)
 
 ## Copyright
 Copyright (c) 2016 Microsoft. All rights reserved.
