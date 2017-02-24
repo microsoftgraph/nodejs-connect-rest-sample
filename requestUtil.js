@@ -51,6 +51,7 @@ function getUserData(accessToken, callback) {
  * @param {string} accessToken the access token with which the request should be authenticated
  * @param {string} data the data which will be 'POST'ed
  * @param {callback} callback
+ * Per issue #53 for BadRequest when message uses utf-8 characters: Set 'Content-Length': Buffer.byteLength(mailBody,'utf8')
  */
 function postSendMail(accessToken, mailBody, callback) {
   var outHeaders = {
