@@ -14,43 +14,41 @@ const routes = require('./routes/index');
 const passport = require('passport');
 const OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 const uuid = require('uuid');
-const graphHelper = require('./utils/graphHelper.js');
-const emailer = require('./utils/emailer.js');
 const config = require('./utils/config.js');
 
 const app = express();
 
-// **IMPORTANT 
+// **IMPORTANT
 // Note that production apps will need to create a self-signed cert and use a secure server,
 // and change dev settings marked 'For development only' in app.js and config.js.
 // Below is an example after you have the key cert pair:
 // const https = require('https');
 // const certConfig = {
-// 	key: fs.readFileSync('./utils/cert/server.key', 'utf8'),
-// 	cert: fs.readFileSync('./utils/cert/server.crt', 'utf8')
+//  key: fs.readFileSync('./utils/cert/server.key', 'utf8'),
+//  cert: fs.readFileSync('./utils/cert/server.crt', 'utf8')
 // };
 // const server = https.createServer(certConfig, app);
 
 // authentication setup
 const callback = (iss, sub, profile, accessToken, refreshToken, done) => {
-	done (null, {
-		profile,
-		accessToken,
-		refreshToken
-	})
+  done(null, {
+    profile,
+    accessToken,
+    refreshToken
+  });
 };
 
 passport.use(new OIDCStrategy(config.creds, callback));
 
 const users = {};
 passport.serializeUser((user, done) => {
-    const id = uuid.v4();
-    users[id] = user;
-    done(null, id);
+  const id = uuid.v4();
+  users[id] = user;
+  done(null, id);
 });
 passport.deserializeUser((id, done) => {
-    const user = users[id];
-    done(null, user)
+  const user = users[id];
+  done(null, user);
 });
 
 // view engine setup
@@ -69,18 +67,17 @@ app.use(session({
   name: 'graphNodeCookie',
   resave: false,
   saveUninitialized: false,
-	//cookie: {secure: true} // For development only
+  //cookie: {secure: true} // For development only
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', routes);
 
-function ensureAuthenticated (req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-
-    res.render('/login');
-};
+// function ensureAuthenticated (req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   res.render('/login');
+// }
 
 // error handlers
 // catch 404 and forward to error handler

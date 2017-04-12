@@ -6,8 +6,8 @@
 const https = require('https');
 
 /**
- * Generates a GET request the user endpoint
- * @param {string} req the req object that contains an access token with which the request should be authenticated
+ * Generates a GET request the user endpoint.
+ * @param {string} accessToken The access token to send with the request.
  * @param {callback} callback
  */
 function getUserData(accessToken, callback) {
@@ -48,11 +48,12 @@ function getUserData(accessToken, callback) {
 }
 
 /**
- * Generates a POST request to the SendMail endpoint
- * @param {string} accessToken the access token with which the request should be authenticated
- * @param {string} data the data which will be 'POST'ed
+ * Generates a POST request to the SendMail endpoint.
+ * @param {string} accessToken The access token to send with the request.
+ * @param {string} data The data which will be 'POST'ed.
  * @param {callback} callback
- * Per issue #53 for BadRequest when message uses utf-8 characters: Set 'Content-Length': Buffer.byteLength(mailBody,'utf8')
+ * Per issue #53 for BadRequest when message uses utf-8 characters:
+ * `Set 'Content-Length': Buffer.byteLength(mailBody,'utf8')`
  */
 function postSendMail(accessToken, mailBody, callback) {
   const outHeaders = {

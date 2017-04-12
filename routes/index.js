@@ -9,10 +9,10 @@ const graphHelper = require('../utils/graphHelper.js');
 const emailer = require('../utils/emailer.js');
 const passport = require('passport');
 
-// Get the home page. 
+// Get the home page.
 router.get('/', (req, res) => {
   // check if user is authenticated
-  if (!req.isAuthenticated()) { 
+  if (!req.isAuthenticated()) {
     res.render('login');
   } else {
     renderSendMail(req, res);
@@ -21,32 +21,31 @@ router.get('/', (req, res) => {
 
 // Authentication request.
 router.get('/login',
-	passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
-	(req, res) => {
-		res.redirect('/');
-});
+  passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+    (req, res) => {
+      res.redirect('/');
+    });
 
 // Authentication callback.
 // After we have an access token, get user data and load the sendMail page.
-router.get('/token', 
-	passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }), 
-	(req, res) => {
-		graphHelper.getUserData(req.user.accessToken, (err, user) => {
-      if (err === null) {
-        req.user.profile.displayName = user.displayName;
-        req.user.profile.emails = [{ 'address': user.mail || user.userPrincipalName }];
-        renderSendMail(req, res);
-      }
-		});
-});
+router.get('/token',
+  passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+    (req, res) => {
+      graphHelper.getUserData(req.user.accessToken, (err, user) => {
+        if (err === null) {
+          req.user.profile.displayName = user.displayName;
+          req.user.profile.emails = [{ address: user.mail || user.userPrincipalName }];
+          renderSendMail(req, res);
+        }
+      });
+    });
 
 // Load the sendMail page.
 function renderSendMail(req, res) {
   res.render('sendMail', {
-      display_name: req.user.profile.displayName,
-      email_address: req.user.profile.emails[0].address
-    }
-  );
+    display_name: req.user.profile.displayName,
+    email_address: req.user.profile.emails[0].address
+  });
 }
 
 // Send an email.
@@ -67,23 +66,23 @@ router.post('/sendMail', (req, res) => {
     req.user.accessToken,
     JSON.stringify(mailBody),
      (err) => {
-      if (err === null) {
-        response.render('sendMail', templateData);
-      } else if (hasAccessTokenExpired(err)) {
+       if (err === null) {
+         response.render('sendMail', templateData);
+       } else if (hasAccessTokenExpired(err)) {
         // TODO: Handle the refresh flow
-      } else {
-        renderError(response, err);
-      }
-    });
+       } else {
+         renderError(response, err);
+       }
+     });
 });
 
 router.get('/disconnect', (req, res) => {
-  req.session.destroy( (err) => {
+  req.session.destroy(() => {
     req.logOut();
     res.clearCookie('graphNodeCookie');
     res.status(200);
     res.redirect('/');
-  })
+  });
 });
 
 // helpers
