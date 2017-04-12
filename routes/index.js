@@ -2,150 +2,93 @@
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
-var express = require('express');
-var router = express.Router();
-var authHelper = require('../authHelper.js');
-var requestUtil = require('../requestUtil.js');
-var emailer = require('../emailer.js');
 
-/* GET home page. */
-router.get('/', function (req, res) {
-  // check for token
-  if (req.cookies.REFRESH_TOKEN_CACHE_KEY === undefined) {
-    res.redirect('login');
+const express = require('express');
+const router = express.Router();
+const graphHelper = require('../utils/graphHelper.js');
+const emailer = require('../utils/emailer.js');
+const passport = require('passport');
+
+// Get the home page. 
+router.get('/', (req, res) => {
+  // check if user is authenticated
+  if (!req.isAuthenticated()) { 
+    res.render('login');
   } else {
     renderSendMail(req, res);
   }
 });
 
-router.get('/disconnect', function (req, res) {
-  // check for token
-  req.session.destroy();
-  res.clearCookie('nodecookie');
-  clearCookies(res);
-  res.status(200);
-  res.redirect('http://localhost:3000');
+// Authentication request.
+router.get('/login',
+	passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+	(req, res) => {
+		res.redirect('/');
 });
 
-/* GET home page. */
-router.get('/login', function (req, res) {
-  if (req.query.code !== undefined) {
-    authHelper.getTokenFromCode(req.query.code, function (e, accessToken, refreshToken) {
-      if (e === null) {
-        // cache the refresh token in a cookie and go back to index
-        res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-        res.cookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refreshToken);
-        res.redirect('/');
-      } else {
-        console.log(JSON.parse(e.data).error_description);
-        res.status(500);
-        res.send();
+// Authentication callback.
+// After we have an access token, get user data and load the sendMail page.
+router.get('/token', 
+	passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }), 
+	(req, res) => {
+		graphHelper.getUserData(req.user.accessToken, (err, user) => {
+      if (err === null) {
+        req.user.profile.displayName = user.displayName;
+        req.user.profile.emails = [{ 'address': user.mail || user.userPrincipalName }];
+        renderSendMail(req, res);
       }
-    });
-  } else {
-    res.render('login', { auth_url: authHelper.getAuthUrl() });
-  }
+		});
 });
 
+// Load the sendMail page.
 function renderSendMail(req, res) {
-  requestUtil.getUserData(
-    req.cookies.ACCESS_TOKEN_CACHE_KEY,
-    function (firstRequestError, firstTryUser) {
-      if (firstTryUser !== null) {
-        req.session.user = firstTryUser;
-        res.render(
-          'sendMail',
-          {
-            display_name: firstTryUser.displayName,
-            user_principal_name: firstTryUser.userPrincipalName
-          }
-        );
-      } else if (hasAccessTokenExpired(firstRequestError)) {
-        // Handle the refresh flow
-        authHelper.getTokenFromRefreshToken(
-          req.cookies.REFRESH_TOKEN_CACHE_KEY,
-          function (refreshError, accessToken) {
-            res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-            if (accessToken !== null) {
-              requestUtil.getUserData(
-                req.cookies.ACCESS_TOKEN_CACHE_KEY,
-                function (secondRequestError, secondTryUser) {
-                  if (secondTryUser !== null) {
-                    req.session.user = secondTryUser;
-                    res.render(
-                      'sendMail',
-                      {
-                        display_name: secondTryUser.displayName,
-                        user_principal_name: secondTryUser.userPrincipalName
-                      }
-                    );
-                  } else {
-                    clearCookies(res);
-                    renderError(res, secondRequestError);
-                  }
-                }
-              );
-            } else {
-              renderError(res, refreshError);
-            }
-          });
-      } else {
-        renderError(res, firstRequestError);
-      }
+  res.render('sendMail', {
+      display_name: req.user.profile.displayName,
+      email_address: req.user.profile.emails[0].address
     }
   );
 }
 
-router.post('/', function (req, res) {
-  var destinationEmailAddress = req.body.default_email;
-  var mailBody = emailer.generateMailBody(
-    req.session.user.displayName,
+// Send an email.
+router.post('/sendMail', (req, res) => {
+  const response = res;
+  const destinationEmailAddress = req.body.default_email;
+  const mailBody = emailer.generateMailBody(
+    req.user.profile.displayName,
     destinationEmailAddress
   );
-  var templateData = {
-    display_name: req.session.user.displayName,
-    user_principal_name: req.session.user.userPrincipalName,
+  const templateData = {
+    display_name: req.user.profile.displayName,
+    email_address: req.user.profile.emails[0].address,
     actual_recipient: destinationEmailAddress
   };
 
-  requestUtil.postSendMail(
-    req.cookies.ACCESS_TOKEN_CACHE_KEY,
+  graphHelper.postSendMail(
+    req.user.accessToken,
     JSON.stringify(mailBody),
-    function (firstRequestError) {
-      if (!firstRequestError) {
-        res.render('sendMail', templateData);
-      } else if (hasAccessTokenExpired(firstRequestError)) {
-        // Handle the refresh flow
-        authHelper.getTokenFromRefreshToken(
-          req.cookies.REFRESH_TOKEN_CACHE_KEY,
-          function (refreshError, accessToken) {
-            res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-            if (accessToken !== null) {
-              requestUtil.postSendMail(
-                req.cookies.ACCESS_TOKEN_CACHE_KEY,
-                JSON.stringify(mailBody),
-                function (secondRequestError) {
-                  if (!secondRequestError) {
-                    res.render('sendMail', templateData);
-                  } else {
-                    clearCookies(res);
-                    renderError(res, secondRequestError);
-                  }
-                }
-              );
-            } else {
-              renderError(res, refreshError);
-            }
-          });
+     (err) => {
+      if (err === null) {
+        response.render('sendMail', templateData);
+      } else if (hasAccessTokenExpired(err)) {
+        // TODO: Handle the refresh flow
       } else {
-        renderError(res, firstRequestError);
+        renderError(response, err);
       }
-    }
-  );
+    });
 });
 
+router.get('/disconnect', (req, res) => {
+  req.session.destroy( (err) => {
+    req.logOut();
+    res.clearCookie('graphNodeCookie');
+    res.status(200);
+    res.redirect('/');
+  })
+});
+
+// helpers
 function hasAccessTokenExpired(e) {
-  var expired;
+  let expired;
   if (!e.innerError) {
     expired = false;
   } else {
@@ -154,11 +97,6 @@ function hasAccessTokenExpired(e) {
       e.innerError.message === 'Access token has expired.';
   }
   return expired;
-}
-
-function clearCookies(res) {
-  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY);
-  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
 }
 
 function renderError(res, e) {

@@ -2,15 +2,16 @@
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
-var https = require('https');
+
+const https = require('https');
 
 /**
  * Generates a GET request the user endpoint
- * @param {string} accessToken the access token with which the request should be authenticated
+ * @param {string} req the req object that contains an access token with which the request should be authenticated
  * @param {callback} callback
  */
 function getUserData(accessToken, callback) {
-  var options = {
+  const options = {
     host: 'graph.microsoft.com',
     path: '/v1.0/me',
     method: 'GET',
@@ -21,13 +22,13 @@ function getUserData(accessToken, callback) {
     }
   };
 
-  https.get(options, function (response) {
-    var body = '';
-    response.on('data', function (d) {
+  https.get(options, (response) => {
+    let body = '';
+    response.on('data', (d) => {
       body += d;
     });
-    response.on('end', function () {
-      var error;
+    response.on('end', () => {
+      let error;
       if (response.statusCode === 200) {
         callback(null, JSON.parse(body));
       } else {
@@ -41,7 +42,7 @@ function getUserData(accessToken, callback) {
         callback(error, null);
       }
     });
-  }).on('error', function (e) {
+  }).on('error', (e) => {
     callback(e, null);
   });
 }
@@ -54,26 +55,26 @@ function getUserData(accessToken, callback) {
  * Per issue #53 for BadRequest when message uses utf-8 characters: Set 'Content-Length': Buffer.byteLength(mailBody,'utf8')
  */
 function postSendMail(accessToken, mailBody, callback) {
-  var outHeaders = {
+  const outHeaders = {
     'Content-Type': 'application/json',
     Authorization: 'Bearer ' + accessToken,
     'Content-Length': mailBody.length
   };
-  var options = {
+  const options = {
     host: 'graph.microsoft.com',
-    path: '/v1.0/me/microsoft.graph.sendMail',
+    path: '/v1.0/me/sendMail',
     method: 'POST',
     headers: outHeaders
   };
 
   // Set up the request
-  var post = https.request(options, function (response) {
-    var body = '';
-    response.on('data', function (d) {
+  const post = https.request(options, function (response) {
+    let body = '';
+    response.on('data', (d) => {
       body += d;
     });
-    response.on('end', function () {
-      var error;
+    response.on('end', () => {
+      let error;
       if (response.statusCode === 202) {
         callback(null);
       } else {
@@ -99,7 +100,7 @@ function postSendMail(accessToken, mailBody, callback) {
   // we're done!
   post.end();
 
-  post.on('error', function (e) {
+  post.on('error', (e) => {
     callback(e);
   });
 }

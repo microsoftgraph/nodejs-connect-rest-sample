@@ -1,8 +1,8 @@
 var assert = require('assert');
 var https = require('https');
 var querystring = require('querystring');
-var requestUtil = require('../requestUtil.js');
-var emailer = require('../emailer.js');
+var graphHelper = require('../utils/graphHelper.js');
+var emailer = require('../utils/emailer.js');
 var path = require('path');
 var fs = require('fs');
 
@@ -64,7 +64,7 @@ describe('Integration', function () { // eslint-disable-line no-undef
         process.env.test_username,
         process.env.test_username
       );
-      requestUtil.postSendMail(
+      graphHelper.postSendMail(
         accessToken,
         JSON.stringify(postBody),
         function (error) {
