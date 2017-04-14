@@ -21,14 +21,17 @@
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.10.3",
     "express": "~4.15.2",
     "express-session": "^1.15.2",
-    "passport": "^0.3.2",
-    "passport-azure-ad": "^3.0.5",
     "hbs": "~4.0.1",
     "morgan": "~1.8.1",
-    "uuid": "^3.0.1",
-    "serve-favicon": "~2.4.2"
+    "passport": "^0.3.2",
+    "passport-azure-ad": "^3.0.5",
+    "serve-favicon": "~2.4.2",
+    "superagent": "^3.5.2",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
