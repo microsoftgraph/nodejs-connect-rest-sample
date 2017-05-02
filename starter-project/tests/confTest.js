@@ -1,35 +1,32 @@
 var assert = require('assert');
-var conf = require('../authHelper');
+var conf = require('../utils/config');
 
 describe('ADAL', function () { // eslint-disable-line no-undef
   it( // eslint-disable-line no-undef
-    'Checking clientID and clientSecret in authHelper.js',
+    'Checking clientID and clientSecret in config.js',
     function () {
       assert(
-        isADALConfigured(conf.credentials),
-        '\nRegister client_id and client_secret in file authHelper.js.\n' +
-        'You don\'t have them? Get them by using the Office 365 app registration tool\n' +
-        'http://dev.office.com/app-registration\n' +
-        'App type: Web App\n' +
-        'Sign on URL: http://localhost:3000\n' +
-        'Redirect URI: http://localhost:3000/login\n' +
-        'App permissions: Mail.Send'
+        isADALConfigured(conf),
+        '\nConfigure clientID and clientSecret in file utils/config.js.\n' +
+        'Check the readme to learn how to register and configure your app.'
       );
     }
   );
 });
 
 function isADALConfigured(configuration) {
+  var appId = configuration.creds.clientID;
+  var appSecret = configuration.creds.clientSecret;
   var clientIDConfigured =
-    typeof (configuration.client_id) !== 'undefined' &&
-    configuration.client_id !== null &&
-    configuration.client_id !== '' &&
-    configuration.client_id !== 'ENTER_YOUR_CLIENT_ID';
+    typeof (appId) !== 'undefined' &&
+    appId !== null &&
+    appId !== '' &&
+    appId !== 'ENTER_YOUR_CLIENT_ID';
   var clientSecretConfigured =
-    typeof (configuration.client_secret) !== 'undefined' &&
-    configuration.client_secret !== null &&
-    configuration.client_secret !== '' &&
-    configuration.client_secret !== 'ENTER_YOUR_SECRET';
+    typeof (appSecret) !== 'undefined' &&
+    appSecret !== null &&
+    appSecret !== '' &&
+    appSecret !== 'ENTER_YOUR_SECRET';
 
   return clientIDConfigured && clientSecretConfigured;
 }
