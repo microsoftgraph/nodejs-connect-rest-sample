@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This sample shows how to connect a Node.js app to a Microsoft work or school (Azure Active Directory) or personal (Microsoft) account using the Microsoft Graph API to send an email. In addition, the sample uses the Office Fabric UI for styling and formatting the user experience.
+This sample shows how to connect a Node.js app to a Microsoft work or school (Azure Active Directory) or personal (Microsoft) account using the Microsoft Graph API to retrieve a user's profile picture, upload the picture to OneDrive, create a sharing link, and send an email that contains the sharing link in its text. In addition, the sample uses the Office Fabric UI for styling and formatting the user experience.
 
 ![Microsoft Graph Connect Sample for Node.js screenshot](./readme-imgs/screenshot.PNG)
 
