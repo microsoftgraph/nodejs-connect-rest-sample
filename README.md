@@ -53,9 +53,9 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 1. Download or clone the Microsoft Graph Connect Sample for Node.js.
 
-2. Using your favorite IDE, open **authHelper.js***.
+2. Using your favorite IDE, open **utils/config.js**.
 
-3. Replace the **client_id** and **client_secret** placeholder values with the application ID and password that you copied during app registration.
+3. Replace the **ENTER_YOUR_CLIENT_ID** and **ENTER_YOUR_SECRET** placeholder values with the application ID and password that you copied during app registration.
 
 4. In a command prompt, run the following command in the root directory. This installs the project dependencies.
 
