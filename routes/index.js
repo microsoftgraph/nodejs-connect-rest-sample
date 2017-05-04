@@ -2,168 +2,141 @@
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
-var express = require('express');
-var router = express.Router();
-var authHelper = require('../authHelper.js');
-var requestUtil = require('../requestUtil.js');
-var emailer = require('../emailer.js');
 
-/* GET home page. */
-router.get('/', function (req, res) {
-  // check for token
-  if (req.cookies.REFRESH_TOKEN_CACHE_KEY === undefined) {
-    res.redirect('login');
+/**
+* This sample shows how to:
+*    - Get the current user's metadata
+*    - Get the current user's profile photo
+*    - Attach the photo as a file attachment to an email message
+*    - Upload the photo to the user's root drive
+*    - Get a sharing link for the file and add it to the message
+*    - Send the email
+*/
+const express = require('express');
+const router = express.Router();
+const graphHelper = require('../utils/graphHelper.js');
+const emailer = require('../utils/emailer.js');
+const passport = require('passport');
+// ////const fs = require('fs');
+// ////const path = require('path');
+
+// Get the home page.
+router.get('/', (req, res) => {
+  // check if user is authenticated
+  if (!req.isAuthenticated()) {
+    res.render('login');
   } else {
     renderSendMail(req, res);
   }
 });
 
-router.get('/disconnect', function (req, res) {
-  // check for token
-  req.session.destroy();
-  res.clearCookie('nodecookie');
-  clearCookies(res);
-  res.status(200);
-  res.redirect('http://localhost:3000');
-});
-
-/* GET home page. */
-router.get('/login', function (req, res) {
-  if (req.query.code !== undefined) {
-    authHelper.getTokenFromCode(req.query.code, function (e, accessToken, refreshToken) {
-      if (e === null) {
-        // cache the refresh token in a cookie and go back to index
-        res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-        res.cookie(authHelper.REFRESH_TOKEN_CACHE_KEY, refreshToken);
-        res.redirect('/');
-      } else {
-        console.log(JSON.parse(e.data).error_description);
-        res.status(500);
-        res.send();
-      }
+// Authentication request.
+router.get('/login',
+  passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+    (req, res) => {
+      res.redirect('/');
     });
-  } else {
-    res.render('login', { auth_url: authHelper.getAuthUrl() });
-  }
-});
 
+// Authentication callback.
+// After we have an access token, get user data and load the sendMail page.
+router.get('/token',
+  passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+    (req, res) => {
+      graphHelper.getUserData(req.user.accessToken, (err, user) => {
+        if (!err) {
+          req.user.profile.displayName = user.body.displayName;
+          req.user.profile.emails = [{ address: user.body.mail || user.body.userPrincipalName }];
+          renderSendMail(req, res);
+        } else {
+          renderError(err, res);
+        }
+      });
+    });
+
+// Load the sendMail page.
 function renderSendMail(req, res) {
-  requestUtil.getUserData(
-    req.cookies.ACCESS_TOKEN_CACHE_KEY,
-    function (firstRequestError, firstTryUser) {
-      if (firstTryUser !== null) {
-        req.session.user = firstTryUser;
-        res.render(
-          'sendMail',
-          {
-            display_name: firstTryUser.displayName,
-            user_principal_name: firstTryUser.userPrincipalName
-          }
-        );
-      } else if (hasAccessTokenExpired(firstRequestError)) {
-        // Handle the refresh flow
-        authHelper.getTokenFromRefreshToken(
-          req.cookies.REFRESH_TOKEN_CACHE_KEY,
-          function (refreshError, accessToken) {
-            res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-            if (accessToken !== null) {
-              requestUtil.getUserData(
-                req.cookies.ACCESS_TOKEN_CACHE_KEY,
-                function (secondRequestError, secondTryUser) {
-                  if (secondTryUser !== null) {
-                    req.session.user = secondTryUser;
-                    res.render(
-                      'sendMail',
-                      {
-                        display_name: secondTryUser.displayName,
-                        user_principal_name: secondTryUser.userPrincipalName
-                      }
-                    );
-                  } else {
-                    clearCookies(res);
-                    renderError(res, secondRequestError);
-                  }
-                }
-              );
-            } else {
-              renderError(res, refreshError);
-            }
-          });
-      } else {
-        renderError(res, firstRequestError);
-      }
-    }
-  );
+  res.render('sendMail', {
+    display_name: req.user.profile.displayName,
+    email_address: req.user.profile.emails[0].address
+  });
 }
 
-router.post('/', function (req, res) {
-  var destinationEmailAddress = req.body.default_email;
-  var mailBody = emailer.generateMailBody(
-    req.session.user.displayName,
-    destinationEmailAddress
-  );
-  var templateData = {
-    display_name: req.session.user.displayName,
-    user_principal_name: req.session.user.userPrincipalName,
-    actual_recipient: destinationEmailAddress
-  };
+// Do prep before building the email message.
+// The message contains a file attachment and embeds a sharing link to the file in the message body.
+function prepForEmailMessage(req, callback) {
+  const accessToken = req.user.accessToken;
+  const displayName = req.user.profile.displayName;
+  const destinationEmailAddress = req.body.default_email;
+  // Get the current user's profile photo.
+  graphHelper.getProfilePhoto(accessToken, (errPhoto, profilePhoto) => {
+    // //// TODO: MSA flow with local file (using fs and path?)
+    if (errPhoto) renderError(errPhoto);
+    // Upload profile photo as file to OneDrive.
+    graphHelper.uploadFile(accessToken, profilePhoto, (errFile, file) => {
+      if (errFile) renderError(errFile);
+      // Get sharingLink for file.
+      graphHelper.getSharingLink(accessToken, file.id, (errLink, link) => {
+        if (errLink) renderError(errLink);
+        const mailBody = emailer.generateMailBody(
+          displayName,
+          destinationEmailAddress,
+          link.webUrl,
+          profilePhoto
+        );
+        callback(null, mailBody);
+      });
+    });
+  });
+}
 
-  requestUtil.postSendMail(
-    req.cookies.ACCESS_TOKEN_CACHE_KEY,
-    JSON.stringify(mailBody),
-    function (firstRequestError) {
-      if (!firstRequestError) {
-        res.render('sendMail', templateData);
-      } else if (hasAccessTokenExpired(firstRequestError)) {
-        // Handle the refresh flow
-        authHelper.getTokenFromRefreshToken(
-          req.cookies.REFRESH_TOKEN_CACHE_KEY,
-          function (refreshError, accessToken) {
-            res.cookie(authHelper.ACCESS_TOKEN_CACHE_KEY, accessToken);
-            if (accessToken !== null) {
-              requestUtil.postSendMail(
-                req.cookies.ACCESS_TOKEN_CACHE_KEY,
-                JSON.stringify(mailBody),
-                function (secondRequestError) {
-                  if (!secondRequestError) {
-                    res.render('sendMail', templateData);
-                  } else {
-                    clearCookies(res);
-                    renderError(res, secondRequestError);
-                  }
-                }
-              );
-            } else {
-              renderError(res, refreshError);
-            }
-          });
+// Send an email.
+router.post('/sendMail', (req, res) => {
+  const response = res;
+  const templateData = {
+    display_name: req.user.profile.displayName,
+    email_address: req.user.profile.emails[0].address,
+    actual_recipient: req.body.default_email
+  };
+  prepForEmailMessage(req, (errMailBody, mailBody) => {
+    if (errMailBody) renderError(errMailBody);
+    graphHelper.postSendMail(req.user.accessToken, JSON.stringify(mailBody), (errSendMail) => {
+      if (!errSendMail) {
+        response.render('sendMail', templateData);
       } else {
-        renderError(res, firstRequestError);
+        if (hasAccessTokenExpired(errSendMail)) {
+          errSendMail.message += ' Expired token. Please sign out and sign in again.';
+        }
+        renderError(errSendMail, response);
       }
-    }
-  );
+    });
+  });
 });
 
+router.get('/disconnect', (req, res) => {
+  req.session.destroy(() => {
+    req.logOut();
+    res.clearCookie('graphNodeCookie');
+    res.status(200);
+    res.redirect('/');
+  });
+});
+
+// helpers
 function hasAccessTokenExpired(e) {
-  var expired;
+  let expired;
   if (!e.innerError) {
     expired = false;
   } else {
-    expired = e.code === 401 &&
-      e.innerError.code === 'InvalidAuthenticationToken' &&
-      e.innerError.message === 'Access token has expired.';
+    expired = e.forbidden &&
+      e.message === 'InvalidAuthenticationToken' &&
+      e.response.error.message === 'Access token has expired.';
   }
   return expired;
 }
 
-function clearCookies(res) {
-  res.clearCookie(authHelper.ACCESS_TOKEN_CACHE_KEY);
-  res.clearCookie(authHelper.REFRESH_TOKEN_CACHE_KEY);
-}
-
-function renderError(res, e) {
+function renderError(e, res) {
+  e.innerError = (e.response) ? e.response.text : '';
   res.render('error', {
-    message: e.message,
     error: e
   });
 }

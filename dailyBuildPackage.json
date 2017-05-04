@@ -1,7 +1,7 @@
 {
-  "name": "o365-nodejs-microsoft-graph-connect",
-  "version": "1.0.0",
-  "description": "Connecting to Office 365 is the first step every Node.js app must take to start working with Office 365 services and data. This sample shows how to connect and then call one endpoint through the Microsoft Graph API.",
+  "name": "nodejs-microsoft-graph-connect",
+  "version": "2.0.0",
+  "description": "Connecting to Microsoft Graph is the first step every Node.js app must take to start working with the Microsoft Graph API. This sample shows how to connect and call Microsoft Graph",
   "private": true,
   "scripts": {
     "start": "mocha ./tests/confTest.js && node ./bin/www",
@@ -10,23 +10,24 @@
     "automatedTest": "mocha ./tests/automatedTest.js --timeout 20000"
   },
   "keywords": [
-    "o365",
+    "graph",
     "microsoft",
     "nodejs",
     "unified"
   ],
-  "author": "PatSol",
+  "author": "DevEd",
   "license": "MIT",
   "dependencies": {
     "body-parser": "latest",
     "cookie-parser": "latest",
-    "cookie-session": "latest",
     "debug": "latest",
     "express": "latest",
     "express-session": "latest",
-    "hbs": "~3",
+    "passport": "latest",
+    "passport-azure-ad": "latest",
+    "hbs": "~4",
     "morgan": "latest",
-    "node-uuid": "latest",
+    "uuid": "latest",
     "oauth": "latest",
     "serve-favicon": "latest"
   },
@@ -35,6 +36,7 @@
     "eslint-config-airbnb": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-react": "latest",
+    "eslint-plugin-jsx-a11y": "latest",
     "gulp": "latest",
     "gulp-nodemon": "latest",
     "mocha": "latest",

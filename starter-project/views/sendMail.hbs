@@ -1,19 +1,22 @@
+<!--  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+        See LICENSE in the source repository root for complete license information. -->
+        
 <div class="ms-Grid-row">
    <!-- App navigation bar markup. -->
    <div class="ms-NavBar">
       <ul class="ms-NavBar-items">
-         <li class="navbar-header">Office 365 Connect sample</li>
+         <li class="navbar-header">Microsoft Graph Connect sample</li>
          <li id="disconnect_link" class="ms-NavBar-item ms-NavBar-item--right" onclick="window.location.href='disconnect'"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
       </ul>
    </div>
    <!-- App main content markup. -->
-   <form action="" method="post">
+   <form action="sendMail" method="post">
       <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
          <div>
             <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{display_name}}!</h2>
-            <p class="ms-font-xl">You're now connected to Office 365. Click the button below to send a message from your account using the Microsoft Graph. </p>
+            <p class="ms-font-xl">You're now connected to Microsoft Graph. Click the button below to send a message from your account using the Microsoft Graph API.</p>
             <div class="ms-TextField">
-               <input class="ms-TextField-field" name="default_email" value="{{user_principal_name}}">
+               <input class="ms-TextField-field" name="default_email" value="{{email_address}}">
             </div>
             <button id="send_mail_button" class="ms-Button">
             <span class="ms-Button-label">Send mail</span>
