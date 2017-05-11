@@ -44,7 +44,7 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 7. Choose **Web**.
 
-8. Enter *http://localhost:3000/login* as the Redirect URI. 
+8. Enter *http://localhost:3000/token* as the Redirect URI. 
 
 9. Choose **Save**.
 
