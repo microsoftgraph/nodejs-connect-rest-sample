@@ -124,6 +124,11 @@ function hasAccessTokenExpired(e) {
     }
     return expired;
 }
+/**
+ *
+ * @param {*} e
+ * @param {*} res
+ */
 function renderError(e, res) {
     e.innerError = (e.response) ? e.response.text : '';
     res.render('error', {

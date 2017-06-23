@@ -23,7 +23,7 @@ describe('Integration', function () {
         });
         var postOptions = {
             host: 'login.microsoftonline.com',
-            port: '443',
+            port: 443,
             path: '/common/oauth2/token',
             method: 'POST',
             headers: {
