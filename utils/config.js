@@ -6,8 +6,8 @@
 module.exports = {
   creds: {
     redirectUrl: 'http://localhost:3000/token',
-    clientID: '730a92c4-c899-457c-ae30-fba1512a3e7f',
-    clientSecret: 'GnoM1tdecKmWEboEQKVLdnK',
+    clientID: 'ENTER_YOUR_CLIENT_ID',
+    clientSecret: 'ENTER_YOUR_SECRET',
     identityMetadata: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration',
     allowHttpForRedirectUrl: true, // For development only
     responseType: 'code',
