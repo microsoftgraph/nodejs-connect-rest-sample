@@ -1,4 +1,5 @@
 # Microsoft Graph Connect Sample for Node.js
+![Build Status](https://office.visualstudio.com/_apis/public/build/definitions/0323e522-dd35-4fbf-8d8a-a3370491558c/446/badge "Build Status")
 
 ## Table of contents
 
@@ -12,7 +13,7 @@
 
 ## Introduction
 
-This sample shows how to connect a Node.js app to a Microsoft work or school (Azure Active Directory) or personal (Microsoft) account using the Microsoft Graph API to retrieve a user's profile picture, upload the picture to OneDrive, create a sharing link, and send an email that contains the sharing link in its text. In addition, the sample uses the Office Fabric UI for styling and formatting the user experience.
+This sample shows how to connect a Node.js app to a Microsoft work or school (Azure Active Directory) or personal (Microsoft) account using the Microsoft Graph API to send an email. In addition, the sample uses the Office Fabric UI for styling and formatting the user experience.
 
 ![Microsoft Graph Connect Sample for Node.js screenshot](./readme-imgs/screenshot.PNG)
 
@@ -20,7 +21,7 @@ This sample shows how to connect a Node.js app to a Microsoft work or school (Az
 
 To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
- * [Node.js](https://nodejs.org/) version 4 or 5.
+ * [Node.js](https://nodejs.org/) version 4 or above.
 
  * Either a [Microsoft account](https://www.outlook.com/) or a [work or school account](http://dev.office.com/devprogram)
 
@@ -44,7 +45,7 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 7. Choose **Web**.
 
-8. Enter *http://localhost:3000/token* as the Redirect URI. 
+8. Enter *http://localhost:3000/login* as the Redirect URI. 
 
 9. Choose **Save**.
 
@@ -52,9 +53,9 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 1. Download or clone the Microsoft Graph Connect Sample for Node.js.
 
-2. Using your favorite IDE, open **utils/config.js**.
+2. Using your favorite IDE, open **authHelper.js***.
 
-3. Replace the **ENTER_YOUR_CLIENT_ID** and **ENTER_YOUR_SECRET** placeholder values with the application ID and password that you copied during app registration.
+3. Replace the **client_id** and **client_secret** placeholder values with the application ID and password that you copied during app registration.
 
 4. In a command prompt, run the following command in the root directory. This installs the project dependencies.
 

@@ -6,7 +6,7 @@
 // The contents of the outbound email message that will be sent to the user
 const emailContent = `<html><head> <meta http-equiv='Content-Type' content='text/html; charset=us-ascii'> <title></title> </head>
   <body style='font-family:calibri'> <p>Congratulations {{name}}!</p> <p>This is a message from the Microsoft Graph Connect Sample. 
-  You are well on your way to incorporating Microsoft Graph endpoints in your apps.</p><a href='{{sharingLink}}'>See the photo you just uploaded!</a> 
+  You are well on your way to incorporating Microsoft Graph endpoints in your apps.</p><a href='{{sharingLink}}'>Click here to view the profile photo you just uploaded to OneDrive!</a> 
   <h3>What&#8217;s next?</h3> <ul><li>Check out <a href='https://developer.microsoft.com/graph/' target='_blank'>developer.microsoft.com/graph</a> 
   to start building Microsoft Graph apps today with all the latest tools, templates, and guidance to get started quickly.</li><li>Use the 
   <a href='https://developer.microsoft.com/graph/graph-explorer' target='_blank'>Graph Explorer</a> to explore the rest of the APIs and start your 

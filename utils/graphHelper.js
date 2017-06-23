@@ -12,7 +12,7 @@ const request = require('superagent');
  */
 function getUserData(accessToken, callback) {
   request
-   .get('https://graph.microsoft.com/v1.0/me')
+   .get('https://graph.microsoft.com/beta/me')
    .set('Authorization', 'Bearer ' + accessToken)
    .end((err, res) => {
      callback(err, res);
@@ -28,7 +28,7 @@ function getProfilePhoto(accessToken, callback) {
   // Get the profile photo of the current user (from the user's mailbox on Exchange Online).
   // This operation in version 1.0 supports only work or school mailboxes, not personal mailboxes.
   request
-   .get('https://graph.microsoft.com/v1.0/me/photo/$value')
+   .get('https://graph.microsoft.com/beta/me/photo/$value')
    .set('Authorization', 'Bearer ' + accessToken)
    .end((err, res) => {
      // Returns 200 OK and the photo in the body. If no photo exists, returns 404 Not Found.
@@ -45,7 +45,7 @@ function uploadFile(accessToken, file, callback) {
   // This operation only supports files up to 4MB in size.
   // To upload larger files, see `https://developer.microsoft.com/graph/docs/api-reference/v1.0/api/item_createUploadSession`.
   request
-   .put('https://graph.microsoft.com/v1.0/me/drive/root/children/mypic.jpg/content')
+   .put('https://graph.microsoft.com/beta/me/drive/root/children/mypic.jpg/content')
    .send(file)
    .set('Authorization', 'Bearer ' + accessToken)
    .set('Content-Type', 'image/jpg')
@@ -64,7 +64,7 @@ function uploadFile(accessToken, file, callback) {
 // See https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/item_createlink
 function getSharingLink(accessToken, id, callback) {
   request
-   .post('https://graph.microsoft.com/v1.0/me/drive/items/' + id + '/createLink')
+   .post('https://graph.microsoft.com/beta/me/drive/items/' + id + '/createLink')
    .send({ type: 'view' })
    .set('Authorization', 'Bearer ' + accessToken)
    .set('Content-Type', 'application/json')
@@ -84,7 +84,7 @@ function getSharingLink(accessToken, id, callback) {
  */
 function postSendMail(accessToken, message, callback) {
   request
-   .post('https://graph.microsoft.com/v1.0/me/sendMail')
+   .post('https://graph.microsoft.com/beta/me/sendMail')
    .send(message)
    .set('Authorization', 'Bearer ' + accessToken)
    .set('Content-Type', 'application/json')
