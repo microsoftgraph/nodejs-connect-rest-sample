@@ -1,0 +1,380 @@
+app.js(6,17): error TS2304: Cannot find name 'require'.
+app.js(6,25): error TS7016: Could not find a declaration file for module 'express'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/express/index.js' implicitly has an 'any' type.
+app.js(7,17): error TS2304: Cannot find name 'require'.
+app.js(7,25): error TS7016: Could not find a declaration file for module 'express-session'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/express-session/index.js' implicitly has an 'any' type.
+app.js(8,14): error TS2304: Cannot find name 'require'.
+app.js(8,22): error TS2307: Cannot find module 'path'.
+app.js(9,17): error TS2304: Cannot find name 'require'.
+app.js(9,25): error TS7016: Could not find a declaration file for module 'serve-favicon'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/serve-favicon/index.js' implicitly has an 'any' type.
+app.js(10,16): error TS2304: Cannot find name 'require'.
+app.js(10,24): error TS7016: Could not find a declaration file for module 'morgan'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/morgan/index.js' implicitly has an 'any' type.
+app.js(11,22): error TS2304: Cannot find name 'require'.
+app.js(11,30): error TS7016: Could not find a declaration file for module 'cookie-parser'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/cookie-parser/index.js' implicitly has an 'any' type.
+app.js(12,20): error TS2304: Cannot find name 'require'.
+app.js(12,28): error TS7016: Could not find a declaration file for module 'body-parser'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/body-parser/index.js' implicitly has an 'any' type.
+app.js(13,16): error TS2304: Cannot find name 'require'.
+app.js(14,18): error TS2304: Cannot find name 'require'.
+app.js(14,26): error TS7016: Could not find a declaration file for module 'passport'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/passport/lib/index.js' implicitly has an 'any' type.
+app.js(15,22): error TS2304: Cannot find name 'require'.
+app.js(15,30): error TS7016: Could not find a declaration file for module 'passport-azure-ad'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/passport-azure-ad/lib/index.js' implicitly has an 'any' type.
+app.js(16,14): error TS2304: Cannot find name 'require'.
+app.js(16,22): error TS7016: Could not find a declaration file for module 'uuid'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/uuid/index.js' implicitly has an 'any' type.
+app.js(17,16): error TS2304: Cannot find name 'require'.
+app.js(33,19): error TS7006: Parameter 'iss' implicitly has an 'any' type.
+app.js(33,24): error TS7006: Parameter 'sub' implicitly has an 'any' type.
+app.js(33,29): error TS7006: Parameter 'profile' implicitly has an 'any' type.
+app.js(33,38): error TS7006: Parameter 'accessToken' implicitly has an 'any' type.
+app.js(33,51): error TS7006: Parameter 'refreshToken' implicitly has an 'any' type.
+app.js(33,65): error TS7006: Parameter 'done' implicitly has an 'any' type.
+app.js(44,25): error TS7006: Parameter 'user' implicitly has an 'any' type.
+app.js(44,31): error TS7006: Parameter 'done' implicitly has an 'any' type.
+app.js(49,27): error TS7006: Parameter 'id' implicitly has an 'any' type.
+app.js(49,31): error TS7006: Parameter 'done' implicitly has an 'any' type.
+app.js(55,28): error TS2304: Cannot find name '__dirname'.
+app.js(58,27): error TS2304: Cannot find name '__dirname'.
+app.js(72,34): error TS2304: Cannot find name '__dirname'.
+app.js(79,19): error TS7006: Parameter 'req' implicitly has an 'any' type.
+app.js(79,24): error TS7006: Parameter 'res' implicitly has an 'any' type.
+app.js(79,29): error TS7006: Parameter 'next' implicitly has an 'any' type.
+app.js(81,7): error TS2339: Property 'status' does not exist on type 'Error'.
+app.js(88,21): error TS7006: Parameter 'err' implicitly has an 'any' type.
+app.js(88,26): error TS7006: Parameter 'req' implicitly has an 'any' type.
+app.js(88,31): error TS7006: Parameter 'res' implicitly has an 'any' type.
+app.js(99,19): error TS7006: Parameter 'err' implicitly has an 'any' type.
+app.js(99,24): error TS7006: Parameter 'req' implicitly has an 'any' type.
+app.js(99,29): error TS7006: Parameter 'res' implicitly has an 'any' type.
+app.js(107,1): error TS2304: Cannot find name 'module'.
+gulpfile.js(5,12): error TS2304: Cannot find name 'require'.
+gulpfile.js(5,20): error TS7016: Could not find a declaration file for module 'gulp'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/gulp/index.js' implicitly has an 'any' type.
+gulpfile.js(6,15): error TS2304: Cannot find name 'require'.
+gulpfile.js(6,23): error TS7016: Could not find a declaration file for module 'gulp-nodemon'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/gulp-nodemon/index.js' implicitly has an 'any' type.
+routes/index.js(15,17): error TS2304: Cannot find name 'require'.
+routes/index.js(15,25): error TS7016: Could not find a declaration file for module 'express'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/express/index.js' implicitly has an 'any' type.
+routes/index.js(17,21): error TS2304: Cannot find name 'require'.
+routes/index.js(18,17): error TS2304: Cannot find name 'require'.
+routes/index.js(19,18): error TS2304: Cannot find name 'require'.
+routes/index.js(19,26): error TS7016: Could not find a declaration file for module 'passport'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/passport/lib/index.js' implicitly has an 'any' type.
+routes/index.js(24,18): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(24,23): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(36,6): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(36,11): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(44,6): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(44,11): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(45,54): error TS7006: Parameter 'err' implicitly has an 'any' type.
+routes/index.js(45,59): error TS7006: Parameter 'user' implicitly has an 'any' type.
+routes/index.js(57,25): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(57,30): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(66,30): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(66,35): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+routes/index.js(71,45): error TS7006: Parameter 'errPhoto' implicitly has an 'any' type.
+routes/index.js(71,55): error TS7006: Parameter 'profilePhoto' implicitly has an 'any' type.
+routes/index.js(75,56): error TS7006: Parameter 'errFile' implicitly has an 'any' type.
+routes/index.js(75,65): error TS7006: Parameter 'file' implicitly has an 'any' type.
+routes/index.js(78,57): error TS7006: Parameter 'errLink' implicitly has an 'any' type.
+routes/index.js(78,66): error TS7006: Parameter 'link' implicitly has an 'any' type.
+routes/index.js(93,27): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(93,32): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(100,29): error TS7006: Parameter 'errMailBody' implicitly has an 'any' type.
+routes/index.js(100,42): error TS7006: Parameter 'mailBody' implicitly has an 'any' type.
+routes/index.js(102,79): error TS7006: Parameter 'errSendMail' implicitly has an 'any' type.
+routes/index.js(115,28): error TS7006: Parameter 'req' implicitly has an 'any' type.
+routes/index.js(115,33): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(125,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+routes/index.js(137,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+routes/index.js(137,25): error TS7006: Parameter 'res' implicitly has an 'any' type.
+routes/index.js(144,1): error TS2304: Cannot find name 'module'.
+starter-project/app.js(6,17): error TS2304: Cannot find name 'require'.
+starter-project/app.js(6,25): error TS7016: Could not find a declaration file for module 'express'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/express/index.js' implicitly has an 'any' type.
+starter-project/app.js(7,17): error TS2304: Cannot find name 'require'.
+starter-project/app.js(7,25): error TS7016: Could not find a declaration file for module 'express-session'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/express-session/index.js' implicitly has an 'any' type.
+starter-project/app.js(8,14): error TS2304: Cannot find name 'require'.
+starter-project/app.js(8,22): error TS2307: Cannot find module 'path'.
+starter-project/app.js(9,17): error TS2304: Cannot find name 'require'.
+starter-project/app.js(9,25): error TS7016: Could not find a declaration file for module 'serve-favicon'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/serve-favicon/index.js' implicitly has an 'any' type.
+starter-project/app.js(10,16): error TS2304: Cannot find name 'require'.
+starter-project/app.js(10,24): error TS7016: Could not find a declaration file for module 'morgan'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/morgan/index.js' implicitly has an 'any' type.
+starter-project/app.js(11,22): error TS2304: Cannot find name 'require'.
+starter-project/app.js(11,30): error TS7016: Could not find a declaration file for module 'cookie-parser'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/cookie-parser/index.js' implicitly has an 'any' type.
+starter-project/app.js(12,20): error TS2304: Cannot find name 'require'.
+starter-project/app.js(12,28): error TS7016: Could not find a declaration file for module 'body-parser'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/body-parser/index.js' implicitly has an 'any' type.
+starter-project/app.js(13,16): error TS2304: Cannot find name 'require'.
+starter-project/app.js(14,18): error TS2304: Cannot find name 'require'.
+starter-project/app.js(14,26): error TS7016: Could not find a declaration file for module 'passport'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/passport/lib/index.js' implicitly has an 'any' type.
+starter-project/app.js(15,22): error TS2304: Cannot find name 'require'.
+starter-project/app.js(15,30): error TS7016: Could not find a declaration file for module 'passport-azure-ad'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/passport-azure-ad/lib/index.js' implicitly has an 'any' type.
+starter-project/app.js(16,14): error TS2304: Cannot find name 'require'.
+starter-project/app.js(16,22): error TS7016: Could not find a declaration file for module 'uuid'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/uuid/index.js' implicitly has an 'any' type.
+starter-project/app.js(17,16): error TS2304: Cannot find name 'require'.
+starter-project/app.js(33,19): error TS7006: Parameter 'iss' implicitly has an 'any' type.
+starter-project/app.js(33,24): error TS7006: Parameter 'sub' implicitly has an 'any' type.
+starter-project/app.js(33,29): error TS7006: Parameter 'profile' implicitly has an 'any' type.
+starter-project/app.js(33,38): error TS7006: Parameter 'accessToken' implicitly has an 'any' type.
+starter-project/app.js(33,51): error TS7006: Parameter 'refreshToken' implicitly has an 'any' type.
+starter-project/app.js(33,65): error TS7006: Parameter 'done' implicitly has an 'any' type.
+starter-project/app.js(44,25): error TS7006: Parameter 'user' implicitly has an 'any' type.
+starter-project/app.js(44,31): error TS7006: Parameter 'done' implicitly has an 'any' type.
+starter-project/app.js(49,27): error TS7006: Parameter 'id' implicitly has an 'any' type.
+starter-project/app.js(49,31): error TS7006: Parameter 'done' implicitly has an 'any' type.
+starter-project/app.js(55,28): error TS2304: Cannot find name '__dirname'.
+starter-project/app.js(58,27): error TS2304: Cannot find name '__dirname'.
+starter-project/app.js(72,34): error TS2304: Cannot find name '__dirname'.
+starter-project/app.js(79,19): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/app.js(79,24): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/app.js(79,29): error TS7006: Parameter 'next' implicitly has an 'any' type.
+starter-project/app.js(81,7): error TS2339: Property 'status' does not exist on type 'Error'.
+starter-project/app.js(88,21): error TS7006: Parameter 'err' implicitly has an 'any' type.
+starter-project/app.js(88,26): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/app.js(88,31): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/app.js(99,19): error TS7006: Parameter 'err' implicitly has an 'any' type.
+starter-project/app.js(99,24): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/app.js(99,29): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/app.js(107,1): error TS2304: Cannot find name 'module'.
+starter-project/gulpfile.js(5,12): error TS2304: Cannot find name 'require'.
+starter-project/gulpfile.js(5,20): error TS7016: Could not find a declaration file for module 'gulp'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/gulp/index.js' implicitly has an 'any' type.
+starter-project/gulpfile.js(6,15): error TS2304: Cannot find name 'require'.
+starter-project/gulpfile.js(6,23): error TS7016: Could not find a declaration file for module 'gulp-nodemon'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/gulp-nodemon/index.js' implicitly has an 'any' type.
+starter-project/routes/index.js(15,17): error TS2304: Cannot find name 'require'.
+starter-project/routes/index.js(15,25): error TS7016: Could not find a declaration file for module 'express'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/express/index.js' implicitly has an 'any' type.
+starter-project/routes/index.js(17,21): error TS2304: Cannot find name 'require'.
+starter-project/routes/index.js(18,17): error TS2304: Cannot find name 'require'.
+starter-project/routes/index.js(19,18): error TS2304: Cannot find name 'require'.
+starter-project/routes/index.js(19,26): error TS7016: Could not find a declaration file for module 'passport'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/passport/lib/index.js' implicitly has an 'any' type.
+starter-project/routes/index.js(24,18): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(24,23): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(36,6): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(36,11): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(44,6): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(44,11): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(45,54): error TS7006: Parameter 'err' implicitly has an 'any' type.
+starter-project/routes/index.js(45,59): error TS7006: Parameter 'user' implicitly has an 'any' type.
+starter-project/routes/index.js(57,25): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(57,30): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(66,30): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(66,35): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+starter-project/routes/index.js(71,45): error TS7006: Parameter 'errPhoto' implicitly has an 'any' type.
+starter-project/routes/index.js(71,55): error TS7006: Parameter 'profilePhoto' implicitly has an 'any' type.
+starter-project/routes/index.js(75,56): error TS7006: Parameter 'errFile' implicitly has an 'any' type.
+starter-project/routes/index.js(75,65): error TS7006: Parameter 'file' implicitly has an 'any' type.
+starter-project/routes/index.js(78,57): error TS7006: Parameter 'errLink' implicitly has an 'any' type.
+starter-project/routes/index.js(78,66): error TS7006: Parameter 'link' implicitly has an 'any' type.
+starter-project/routes/index.js(93,27): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(93,32): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(100,29): error TS7006: Parameter 'errMailBody' implicitly has an 'any' type.
+starter-project/routes/index.js(100,42): error TS7006: Parameter 'mailBody' implicitly has an 'any' type.
+starter-project/routes/index.js(102,79): error TS7006: Parameter 'errSendMail' implicitly has an 'any' type.
+starter-project/routes/index.js(115,28): error TS7006: Parameter 'req' implicitly has an 'any' type.
+starter-project/routes/index.js(115,33): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(125,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+starter-project/routes/index.js(137,22): error TS7006: Parameter 'e' implicitly has an 'any' type.
+starter-project/routes/index.js(137,25): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/routes/index.js(144,1): error TS2304: Cannot find name 'module'.
+starter-project/tests/automatedTest.js(1,17): error TS2304: Cannot find name 'require'.
+starter-project/tests/automatedTest.js(1,25): error TS7016: Could not find a declaration file for module 'selenium-webdriver'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/selenium-webdriver/index.js' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(2,12): error TS2304: Cannot find name 'require'.
+starter-project/tests/automatedTest.js(2,20): error TS7016: Could not find a declaration file for module 'selenium-webdriver/testing'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/selenium-webdriver/testing/index.js' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(3,10): error TS2304: Cannot find name 'require'.
+starter-project/tests/automatedTest.js(3,18): error TS2307: Cannot find module 'fs'.
+starter-project/tests/automatedTest.js(4,12): error TS2304: Cannot find name 'require'.
+starter-project/tests/automatedTest.js(4,20): error TS2307: Cannot find module 'path'.
+starter-project/tests/automatedTest.js(5,14): error TS2304: Cannot find name 'require'.
+starter-project/tests/automatedTest.js(5,22): error TS2307: Cannot find module 'assert'.
+starter-project/tests/automatedTest.js(7,5): error TS7034: Variable 'driver' implicitly has type 'any' in some locations where its type cannot be determined.
+starter-project/tests/automatedTest.js(8,5): error TS7034: Variable 'authHelperFileContent' implicitly has type 'any' in some locations where its type cannot be determined.
+starter-project/tests/automatedTest.js(11,5): error TS7034: Variable 'username' implicitly has type 'any' in some locations where its type cannot be determined.
+starter-project/tests/automatedTest.js(12,5): error TS7034: Variable 'password' implicitly has type 'any' in some locations where its type cannot be determined.
+starter-project/tests/automatedTest.js(13,5): error TS7034: Variable 'filePath' implicitly has type 'any' in some locations where its type cannot be determined.
+starter-project/tests/automatedTest.js(14,1): error TS2304: Cannot find name 'before'.
+starter-project/tests/automatedTest.js(19,38): error TS2304: Cannot find name '__dirname'.
+starter-project/tests/automatedTest.js(27,28): error TS2304: Cannot find name '__dirname'.
+starter-project/tests/automatedTest.js(37,7): error TS2304: Cannot find name 'require'.
+starter-project/tests/automatedTest.js(37,15): error TS2307: Cannot find module '../bin/www'.
+starter-project/tests/automatedTest.js(45,1): error TS2304: Cannot find name 'after'.
+starter-project/tests/automatedTest.js(48,22): error TS7005: Variable 'filePath' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(48,32): error TS7005: Variable 'authHelperFileContent' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(49,12): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(56,15): error TS7006: Parameter 'done' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(57,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(58,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(60,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(60,77): error TS7005: Variable 'username' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(61,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(61,79): error TS7005: Variable 'password' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(63,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(64,16): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(65,11): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(69,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(71,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(72,16): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(75,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(76,82): error TS7006: Parameter 'value' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(81,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(83,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/automatedTest.js(84,16): error TS7005: Variable 'driver' implicitly has an 'any' type.
+starter-project/tests/confTest.js(1,14): error TS2304: Cannot find name 'require'.
+starter-project/tests/confTest.js(1,22): error TS2307: Cannot find module 'assert'.
+starter-project/tests/confTest.js(2,12): error TS2304: Cannot find name 'require'.
+starter-project/tests/confTest.js(4,1): error TS2304: Cannot find name 'describe'.
+starter-project/tests/confTest.js(5,3): error TS2304: Cannot find name 'it'.
+starter-project/tests/confTest.js(17,27): error TS7006: Parameter 'configuration' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(1,14): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(1,22): error TS2307: Cannot find module 'assert'.
+starter-project/tests/integrationTest.js(2,13): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(2,21): error TS2307: Cannot find module 'https'.
+starter-project/tests/integrationTest.js(3,19): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(3,27): error TS2307: Cannot find module 'querystring'.
+starter-project/tests/integrationTest.js(4,19): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(5,15): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(6,12): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(6,20): error TS2307: Cannot find module 'path'.
+starter-project/tests/integrationTest.js(7,10): error TS2304: Cannot find name 'require'.
+starter-project/tests/integrationTest.js(7,18): error TS2307: Cannot find module 'fs'.
+starter-project/tests/integrationTest.js(9,1): error TS2304: Cannot find name 'describe'.
+starter-project/tests/integrationTest.js(10,7): error TS7034: Variable 'accessToken' implicitly has type 'any' in some locations where its type cannot be determined.
+starter-project/tests/integrationTest.js(11,3): error TS2304: Cannot find name 'before'.
+starter-project/tests/integrationTest.js(12,15): error TS7006: Parameter 'done' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(14,38): error TS2304: Cannot find name '__dirname'.
+starter-project/tests/integrationTest.js(35,29): error TS2304: Cannot find name 'Buffer'.
+starter-project/tests/integrationTest.js(39,62): error TS7006: Parameter 'res' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(42,34): error TS7006: Parameter 'chunk' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(51,41): error TS7006: Parameter 'e' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(60,3): error TS2304: Cannot find name 'it'.
+starter-project/tests/integrationTest.js(62,15): error TS7006: Parameter 'done' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(63,22): error TS2346: Supplied parameters do not match any signature of call target.
+starter-project/tests/integrationTest.js(64,9): error TS2304: Cannot find name 'process'.
+starter-project/tests/integrationTest.js(65,9): error TS2304: Cannot find name 'process'.
+starter-project/tests/integrationTest.js(68,9): error TS7005: Variable 'accessToken' implicitly has an 'any' type.
+starter-project/tests/integrationTest.js(70,19): error TS7006: Parameter 'error' implicitly has an 'any' type.
+starter-project/utils/config.js(6,1): error TS2304: Cannot find name 'module'.
+starter-project/utils/emailer.js(41,40): error TS7006: Parameter 'file' implicitly has an 'any' type.
+starter-project/utils/emailer.js(50,44): error TS7006: Parameter 'sharingLink' implicitly has an 'any' type.
+starter-project/utils/emailer.js(50,57): error TS7006: Parameter 'file' implicitly has an 'any' type.
+starter-project/utils/emailer.js(54,1): error TS2304: Cannot find name 'exports'.
+starter-project/utils/graphHelper.js(6,17): error TS2304: Cannot find name 'require'.
+starter-project/utils/graphHelper.js(6,25): error TS7016: Could not find a declaration file for module 'superagent'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/superagent/lib/node/index.js' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(11,12): error TS2304: Cannot find name 'callback'.
+starter-project/utils/graphHelper.js(13,37): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(20,12): error TS2304: Cannot find name 'callback'.
+starter-project/utils/graphHelper.js(22,41): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(29,12): error TS2304: Cannot find name 'callback'.
+starter-project/utils/graphHelper.js(31,36): error TS7006: Parameter 'file' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(31,42): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(39,12): error TS2304: Cannot find name 'callback'.
+starter-project/utils/graphHelper.js(42,44): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(50,12): error TS2304: Cannot find name 'callback'.
+starter-project/utils/graphHelper.js(54,38): error TS7006: Parameter 'message' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(54,47): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+starter-project/utils/graphHelper.js(58,1): error TS2304: Cannot find name 'exports'.
+starter-project/utils/graphHelper.js(59,1): error TS2304: Cannot find name 'exports'.
+starter-project/utils/graphHelper.js(60,1): error TS2304: Cannot find name 'exports'.
+starter-project/utils/graphHelper.js(61,1): error TS2304: Cannot find name 'exports'.
+starter-project/utils/graphHelper.js(62,1): error TS2304: Cannot find name 'exports'.
+tests/automatedTest.js(1,17): error TS2304: Cannot find name 'require'.
+tests/automatedTest.js(1,25): error TS7016: Could not find a declaration file for module 'selenium-webdriver'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/selenium-webdriver/index.js' implicitly has an 'any' type.
+tests/automatedTest.js(2,12): error TS2304: Cannot find name 'require'.
+tests/automatedTest.js(2,20): error TS7016: Could not find a declaration file for module 'selenium-webdriver/testing'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/selenium-webdriver/testing/index.js' implicitly has an 'any' type.
+tests/automatedTest.js(3,10): error TS2304: Cannot find name 'require'.
+tests/automatedTest.js(3,18): error TS2307: Cannot find module 'fs'.
+tests/automatedTest.js(4,12): error TS2304: Cannot find name 'require'.
+tests/automatedTest.js(4,20): error TS2307: Cannot find module 'path'.
+tests/automatedTest.js(5,14): error TS2304: Cannot find name 'require'.
+tests/automatedTest.js(5,22): error TS2307: Cannot find module 'assert'.
+tests/automatedTest.js(7,5): error TS7034: Variable 'driver' implicitly has type 'any' in some locations where its type cannot be determined.
+tests/automatedTest.js(8,5): error TS7034: Variable 'authHelperFileContent' implicitly has type 'any' in some locations where its type cannot be determined.
+tests/automatedTest.js(11,5): error TS7034: Variable 'username' implicitly has type 'any' in some locations where its type cannot be determined.
+tests/automatedTest.js(12,5): error TS7034: Variable 'password' implicitly has type 'any' in some locations where its type cannot be determined.
+tests/automatedTest.js(13,5): error TS7034: Variable 'filePath' implicitly has type 'any' in some locations where its type cannot be determined.
+tests/automatedTest.js(14,1): error TS2304: Cannot find name 'before'.
+tests/automatedTest.js(19,38): error TS2304: Cannot find name '__dirname'.
+tests/automatedTest.js(27,28): error TS2304: Cannot find name '__dirname'.
+tests/automatedTest.js(37,7): error TS2304: Cannot find name 'require'.
+tests/automatedTest.js(37,15): error TS2307: Cannot find module '../bin/www'.
+tests/automatedTest.js(45,1): error TS2304: Cannot find name 'after'.
+tests/automatedTest.js(48,22): error TS7005: Variable 'filePath' implicitly has an 'any' type.
+tests/automatedTest.js(48,32): error TS7005: Variable 'authHelperFileContent' implicitly has an 'any' type.
+tests/automatedTest.js(49,12): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(56,15): error TS7006: Parameter 'done' implicitly has an 'any' type.
+tests/automatedTest.js(57,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(58,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(60,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(60,77): error TS7005: Variable 'username' implicitly has an 'any' type.
+tests/automatedTest.js(61,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(61,79): error TS7005: Variable 'password' implicitly has an 'any' type.
+tests/automatedTest.js(63,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(64,16): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(65,11): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(69,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(71,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(72,16): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(75,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(76,82): error TS7006: Parameter 'value' implicitly has an 'any' type.
+tests/automatedTest.js(81,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(83,7): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/automatedTest.js(84,16): error TS7005: Variable 'driver' implicitly has an 'any' type.
+tests/confTest.js(1,14): error TS2304: Cannot find name 'require'.
+tests/confTest.js(1,22): error TS2307: Cannot find module 'assert'.
+tests/confTest.js(2,12): error TS2304: Cannot find name 'require'.
+tests/confTest.js(4,1): error TS2304: Cannot find name 'describe'.
+tests/confTest.js(5,3): error TS2304: Cannot find name 'it'.
+tests/confTest.js(17,27): error TS7006: Parameter 'configuration' implicitly has an 'any' type.
+tests/integrationTest.js(1,14): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(1,22): error TS2307: Cannot find module 'assert'.
+tests/integrationTest.js(2,13): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(2,21): error TS2307: Cannot find module 'https'.
+tests/integrationTest.js(3,19): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(3,27): error TS2307: Cannot find module 'querystring'.
+tests/integrationTest.js(4,19): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(5,15): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(6,12): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(6,20): error TS2307: Cannot find module 'path'.
+tests/integrationTest.js(7,10): error TS2304: Cannot find name 'require'.
+tests/integrationTest.js(7,18): error TS2307: Cannot find module 'fs'.
+tests/integrationTest.js(9,1): error TS2304: Cannot find name 'describe'.
+tests/integrationTest.js(10,7): error TS7034: Variable 'accessToken' implicitly has type 'any' in some locations where its type cannot be determined.
+tests/integrationTest.js(11,3): error TS2304: Cannot find name 'before'.
+tests/integrationTest.js(12,15): error TS7006: Parameter 'done' implicitly has an 'any' type.
+tests/integrationTest.js(14,38): error TS2304: Cannot find name '__dirname'.
+tests/integrationTest.js(35,29): error TS2304: Cannot find name 'Buffer'.
+tests/integrationTest.js(39,62): error TS7006: Parameter 'res' implicitly has an 'any' type.
+tests/integrationTest.js(42,34): error TS7006: Parameter 'chunk' implicitly has an 'any' type.
+tests/integrationTest.js(51,41): error TS7006: Parameter 'e' implicitly has an 'any' type.
+tests/integrationTest.js(60,3): error TS2304: Cannot find name 'it'.
+tests/integrationTest.js(62,15): error TS7006: Parameter 'done' implicitly has an 'any' type.
+tests/integrationTest.js(63,22): error TS2346: Supplied parameters do not match any signature of call target.
+tests/integrationTest.js(64,9): error TS2304: Cannot find name 'process'.
+tests/integrationTest.js(65,9): error TS2304: Cannot find name 'process'.
+tests/integrationTest.js(68,9): error TS7005: Variable 'accessToken' implicitly has an 'any' type.
+tests/integrationTest.js(70,19): error TS7006: Parameter 'error' implicitly has an 'any' type.
+utils/config.js(6,1): error TS2304: Cannot find name 'module'.
+utils/emailer.js(41,40): error TS7006: Parameter 'file' implicitly has an 'any' type.
+utils/emailer.js(73,44): error TS7006: Parameter 'sharingLink' implicitly has an 'any' type.
+utils/emailer.js(73,57): error TS7006: Parameter 'file' implicitly has an 'any' type.
+utils/emailer.js(77,1): error TS2304: Cannot find name 'exports'.
+utils/graphHelper.js(6,17): error TS2304: Cannot find name 'require'.
+utils/graphHelper.js(6,25): error TS7016: Could not find a declaration file for module 'superagent'. 'C:/Users/dmahugh/OneDrive - Microsoft/DevX/quickstarts/nodejs-connect-rest-sample/node_modules/superagent/lib/node/index.js' implicitly has an 'any' type.
+utils/graphHelper.js(11,12): error TS2304: Cannot find name 'callback'.
+utils/graphHelper.js(13,35): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+utils/graphHelper.js(17,10): error TS7006: Parameter 'err' implicitly has an 'any' type.
+utils/graphHelper.js(17,15): error TS7006: Parameter 'res' implicitly has an 'any' type.
+utils/graphHelper.js(25,12): error TS2304: Cannot find name 'callback'.
+utils/graphHelper.js(27,39): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+utils/graphHelper.js(33,10): error TS7006: Parameter 'err' implicitly has an 'any' type.
+utils/graphHelper.js(33,15): error TS7006: Parameter 'res' implicitly has an 'any' type.
+utils/graphHelper.js(42,12): error TS2304: Cannot find name 'callback'.
+utils/graphHelper.js(44,34): error TS7006: Parameter 'file' implicitly has an 'any' type.
+utils/graphHelper.js(44,40): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+utils/graphHelper.js(52,10): error TS7006: Parameter 'err' implicitly has an 'any' type.
+utils/graphHelper.js(52,15): error TS7006: Parameter 'res' implicitly has an 'any' type.
+utils/graphHelper.js(62,12): error TS2304: Cannot find name 'callback'.
+utils/graphHelper.js(65,42): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+utils/graphHelper.js(71,10): error TS7006: Parameter 'err' implicitly has an 'any' type.
+utils/graphHelper.js(71,15): error TS7006: Parameter 'res' implicitly has an 'any' type.
+utils/graphHelper.js(81,12): error TS2304: Cannot find name 'callback'.
+utils/graphHelper.js(85,36): error TS7006: Parameter 'message' implicitly has an 'any' type.
+utils/graphHelper.js(85,45): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+utils/graphHelper.js(92,10): error TS7006: Parameter 'err' implicitly has an 'any' type.
+utils/graphHelper.js(92,15): error TS7006: Parameter 'res' implicitly has an 'any' type.
+utils/graphHelper.js(103,1): error TS2304: Cannot find name 'exports'.
+utils/graphHelper.js(104,1): error TS2304: Cannot find name 'exports'.
+utils/graphHelper.js(105,1): error TS2304: Cannot find name 'exports'.
+utils/graphHelper.js(106,1): error TS2304: Cannot find name 'exports'.
+utils/graphHelper.js(107,1): error TS2304: Cannot find name 'exports'.
