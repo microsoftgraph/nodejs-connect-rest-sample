@@ -53,7 +53,7 @@ To use the Microsoft Graph Connect Sample for Node.js, you need the following:
 
 1. Download or clone the Microsoft Graph Connect Sample for Node.js.
 
-2. Using your favorite IDE, open **utils/config.js***.
+2. Using your favorite IDE, open **utils/config.js**.
 
 3. Replace the **client_id** and **client_secret** placeholder values with the Application Id and Application secret that you copied during app registration.
 
