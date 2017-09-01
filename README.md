@@ -1,5 +1,4 @@
 # Microsoft Graph Connect Sample for Node.js
-![Build Status](https://office.visualstudio.com/_apis/public/build/definitions/0323e522-dd35-4fbf-8d8a-a3370491558c/446/badge "Build Status")
 
 ## Table of contents
 
