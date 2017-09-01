@@ -70,22 +70,30 @@ function prepForEmailMessage(req, callback) {
   // Get the current user's profile photo.
   graphHelper.getProfilePhoto(accessToken, (errPhoto, profilePhoto) => {
     // //// TODO: MSA flow with local file (using fs and path?)
-    if (errPhoto) renderError(errPhoto);
-    // Upload profile photo as file to OneDrive.
-    graphHelper.uploadFile(accessToken, profilePhoto, (errFile, file) => {
-      if (errFile) renderError(errFile);
-      // Get sharingLink for file.
-      graphHelper.getSharingLink(accessToken, file.id, (errLink, link) => {
-        if (errLink) renderError(errLink);
+    if (!errPhoto) {
+        // Upload profile photo as file to OneDrive.
+        graphHelper.uploadFile(accessToken, profilePhoto, (errFile, file) => {
+          // Get sharingLink for file.
+          graphHelper.getSharingLink(accessToken, file.id, (errLink, link) => {
+            const mailBody = emailer.generateMailBody(
+              displayName,
+              destinationEmailAddress,
+              link.webUrl,
+              profilePhoto
+            );
+            callback(null, mailBody);
+          });
+        });
+      }
+      else {
         const mailBody = emailer.generateMailBody(
           displayName,
           destinationEmailAddress,
-          link.webUrl,
-          profilePhoto
+          "no profile photo found",
+          null
         );
         callback(null, mailBody);
-      });
-    });
+      }
   });
 }
 
