@@ -86,13 +86,31 @@ function prepForEmailMessage(req, callback) {
         });
       }
       else {
-        const mailBody = emailer.generateMailBody(
-          displayName,
-          destinationEmailAddress,
-          "no profile photo found",
-          null
-        );
-        callback(null, mailBody);
+        var fs = require('fs');
+        var readableStream = fs.createReadStream('public/img/test.jpg');
+        var picFile;
+        var chunk;
+        readableStream.on('readable', function() {
+          while ((chunk=readableStream.read()) != null) {
+            picFile = chunk;
+          }
+      });
+      
+      readableStream.on('end', function() {
+
+        graphHelper.uploadFile(accessToken, picFile, (errFile, file) => {
+          // Get sharingLink for file.
+          graphHelper.getSharingLink(accessToken, file.id, (errLink, link) => {
+            const mailBody = emailer.generateMailBody(
+              displayName,
+              destinationEmailAddress,
+              link.webUrl,
+              picFile
+            );
+            callback(null, mailBody);
+          });
+        });
+      });
       }
   });
 }

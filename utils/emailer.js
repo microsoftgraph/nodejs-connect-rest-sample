@@ -41,7 +41,7 @@ function getEmailContent(name, sharingLink) {
 function wrapEmail(content, recipient, file) {
   const attachments = [{
     '@odata.type': '#microsoft.graph.fileAttachment',
-    ContentBytes: file,
+    ContentBytes: file.toString('base64'),
     Name: 'mypic.jpg'
   }];
   const emailAsPayload = {
@@ -57,10 +57,10 @@ function wrapEmail(content, recipient, file) {
             Address: recipient
           }
         }
-      ]
+      ],
+      Attachments: attachments
     },
     SaveToSentItems: true,
-    Attachments: attachments
   };
   return emailAsPayload;
 }
