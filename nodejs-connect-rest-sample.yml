@@ -1,0 +1,22 @@
+### YamlMime:Sample
+sample:
+- name: Microsoft Graph Connect Sample for Node.js
+  path: ''
+  description: Use Microsoft Graph to access a user’s Microsoft account data from within a Node.js web application. This sample sends REST calls directly to the Microsoft Graph endpoint, and authenticates with the Azure AD v2.0 endpoint to support Microsoft Accounts and work or school accounts.
+  readme: ''
+  generateZip: FALSE
+  isLive: TRUE
+  technologies:
+  - Microsoft Graph
+  - Azure AD
+  azureDeploy: ''
+  author: jamescro
+  platforms: []
+  languages:
+  - JavaScript
+  - node.js
+  - REST API
+  extensions:
+    products:
+    - Office 365
+    scenarios: []
