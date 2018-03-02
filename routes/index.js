@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
     res.render('login');
   } else {
-    renderSendMail(req, res);
+    // renderSendMail(req, res);
+    renderShowTeams(req, res);
   }
 });
 
@@ -42,11 +43,23 @@ router.get('/login',
 router.get('/token',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
     (req, res) => {
-      graphHelper.getUserData(req.user.accessToken, (err, user) => {
+      // graphHelper.getUserData(req.user.accessToken, (err, user) => {
+      //   if (!err) {
+      //     req.user.profile.displayName = user.body.displayName;
+      //     req.user.profile.emails = [{ address: user.body.mail || user.body.userPrincipalName }];
+      //     renderSendMail(req, res);
+      //   } else {
+      //     renderError(err, res);
+      //   }
+      // });
+      graphHelper.getUserMsTeams(req.user.accessToken, (err, user) => {
         if (!err) {
-          req.user.profile.displayName = user.body.displayName;
-          req.user.profile.emails = [{ address: user.body.mail || user.body.userPrincipalName }];
-          renderSendMail(req, res);
+          req.user.profile.joinedTeams = user.body.joinedTeams;
+          console.log('user: ' + user);
+          console.log('user.body.value: ' + user.body.value);
+          console.log('user.body.value[0].displayName: ' + user.body.value[0].displayName);
+          console.log('user.body.value[1].displayName: ' + user.body.value[1].displayName);
+          renderShowTeams(req, res);
         } else {
           renderError(err, res);
         }
@@ -58,6 +71,13 @@ function renderSendMail(req, res) {
   res.render('sendMail', {
     display_name: req.user.profile.displayName,
     email_address: req.user.profile.emails[0].address
+  });
+}
+
+// Load the showTeams page.
+function renderShowTeams(req, res) {
+  res.render('showTeams', {
+    teams: req.user.profile.joinedTeams
   });
 }
 

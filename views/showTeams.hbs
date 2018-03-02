@@ -1,0 +1,25 @@
+<!--  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+        See LICENSE in the source repository root for complete license information. -->
+        
+<div class="ms-Grid-row">
+   <!-- App navigation bar markup. -->
+   <div class="ms-NavBar">
+      <ul class="ms-NavBar-items">
+         <li class="navbar-header">Microsoft Graph Connect sample</li>
+         <li id="disconnect_link" class="ms-NavBar-item ms-NavBar-item--right" onclick="window.location.href='disconnect'"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
+      </ul>
+   </div>
+   <!-- App main content markup. -->
+   <form action="showTeams" method="post">
+      <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
+         <div>
+            <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{display_name}}!</h2>
+            <p class="ms-font-xl">You're now connected to Microsoft Graph. You should see your Microsoft Teams below.</p>
+         </div>
+         <div>
+                <h1>My Teams</h1>
+                {{teams}}
+         </div>
+      </div>
+   </form>
+</div>

@@ -100,7 +100,17 @@ function postSendMail(accessToken, message, callback) {
    });
 }
 
+function getUserMsTeams(accessToken, callback) {
+  request
+   .get('https://graph.microsoft.com/beta/me/joinedTeams')
+   .set('Authorization', 'Bearer ' + accessToken)
+   .end((err, res) => {
+     callback(err, res);
+   });
+}
+
 exports.getUserData = getUserData;
+exports.getUserMsTeams = getUserMsTeams;
 exports.getProfilePhoto = getProfilePhoto;
 exports.uploadFile = uploadFile;
 exports.getSharingLink = getSharingLink;
