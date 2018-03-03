@@ -54,11 +54,7 @@ router.get('/token',
       // });
       graphHelper.getUserMsTeams(req.user.accessToken, (err, user) => {
         if (!err) {
-          req.user.profile.joinedTeams = user.body.joinedTeams;
-          console.log('user: ' + user);
-          console.log('user.body.value: ' + user.body.value);
-          console.log('user.body.value[0].displayName: ' + user.body.value[0].displayName);
-          console.log('user.body.value[1].displayName: ' + user.body.value[1].displayName);
+          req.allTeams = user.body.value;
           renderShowTeams(req, res);
         } else {
           renderError(err, res);
@@ -77,7 +73,7 @@ function renderSendMail(req, res) {
 // Load the showTeams page.
 function renderShowTeams(req, res) {
   res.render('showTeams', {
-    teams: req.user.profile.joinedTeams
+    teams: req.allTeams
   });
 }
 

@@ -18,7 +18,9 @@
          </div>
          <div>
                 <h1>My Teams</h1>
-                {{teams}}
+                {{#each teams}}
+                        {{displayName}}<br/>
+                {{/each}}
          </div>
       </div>
    </form>
