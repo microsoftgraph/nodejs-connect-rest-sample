@@ -1,4 +1,10 @@
-# Microsoft Graph Connect Sample for Node.js
+# [ARCHIVED] Microsoft Graph Connect Sample for Node.js
+
+## IMPORTANT
+
+**This project is being archived and replaced with the [Build Node.js Express apps with Microsoft Graph](https://github.com/microsoftgraph/msgraph-training-nodeexpressapp). As part of the archival process, we're closing all open issues and pull requests.**
+
+**You can continue to use this sample "as-is", but it won't be maintained moving forward. We apologize for any inconvenience.**
 
 ## Table of contents
 
